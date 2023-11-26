@@ -24,7 +24,12 @@ abouts = [
 
 def home(request):
     context = {'abouts': abouts}
-    return render(request, 'home.html', context)
+    return render(request, 'base/home.html', context)
 
-def about(request):
-    return render(request, 'about.html')
+def about(request, pk):
+    about = None
+    for i in abouts:
+        if i['id'] == int(pk):
+            about = i
+    context = {'about': about}
+    return render(request, 'base/about.html', context)
