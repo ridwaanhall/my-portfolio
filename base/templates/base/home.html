@@ -8,7 +8,7 @@
         {% for about in abouts %}
         <div>
             <h5>
-                {{ about.id }} -- <a href="/about/{{about.id}}">{{ about.name }}</a>
+                {{ about.id }} -- <a href="{% url 'about' about.id %}">{{ about.name }}</a>
             </h5>
         </div>
         {% endfor %}
