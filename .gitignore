@@ -1,0 +1,8 @@
+venv/
+db.sqlite3
+.config/
+.ump/
+poetry.lock
+pyproject.toml
+.replit
+replit.nix
