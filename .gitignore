@@ -7,3 +7,4 @@ pyproject.toml
 .replit
 replit.nix
 __pycache__/
+static/
