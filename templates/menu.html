@@ -1,7 +1,7 @@
 {% load static %}
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-        <a href="/" class="app-brand-link">
+        <a href="{% url 'home' %}" class="app-brand-link">
             <!-- <span class="app-brand-logo demo">
                 <img src="{% static 'img/branding/logo.png' %}" alt="Logo" width="32" height="32">
             </span> -->
@@ -19,31 +19,37 @@
 
     <ul class="menu-inner py-1">
         <li class="menu-item active">
-            <a href="app-email.html" class="menu-link">
+            <a href="{% url 'home' %}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-home"></i>
                 <div data-i18n="Home">Home</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="app-email.html" class="menu-link">
+            <a href="#" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-layout-dashboard"></i>
                 <div data-i18n="Dashboard">Dashboard</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="app-kanban.html" class="menu-link">
+            <a href="#" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-coffee"></i>
                 <div data-i18n="Project">Project</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="app-calendar.html" class="menu-link">
+            <a href="#" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-certificate"></i>
+                <div data-i18n="Lic. &amp; Certs.">Lic. &amp; Certs.</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="#" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-user"></i>
                 <div data-i18n="About">About</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="app-chat.html" class="menu-link">
+            <a href="#" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-rocket"></i>
                 <div data-i18n="Contact">Contact</div>
             </a>
