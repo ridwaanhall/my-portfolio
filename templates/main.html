@@ -42,7 +42,9 @@
         <link rel="stylesheet" href="{% static 'vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css' %}" />
 
         <!-- Page CSS -->
-        <link rel="stylesheet" href="{% static 'vendor/css/pages/page-profile.css' %}" />
+        {% block css_head %}
+        
+        {% endblock css_head %}
 
         <!-- Helpers -->
         <script src="{% static 'vendor/js/helpers.js' %}"></script>
@@ -116,6 +118,8 @@
         <script src="{% static 'js/main.js' %}"></script>
 
         <!-- Page JS -->
-        <script src="{% static 'js/pages-profile.js' %}"></script>
+        {% block js_bottom %}
+
+        {% endblock js_bottom %}
     </body>
 </html>
