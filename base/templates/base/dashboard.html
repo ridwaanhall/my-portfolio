@@ -1,0 +1,188 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block title %}Dashboard{% endblock title %}
+
+{% block css_head %}
+    <link rel="stylesheet" href="{% static 'vendor/css/pages/page-profile.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/css/pages/app-academy.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/libs/spinkit/spinkit.css' %}" />
+
+    <style>
+        .position-relative {
+            position: relative;
+            overflow: hidden; /* Hide overflow to prevent the overlay from overflowing */
+        }
+
+        .card-hover {
+            transition: transform 0.3s; /* Add smooth transition for the zoom effect */
+            position: relative;
+        }
+
+        .card-hover:hover {
+            transform: scale(1.02); /* Zoom in on hover */
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3); /* Adjust the alpha value for darkness */
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 0; /* Ensure the overlay is below the text */
+        }
+
+        .hover-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white; /* Set text color to white for better visibility */
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1; /* Ensure the text is above the overlay */
+        }
+
+        .card-hover:hover .overlay,
+        .card-hover:hover .hover-text {
+            opacity: 1;
+        }
+
+        .card-link {
+            text-decoration: none; /* Remove the default underline on the link */
+            color: inherit; /* Use the default text color */
+        }
+
+        .card-title {
+            margin-bottom: 0; /* Remove the default margin for the title */
+        }
+    </style>
+
+{% endblock css_head %}
+
+{% block content %}
+    <div class="container-xxl flex-grow-1 container-p-y">
+        {% include 'base/profile-header.html' %}
+
+        <!-- User Profile Content -->
+        <div class="pb-sm-2 pb-2 rounded-top">
+            <div class="container py-2">
+                <section>
+                    <h3 class="text-left mb-2 mt-0 mt-md-2">Dashboard</h3>
+                    <p class="text-left lead">
+                        This is my personal dashboard, built with Django deployed as serverless functions.
+                    </p>
+                </section>
+                <div class="divider divider-primary">
+                    <div class="divider-text">
+                        <i class="ti ti-activity-heartbeat"></i>
+                    </div>
+                </div>
+                <section>
+                    <h4 class="card-title mb-0"><i class="menu-icon tf-icons ti ti-brand-github"></i>Contributions</h4>
+                    <div class="d-flex justify-content-between mb-2">
+                        <p class="text-muted mb-4 mt-0 mt-md-2">My contributions from last year on github.</p>
+                        <small class="float-end">
+                            <a href="#">View All Projects
+                                <i class="ti ti-arrow-right"></i>
+                            </a>
+                        </small>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6 col-sm-12">
+                            <a href="#" class="card-link">
+                                <div class="card mb-3 card-hover">
+                                    <div class="position-relative">
+                                        <img class="card-img-top" src="{% static 'img/projects/pddikti-api-django.png' %}" alt="pddikti api route in django" />
+                                        <div class="overlay"></div>
+                                        <div class="hover-text">View Project <i class="ti ti-arrow-right"></i></div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">PDDIKTI API</h5>
+                                        <p class="card-text">
+                                            This project is a REST API for <strong>PDDIKTI</strong> using Django with Rest Framework. The data based on website of PDDIKTI. The Project only show the data, not create, update, or delete.
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <a href="#" class="card-link">
+                                <div class="card mb-3 card-hover">
+                                    <div class="position-relative">
+                                        <img class="card-img-top" src="{% static 'img/projects/instagram-audience-analysis.png' %}" alt="Card image cap" />
+                                        <div class="overlay"></div>
+                                        <div class="hover-text">View Project <i class="ti ti-arrow-right"></i></div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Instagram Audience Analysis and Insight Tool</h5>
+                                        <p class="card-text">
+                                            This project processed data from Instagram based on following and followers. Analyzes and shows who followers, following, following but not following back, followers but don't follow back.
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+                <div class="divider text-end">
+                    <div class="divider-text">
+                        <i class="ti ti-paw rotate-n90"></i>
+                    </div>
+                </div>
+                <section>
+                    <!-- <div class="text-left mb-2 mt-0 mt-md-2 h4">
+                        <i class="menu-icon tf-icons ti ti-school"></i>Education
+                    </div>
+                    <p class="text-muted mb-4"></p> -->
+                    <div class="d-flex justify-content-between mb-2">
+                        <h4 class="card-title mb-0"><i class="menu-icon tf-icons ti ti-school"></i>Highest Education</h4>
+                    </div>
+                    <p class="text-muted mb-3 mt-0 mt-md-2">My highest level of education.</p>
+                    <div class="row" id="sortable-4">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="card bg-label-primary mb-3">
+                                <div class="card-body cursor-move d-flex align-items-center">
+                                    <img src="{% static 'img/branding/UTY.png' %}" alt="User" class="rounded-circle me-3" width="55" />
+                                    <div>
+                                        <span class="card-title text-primary mb-2 h4">Universitas Teknologi Yogyakarta</span>
+                                        <div class="card-text">Bachelor of Science in Informatics.(S.Kom)</div>
+                                        <span class="text-neutral-300 dark:text-neutral-700">2021 - Now</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-12 col-sm-12">
+                            <div class="card bg-label-primary mb-3">
+                                <div class="card-body cursor-move d-flex align-items-center">
+                                    <img src="{% static 'img/branding/al-mukmin.png' %}" alt="User" class="rounded-circle me-3" width="55" />
+                                    <div>
+                                        <span class="card-title text-primary mb-2 h4">MAS AL MUKMIN NGRUKI</span>
+                                        <div class="card-text">Natural Sciences</div>
+                                        <span class="text-neutral-300 dark:text-neutral-700">2019 - 2021</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+
+                </section>
+            </div>
+        </div>
+        <!--/ User Profile Content -->
+    </div>
+{% endblock content %}
+
+
+{% block js_bottom %}
+    <script src="{% static 'js/pages-profile.js' %}"></script>
+    <script src="{% static 'vendor/libs/block-ui/block-ui.js' %}"></script>
+    <script src="{% static 'vendor/libs/sortablejs/sortable.js' %}"></script>
+    <script src="{% static 'js/cards-actions.js' %}"></script>
+    <script src="{% static 'js/app-academy-course.js' %}"></script>
+{% endblock js_bottom %}

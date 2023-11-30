@@ -4,5 +4,6 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('about/<str:pk>', views.about, name='about'),
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path('github-activity/', views.github_activity, name='github-activity'),
 ]
