@@ -1,5 +1,6 @@
 from django.shortcuts import render
-import requests, os
+from django.http import JsonResponse
+import requests, os, json
 
 # Create your views here.
 abouts = [
@@ -11,20 +12,78 @@ abouts = [
     }
 ]
 
+# def github_activity(request):
+#     github_username = 'ridwaanhall'
+#     github_token = os.getenv('GITHUB_TOKEN')
+#     api_url = f'https://api.github.com/users/{github_username}/events'
+
+#     headers = {
+#         'Authorization': f'Bearer {github_token}',
+#         'Accept': 'application/vnd.github.v3+json',
+#     }
+
+#     response = requests.get(api_url, headers=headers)
+
+#     # Check if the request was successful (status code 200)
+#     if response.status_code == 200:
+#         # Convert the response data to JSON
+#         data = response.json()
+#         # Return a JsonResponse with the fetched data
+#         return JsonResponse(data, safe=False)
+#     else:
+#         # If the request was not successful, return an error response
+#         return JsonResponse({'error': 'Failed to fetch GitHub data'}, status=response.status_code)
+
 def github_activity(request):
-    github_username = 'ridwaanhall'
+    username = "ridwaanhall"
+    access_token = os.getenv("GITHUB_ACCESS_TOKEN")
+    api_url = "https://api.github.com/graphql"
 
-    github_token = os.getenv('GITHUB_TOKEN')
-
-    api_url = f'https://api.github.com/users/{github_username}/events'
+    query = """
+      query {
+        user(login: "%s") {
+          contributionsCollection {
+            contributionCalendar {
+              colors
+              totalContributions
+              months {
+                firstDay
+                name
+                totalWeeks
+              }
+              weeks {
+                firstDay
+                contributionDays {
+                  color
+                  contributionCount
+                  date
+                }
+              }
+            }
+          }
+        }
+      }
+    """ % username
 
     headers = {
-        'Authorization': f'Bearer {github_token}',
-        'Accept': 'application/vnd.github.v3+json',
+        "Authorization": "Bearer %s" % access_token,
+        "Content-Type": "application/json",
     }
-    response = requests.get(api_url, headers=headers)
-    data = response.json()
-    return render(request, 'base/github-activity.html', {'github_data': data})
+
+    data = json.dumps({"query": query})
+
+    response = requests.post(api_url, headers=headers, data=data)
+
+    # Check if the request was successful (status code 200)
+    if response.status_code == 200:
+        response_data = response.json()
+        # Return a JsonResponse with the fetched data
+        return JsonResponse(response_data, safe=False)
+    else:
+        # If the request was not successful, return an error response
+        return JsonResponse({'error': 'Failed to fetch GitHub data'}, status=response.status_code)
+
+    
 
 def home(request):
     context = {'abouts': abouts}
