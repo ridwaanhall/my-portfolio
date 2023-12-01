@@ -44,6 +44,55 @@ def github_activity(request):
         user(login: "%s") {
           contributionsCollection {
             contributionCalendar {
+              # colors
+              totalContributions
+              months {
+                firstDay
+                name
+                totalWeeks
+              }
+              weeks {
+                firstDay
+                contributionDays {
+                  # color
+                  contributionCount
+                  date
+                }
+              }
+            }
+          }
+        }
+      }
+    """ % username
+
+    headers = {
+        "Authorization": "Bearer %s" % access_token,
+        "Content-Type": "application/json",
+    }
+
+    data = json.dumps({"query": query})
+
+    response = requests.post(api_url, headers=headers, data=data)
+
+    # Check if the request was successful (status code 200)
+    if response.status_code == 200:
+        response_data = response.json()
+        # Return a JsonResponse with the fetched data
+        return JsonResponse(response_data, safe=False)
+    else:
+        # If the request was not successful, return an error response
+        return JsonResponse({'error': 'Failed to fetch GitHub data'}, status=response.status_code)
+
+
+def fetch_github_activity(username):
+    access_token = os.getenv("GITHUB_ACCESS_TOKEN")
+    api_url = "https://api.github.com/graphql"
+
+    query = """
+      query {
+        user(login: "%s") {
+          contributionsCollection {
+            contributionCalendar {
               colors
               totalContributions
               months {
@@ -77,17 +126,13 @@ def github_activity(request):
     # Check if the request was successful (status code 200)
     if response.status_code == 200:
         response_data = response.json()
-        # Return a JsonResponse with the fetched data
-        return JsonResponse(response_data, safe=False)
+        return response_data
     else:
-        # If the request was not successful, return an error response
-        return JsonResponse({'error': 'Failed to fetch GitHub data'}, status=response.status_code)
-
+        return {'error': 'Failed to fetch GitHub data'}
     
 
 def home(request):
-    context = {'abouts': abouts}
-    return render(request, 'base/home.html', context)
+    return render(request, 'base/home.html')
 
 def dashboard(request):
     # about = None
@@ -95,4 +140,5 @@ def dashboard(request):
     #     if i['id'] == int(pk):
     #         about = i
     # context = {'about': about}
-    return render(request, 'base/dashboard.html')
+    github_data = fetch_github_activity(username="ridwaanhall")
+    return render(request, 'base/dashboard.html', {'github_data': github_data})

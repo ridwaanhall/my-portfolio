@@ -33,15 +33,15 @@
                 <section>
                     <h4 class="card-title mb-0"><i class="menu-icon tf-icons ti ti-brand-github"></i>Contributions</h4>
                     <div class="d-flex justify-content-between mb-2">
-                        <div class="col-sm-12 col-12 mb-4">
-                            <p class="text-muted mb-4 mt-0 mt-md-2">My contributions from last year on github.</p>
+                        <div class="col-sm-12 col-12 mb-2">
+                            <p class="text-muted mb-2 mt-0">My contributions from last year on github.</p>
                         <div>
                         <!-- <small class="float-end">
                             <a href="#">View All Projects
                                 <i class="ti ti-arrow-right"></i>
                             </a>
                         </small> -->
-                        <div class="col-sm-12 col-12 mb-4">
+                        <div class="col-sm-12 col-12 mb-4 mt-0">
                             <div class="card-body">
                                 <div id="heatMapChart"></div>
                             </div>
@@ -89,7 +89,7 @@
                             </div>
                         </div> -->
                     </div>
-
+                    <p>{{ github_data }}</p>
                 </section>
             </div>
         </div>
@@ -232,7 +232,7 @@
               },
               legend: {
                 show: true,
-                position: 'top',
+                position: 'bottom',
                 horizontalAlign: 'start',
                 labels: {
                   colors: legendColor,
@@ -255,14 +255,14 @@
               },
               series: [
                 {
-                  name: 'SUN',
-                  data: generateDataHeat(52, {
+                  name: 'SAT',
+                  data: generateDataHeat(8, {
                     min: 0,
                     max: 60
                   })
                 },
                 {
-                  name: 'MON',
+                  name: 'FRI',
                   data: generateDataHeat(52, {
                     min: 0,
                     max: 60
@@ -283,21 +283,21 @@
                   })
                 },
                 {
-                  name: 'THU',
+                  name: 'TUE',
                   data: generateDataHeat(52, {
                     min: 0,
                     max: 60
                   })
                 },
                 {
-                  name: 'FRI',
+                  name: 'MON',
                   data: generateDataHeat(52, {
                     min: 0,
                     max: 60
                   })
                 },
                 {
-                  name: 'SAT',
+                  name: 'SUN',
                   data: generateDataHeat(52, {
                     min: 0,
                     max: 60
