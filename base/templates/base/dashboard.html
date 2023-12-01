@@ -8,59 +8,7 @@
     <link rel="stylesheet" href="{% static 'vendor/css/pages/page-profile.css' %}" />
     <link rel="stylesheet" href="{% static 'vendor/css/pages/app-academy.css' %}" />
     <link rel="stylesheet" href="{% static 'vendor/libs/spinkit/spinkit.css' %}" />
-
-    <style>
-        .position-relative {
-            position: relative;
-            overflow: hidden; /* Hide overflow to prevent the overlay from overflowing */
-        }
-
-        .card-hover {
-            transition: transform 0.3s; /* Add smooth transition for the zoom effect */
-            position: relative;
-        }
-
-        .card-hover:hover {
-            transform: scale(1.02); /* Zoom in on hover */
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.3); /* Adjust the alpha value for darkness */
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: 0; /* Ensure the overlay is below the text */
-        }
-
-        .hover-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white; /* Set text color to white for better visibility */
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: 1; /* Ensure the text is above the overlay */
-        }
-
-        .card-hover:hover .overlay,
-        .card-hover:hover .hover-text {
-            opacity: 1;
-        }
-
-        .card-link {
-            text-decoration: none; /* Remove the default underline on the link */
-            color: inherit; /* Use the default text color */
-        }
-
-        .card-title {
-            margin-bottom: 0; /* Remove the default margin for the title */
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'vendor/libs/apex-charts/apex-charts.css' %}" />
 
 {% endblock css_head %}
 
@@ -85,49 +33,20 @@
                 <section>
                     <h4 class="card-title mb-0"><i class="menu-icon tf-icons ti ti-brand-github"></i>Contributions</h4>
                     <div class="d-flex justify-content-between mb-2">
-                        <p class="text-muted mb-4 mt-0 mt-md-2">My contributions from last year on github.</p>
-                        <small class="float-end">
+                        <div class="col-sm-12 col-12 mb-4">
+                            <p class="text-muted mb-4 mt-0 mt-md-2">My contributions from last year on github.</p>
+                        <div>
+                        <!-- <small class="float-end">
                             <a href="#">View All Projects
                                 <i class="ti ti-arrow-right"></i>
                             </a>
-                        </small>
-                    </div>
+                        </small> -->
+                        <div class="col-sm-12 col-12 mb-4">
+                            <div class="card-body">
+                                <div id="heatMapChart"></div>
+                            </div>
+                        </div>
 
-                    <div class="row mb-4">
-                        <div class="col-md-6 col-sm-12">
-                            <a href="#" class="card-link">
-                                <div class="card mb-3 card-hover">
-                                    <div class="position-relative">
-                                        <img class="card-img-top" src="{% static 'img/projects/pddikti-api-django.png' %}" alt="pddikti api route in django" />
-                                        <div class="overlay"></div>
-                                        <div class="hover-text">View Project <i class="ti ti-arrow-right"></i></div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">PDDIKTI API</h5>
-                                        <p class="card-text">
-                                            This project is a REST API for <strong>PDDIKTI</strong> using Django with Rest Framework. The data based on website of PDDIKTI. The Project only show the data, not create, update, or delete.
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                            <a href="#" class="card-link">
-                                <div class="card mb-3 card-hover">
-                                    <div class="position-relative">
-                                        <img class="card-img-top" src="{% static 'img/projects/instagram-audience-analysis.png' %}" alt="Card image cap" />
-                                        <div class="overlay"></div>
-                                        <div class="hover-text">View Project <i class="ti ti-arrow-right"></i></div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">Instagram Audience Analysis and Insight Tool</h5>
-                                        <p class="card-text">
-                                            This project processed data from Instagram based on following and followers. Analyzes and shows who followers, following, following but not following back, followers but don't follow back.
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
                     </div>
                 </section>
                 <div class="divider text-end">
@@ -181,8 +100,239 @@
 
 {% block js_bottom %}
     <script src="{% static 'js/pages-profile.js' %}"></script>
+    <script src="{% static 'vendor/libs/apex-charts/apexcharts.js' %}"></script>
     <script src="{% static 'vendor/libs/block-ui/block-ui.js' %}"></script>
     <script src="{% static 'vendor/libs/sortablejs/sortable.js' %}"></script>
     <script src="{% static 'js/cards-actions.js' %}"></script>
     <script src="{% static 'js/app-academy-course.js' %}"></script>
+    <script>
+        /**
+         * Charts Apex
+         */
+
+        'use strict';
+
+        (function () {
+          let cardColor, headingColor, labelColor, borderColor, legendColor;
+
+          if (isDarkStyle) {
+            cardColor = config.colors_dark.cardColor;
+            headingColor = config.colors_dark.headingColor;
+            labelColor = config.colors_dark.textMuted;
+            legendColor = config.colors_dark.bodyColor;
+            borderColor = config.colors_dark.borderColor;
+          } else {
+            cardColor = config.colors.cardColor;
+            headingColor = config.colors.headingColor;
+            labelColor = config.colors.textMuted;
+            legendColor = config.colors.bodyColor;
+            borderColor = config.colors.borderColor;
+          }
+
+          // Color constant
+          const chartColors = {
+            column: {
+              series1: '#826af9',
+              series2: '#d2b0ff',
+              bg: '#f8d3ff'
+            },
+            donut: {
+              series1: '#fee802',
+              series2: '#3fd0bd',
+              series3: '#826bf8',
+              series4: '#2b9bf4'
+            },
+            area: {
+              series1: '#29dac7',
+              series2: '#60f2ca',
+              series3: '#a5f8cd'
+            }
+          };
+
+          // Heat chart data generator
+          function generateDataHeat(count, yrange) {
+            let i = 0;
+            let series = [];
+            while (i < count) {
+              let x = 'w' + (i + 1).toString();
+              let y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+
+              series.push({
+                x: x,
+                y: y
+              });
+              i++;
+            }
+            return series;
+          }
+
+          // Heat map chart
+          // --------------------------------------------------------------------
+          const heatMapEl = document.querySelector('#heatMapChart'),
+            heatMapChartConfig = {
+              chart: {
+                height: 200,
+                type: 'heatmap',
+                parentHeightOffset: 0,
+                toolbar: {
+                  show: false
+                }
+              },
+              plotOptions: {
+                heatmap: {
+                  enableShades: false,
+
+                  colorScale: {
+                    ranges: [
+                      {
+                        from: 0,
+                        to: 10,
+                        name: '0-10',
+                        color: '#90B3F3'
+                      },
+                      {
+                        from: 11,
+                        to: 20,
+                        name: '10-20',
+                        color: '#7EA6F1'
+                      },
+                      {
+                        from: 21,
+                        to: 30,
+                        name: '20-30',
+                        color: '#6B9AEF'
+                      },
+                      {
+                        from: 31,
+                        to: 40,
+                        name: '30-40',
+                        color: '#598DEE'
+                      },
+                      {
+                        from: 41,
+                        to: 50,
+                        name: '40-50',
+                        color: '#4680EC'
+                      },
+                      {
+                        from: 51,
+                        to: 60,
+                        name: '50-60',
+                        color: '#3474EA'
+                      }
+                    ]
+                  }
+                }
+              },
+              dataLabels: {
+                enabled: false
+              },
+              grid: {
+                show: false
+              },
+              legend: {
+                show: true,
+                position: 'top',
+                horizontalAlign: 'start',
+                labels: {
+                  colors: legendColor,
+                  useSeriesColors: false
+                },
+                markers: {
+                  offsetY: 0,
+                  offsetX: -3
+                },
+                itemMargin: {
+                  vertical: 3,
+                  horizontal: 10
+                }
+              },
+              stroke: {
+                curve: 'smooth',
+                width: 4,
+                lineCap: 'round',
+                colors: [cardColor]
+              },
+              series: [
+                {
+                  name: 'SUN',
+                  data: generateDataHeat(52, {
+                    min: 0,
+                    max: 60
+                  })
+                },
+                {
+                  name: 'MON',
+                  data: generateDataHeat(52, {
+                    min: 0,
+                    max: 60
+                  })
+                },
+                {
+                  name: 'TUE',
+                  data: generateDataHeat(52, {
+                    min: 0,
+                    max: 60
+                  })
+                },
+                {
+                  name: 'WED',
+                  data: generateDataHeat(52, {
+                    min: 0,
+                    max: 60
+                  })
+                },
+                {
+                  name: 'THU',
+                  data: generateDataHeat(52, {
+                    min: 0,
+                    max: 60
+                  })
+                },
+                {
+                  name: 'FRI',
+                  data: generateDataHeat(52, {
+                    min: 0,
+                    max: 60
+                  })
+                },
+                {
+                  name: 'SAT',
+                  data: generateDataHeat(52, {
+                    min: 0,
+                    max: 60
+                  })
+                }
+              ],
+              xaxis: {
+                labels: {
+                  show: false,
+                  style: {
+                    colors: labelColor,
+                    fontSize: '13px'
+                  }
+                },
+                axisBorder: {
+                  show: false
+                },
+                axisTicks: {
+                  show: false
+                }
+              },
+              yaxis: {
+                labels: {
+                  style: {
+                    colors: labelColor,
+                    fontSize: '13px'
+                  }
+                }
+              }
+            };
+          if (typeof heatMapEl !== undefined && heatMapEl !== null) {
+            const heatMapChart = new ApexCharts(heatMapEl, heatMapChartConfig);
+            heatMapChart.render();
+          }
+        })();
+
+    </script>
 {% endblock js_bottom %}
