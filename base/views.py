@@ -44,7 +44,7 @@ def github_activity(request):
         user(login: "%s") {
           contributionsCollection {
             contributionCalendar {
-              # colors
+              colors
               totalContributions
               months {
                 firstDay
@@ -54,7 +54,7 @@ def github_activity(request):
               weeks {
                 firstDay
                 contributionDays {
-                  # color
+                  color
                   contributionCount
                   date
                 }
