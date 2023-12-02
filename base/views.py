@@ -142,3 +142,6 @@ def dashboard(request):
     # context = {'about': about}
     github_data = fetch_github_activity(username="ridwaanhall")
     return render(request, 'base/dashboard.html', {'github_data': github_data})
+
+def project(request):
+    return render(request, 'base/project.html')
