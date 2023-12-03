@@ -22,6 +22,20 @@
 <div class="container-xxl flex-grow-1 container-p-y">
     {% include 'base/profile-header.html' %}
     <!-- DataTable with Buttons -->
+    <section>
+        <h3 class="text-left mb-2 mt-0 mt-md-2">Licenses &amp; certifications</h3>
+        <p class="text-left lead">
+            Embarking on a certification adventure, I've gathered a colorful array of credentials – from premium courses to no-cost gems, all accompanied by challenging assessments. 
+        </p>
+    </section>
+
+    <div class="divider divider-primary mb-4">
+        <div class="divider-text">
+            <i class="ti ti-activity-heartbeat"></i>
+        </div>
+    </div>
+    
+    <div class="card">
         <div class="card-datatable table-responsive pt-0">
             <table class="datatables-basic table">
                 <thead>
@@ -29,16 +43,16 @@
                         <th></th>
                         <th></th>
                         <th>id</th>
+                        <th>Issuing Org</th>
                         <th>Name</th>
-                        <th>Email</th>
-                        <th>Date</th>
-                        <th>Salary</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                        <th>Skills</th>
+                        <th>Type</th>
+                        <th>Credential</th>
                     </tr>
                 </thead>
             </table>
         </div>
+    </div>
     <!--/ DataTable with Buttons -->
 </div>
 
