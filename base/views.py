@@ -145,3 +145,6 @@ def dashboard(request):
 
 def project(request):
     return render(request, 'base/project.html')
+
+def certificate(request):
+    return render(request, 'base/certificate.html')
