@@ -148,3 +148,6 @@ def project(request):
 
 def certificate(request):
     return render(request, 'base/certificate.html')
+
+def about(request):
+    return render(request, 'base/about.html')
