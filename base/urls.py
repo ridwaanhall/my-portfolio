@@ -7,4 +7,5 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('github-activity/', views.github_activity, name='github-activity'),
     path('project/', views.project, name='project'),
+    path('certificate/', views.certificate, name='certificate'),
 ]
