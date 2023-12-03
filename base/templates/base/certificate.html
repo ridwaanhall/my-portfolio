@@ -1,0 +1,67 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block title %}Lic. &amp; Certs.{% endblock title %}
+
+{% block css_head %}
+    <link rel="stylesheet" href="{% static 'vendor/css/pages/page-profile.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/css/pages/app-academy.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/libs/spinkit/spinkit.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/libs/apex-charts/apex-charts.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/libs/flatpickr/flatpickr.css' %}" />
+    <!-- Row Group CSS -->
+    <link rel="stylesheet" href="{% static 'vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css' %}" />
+    <!-- Form Validation -->
+    <link rel="stylesheet" href="{% static 'vendor/libs/@form-validation/umd/styles/index.min.css' %}" />
+
+{% endblock css_head %}
+
+{% block content %}
+<div class="container-xxl flex-grow-1 container-p-y">
+    {% include 'base/profile-header.html' %}
+    <!-- DataTable with Buttons -->
+        <div class="card-datatable table-responsive pt-0">
+            <table class="datatables-basic table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>id</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Date</th>
+                        <th>Salary</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    <!--/ DataTable with Buttons -->
+</div>
+
+{% endblock content %}
+
+{% block js_bottom %}
+    <script src="{% static 'js/pages-profile.js' %}"></script>
+    <script src="{% static 'vendor/libs/apex-charts/apexcharts.js' %}"></script>
+    <script src="{% static 'vendor/libs/block-ui/block-ui.js' %}"></script>
+    <script src="{% static 'vendor/libs/sortablejs/sortable.js' %}"></script>
+    <script src="{% static 'js/cards-actions.js' %}"></script>
+    <script src="{% static 'js/app-academy-course.js' %}"></script>
+    <!-- Flat Picker -->
+    <script src="{% static 'vendor/libs/moment/moment.js' %}"></script>
+    <script src="{% static 'vendor/libs/flatpickr/flatpickr.js' %}"></script>
+    <!-- Form Validation -->
+    <script src="{% static 'vendor/libs/@form-validation/umd/bundle/popular.min.js' %}"></script>
+    <script src="{% static 'vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js' %}"></script>
+    <script src="{% static 'vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js' %}"></script>
+
+    <!-- Main JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <!-- Page JS -->
+    <script src="{% static 'js/tables-datatables-basic.js' %}"></script>
+{% endblock js_bottom %}
