@@ -151,3 +151,6 @@ def certificate(request):
 
 def about(request):
     return render(request, 'base/about.html')
+
+def contact(request):
+    return render(request, 'base/contact.html')
