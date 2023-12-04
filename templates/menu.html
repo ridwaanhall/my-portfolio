@@ -54,8 +54,8 @@
                     <div data-i18n="About">About</div>
                 </a>
             </li>
-            <li class="menu-item">
-                <a href="#" class="menu-link">
+            <li class="menu-item {% if url_name == 'contact' %}active{% endif %}">
+                <a href="{% url 'contact' %}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-rocket"></i>
                     <div data-i18n="Contact">Contact</div>
                 </a>
