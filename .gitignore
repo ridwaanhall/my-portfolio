@@ -9,3 +9,4 @@ replit.nix
 __pycache__/
 static/
 note.txt
+migrations/
