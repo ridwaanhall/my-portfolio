@@ -3,6 +3,13 @@
 <link rel="stylesheet" href="{% static 'vendor/css/pages/app-academy.css' %}" />
 <link rel="stylesheet" href="{% static 'vendor/libs/spinkit/spinkit.css' %}" />
 
+<link rel="stylesheet" href="{% static 'vendor/libs/bootstrap-select/bootstrap-select.css' %}" />
+<link rel="stylesheet" href="{% static 'vendor/libs/select2/select2.css' %}" />
+<link rel="stylesheet" href="{% static 'vendor/libs/flatpickr/flatpickr.css' %}" />
+<link rel="stylesheet" href="{% static 'vendor/libs/typeahead-js/typeahead.css' %}" />
+<link rel="stylesheet" href="{% static 'vendor/libs/tagify/tagify.css' %}" />
+<link rel="stylesheet" href="{% static 'vendor/libs/@form-validation/umd/styles/index.min.css' %}" />
+
 {% endblock css_head %} {% block content %}
 <div class="container-xxl flex-grow-1 container-p-y">
     {% include 'base/profile-header.html' %}
@@ -43,7 +50,7 @@
     </section>
     <div class="divider text-start-center">
         <div class="divider-text">
-            <i class="ti ti-award"></i>
+            <i class="ti ti-message"></i>
         </div>
     </div>
     <section>
@@ -52,191 +59,37 @@
                     </div>
                     <p class="text-muted mb-4"></p> -->
         <div class="d-flex justify-content-between mb-2">
-            <h5 class="card-title mb-0">Or send me a message</h5>
+            <h5 class="card-title mb-2">Or send me a message</h5>
         </div>
         <!-- <p class="text-muted mb-3 mt-0 mt-md-2">My educational journey.</p> -->
-    </section>
-    <div class="divider text-end">
-        <div class="divider-text">
-            <i class="ti ti-cut rotate-n90"></i>
-        </div>
-    </div>
-    <section>
-        <div class="d-flex justify-content-between mb-2">
-            <h5 class="card-title mb-0"><i class="menu-icon tf-icons ti ti-report-search"></i>Skills</h5>
-        </div>
-        <p class="text-muted mb-4 mt-0 mt-md-2">My coding skills. From basic to midle.</p>
-        <div class="row" id="sortable-4">
-            <div class="col-xs-3 col-sm-3">
-                <div class="card shadow-none bg-transparent border border-primary mb-3">
-                    <div class="card-body cursor-move d-flex align-items-center justify-content-center text-center">
-                        <div class="card-text"><i class="ti ti-brand-python"></i> Python</div>
+        <form class="needs-validation" novalidate>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <!-- <label class="form-label" for="bs-validation-name">Name</label> -->
+                        <input type="text" class="form-control" id="bs-validation-name" placeholder="Name*" required />
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter your name.</div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xs-3 col-sm-3">
-                <div class="card shadow-none bg-transparent border border-secondary mb-3">
-                    <div class="card-body cursor-move d-flex align-items-center justify-content-center text-center">
-                        <div class="card-text"><i class="ti ti-html"></i> HTML</div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <!-- <label class="form-label" for="bs-validation-email">Email</label> -->
+                        <input type="email" id="bs-validation-email" class="form-control" placeholder="Email*" aria-label="john.doe" required />
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter a valid email</div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xs-3 col-sm-3">
-                <div class="card shadow-none bg-transparent border border-success mb-3">
-                    <div class="card-body cursor-move d-flex align-items-center justify-content-center text-center">
-                        <div class="card-text"><i class="ti ti-brand-python"></i> Flask Framework</div>
-                    </div>
+    
+                <div class="mb-3">
+                    <!-- <label class="form-label" for="bs-validation-bio">Bio</label> -->
+                    <textarea class="form-control" id="bs-validation-bio" rows="5" placeholder="Message*" required></textarea>
+                </div>
+                <div class="d-grid gap-2 col-lg-12 mx-auto">
+                    <button class="btn btn-dark" type="submit">Send</button>
                 </div>
             </div>
-            <div class="col-xs-3 col-sm-3">
-                <div class="card shadow-none bg-transparent border border-warning mb-3">
-                    <div class="card-body cursor-move d-flex align-items-center justify-content-center text-center">
-                        <div class="card-text"><i class="ti ti-brand-django"></i> Django</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-3 col-sm-3">
-                <div class="card shadow-none bg-transparent border border-danger mb-3">
-                    <div class="card-body cursor-move d-flex align-items-center justify-content-center text-center">
-                        <div class="card-text"><i class="ti ti-brand-bootstrap"></i> Bootstrap</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-3 col-sm-3">
-                <div class="card shadow-none bg-transparent border border-info mb-3">
-                    <div class="card-body cursor-move d-flex align-items-center justify-content-center text-center">
-                        <div class="card-text"><i class="ti ti-brain"></i> Artificial Intelligence</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-3 col-sm-3">
-                <div class="card shadow-none bg-transparent border border-secondary mb-3">
-                    <div class="card-body cursor-move d-flex align-items-center justify-content-center text-center">
-                        <div class="card-text"><i class="ti ti-brand-mongodb"></i> MongoDB</div>
-                    </div>
-                </div>
-            </div>
-            <!-- <div class="col-xs-3 col-sm-3">
-                            <div class="card shadow-none bg-transparent border border-info mb-3">
-                                <div class="card-body cursor-move d-flex align-items-center justify-content-center text-center">
-                                    <div class="card-text">Public Speaking</div>
-                                </div>
-                            </div>
-                        </div> -->
-            <div class="col-xs-3 col-sm-3">
-                <div class="card shadow-none bg-transparent border border-warning mb-3">
-                    <div class="card-body cursor-move d-flex align-items-center justify-content-center text-center">
-                        <div class="card-text"><i class="ti ti-affiliate"></i> Neural Networks</div>
-                    </div>
-                </div>
-            </div>
-            <!-- <div class="col-xs-3 col-sm-3">
-                            <div class="card shadow-none bg-transparent border border-primary mb-3">
-                                <div class="card-body cursor-move d-flex align-items-center justify-content-center text-center">
-                                    <div class="card-text">Microsoft Search</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-3 col-sm-3">
-                            <div class="card shadow-none bg-transparent border border-secondary mb-3">
-                                <div class="card-body cursor-move d-flex align-items-center justify-content-center text-center">
-                                    <div class="card-text"><i class="ti ti-message"></i> Chatbots</div>
-                                </div>
-                            </div>
-                        </div> -->
-            <div class="col-xs-3 col-sm-3">
-                <div class="card shadow-none bg-transparent border border-success mb-3">
-                    <div class="card-body cursor-move d-flex align-items-center justify-content-center text-center">
-                        <div class="card-text">Data Analysis</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-3 col-sm-3">
-                <div class="card shadow-none bg-transparent border border-warning mb-3">
-                    <div class="card-body cursor-move d-flex align-items-center justify-content-center text-center">
-                        <div class="card-text">Data Science</div>
-                    </div>
-                </div>
-            </div>
-            <!-- <div class="col-xs-3 col-sm-3">
-                            <div class="card shadow-none bg-transparent border border-danger mb-3">
-                                <div class="card-body cursor-move d-flex align-items-center justify-content-center text-center">
-                                    <div class="card-text"><i class="ti ti-file-spreadsheet"></i> Excel</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-3 col-sm-3">
-                            <div class="card shadow-none bg-transparent border border-primary mb-3">
-                                <div class="card-body cursor-move d-flex align-items-center justify-content-center text-center">
-                                    <div class="card-text">Critical Thinking</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-3 col-sm-3">
-                            <div class="card shadow-none bg-transparent border border-secondary mb-3">
-                                <div class="card-body cursor-move d-flex align-items-center justify-content-center text-center">
-                                    <div class="card-text">Microsoft Office</div>
-                                </div>
-                            </div>
-                        </div> -->
-            <div class="col-xs-3 col-sm-3">
-                <div class="card shadow-none bg-transparent border border-success mb-3">
-                    <div class="card-body cursor-move d-flex align-items-center justify-content-center text-center">
-                        <div class="card-text"><i class="ti ti-database-cog"></i> SQL</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-3 col-sm-3">
-                <div class="card shadow-none bg-transparent border border-warning mb-3">
-                    <div class="card-body cursor-move d-flex align-items-center justify-content-center text-center">
-                        <div class="card-text"><i class="ti ti-git-fork"></i> Git</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-3 col-sm-3">
-                <div class="card shadow-none bg-transparent border border-danger mb-3">
-                    <div class="card-body cursor-move d-flex align-items-center justify-content-center text-center">
-                        <div class="card-text">REST APIs</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- <div class="col-xs-3 col-sm-3">
-                            <div class="card shadow-none bg-transparent border border-secondary mb-3">
-                                <div class="card-body cursor-move d-flex align-items-center justify-content-center text-center">
-                                    <div class="card-text">Personal Branding</div>
-                                </div>
-                            </div>
-                        </div> -->
-            <div class="col-xs-3 col-sm-3">
-                <div class="card shadow-none bg-transparent border border-info mb-3">
-                    <div class="card-body cursor-move d-flex align-items-center justify-content-center text-center">
-                        <div class="card-text"><i class="ti ti-shield-lock"></i> Ethical Hacking</div>
-                    </div>
-                </div>
-            </div>
-            <!-- <div class="col-xs-3 col-sm-3">
-                            <div class="card shadow-none bg-transparent border border-warning mb-3">
-                                <div class="card-body cursor-move d-flex align-items-center justify-content-center text-center">
-                                    <div class="card-text"><i class="ti ti-api"></i> API Documentation</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-3 col-sm-3">
-                            <div class="card shadow-none bg-transparent border border-primary mb-3">
-                                <div class="card-body cursor-move d-flex align-items-center justify-content-center text-center">
-                                    <div class="card-text"><i class="ti ti-brand-openai"></i> ChatGPT</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-3 col-sm-3">
-                            <div class="card shadow-none bg-transparent border border-secondary mb-3">
-                                <div class="card-body cursor-move d-flex align-items-center justify-content-center text-center">
-                                    <div class="card-text">Generative AI</div>
-                                </div>
-                            </div>
-                        </div> -->
-        </div>
+        </form>
     </section>
     <section>
         <div class="divider text-center">
@@ -269,5 +122,18 @@
 <script src="{% static 'vendor/libs/block-ui/block-ui.js' %}"></script>
 <script src="{% static 'vendor/libs/sortablejs/sortable.js' %}"></script>
 <script src="{% static 'js/cards-actions.js' %}"></script>
+
+<script src="{% static 'vendor/libs/select2/select2.js' %}"></script>
+<script src="{% static 'vendor/libs/bootstrap-select/bootstrap-select.js' %}"></script>
+<script src="{% static 'vendor/libs/moment/moment.js' %}"></script>
+<script src="{% static 'vendor/libs/flatpickr/flatpickr.js' %}"></script>
+<script src="{% static 'vendor/libs/typeahead-js/typeahead.js' %}"></script>
+<script src="{% static 'vendor/libs/tagify/tagify.js' %}"></script>
+<script src="{% static 'vendor/libs/@form-validation/umd/bundle/popular.min.js' %}"></script>
+<script src="{% static 'vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js' %}"></script>
+<script src="{% static 'vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js' %}"></script>
+
+<script src="{% static 'js/form-validation.js' %}"></script>
+
 <!-- <script src="{% static 'js/app-academy-course.js' %}"></script> -->
 {% endblock js_bottom %}
