@@ -154,3 +154,6 @@ def about(request):
 
 def contact(request):
     return render(request, 'base/contact.html')
+
+def playground(request):
+    return render(request, 'base/playground.html')
