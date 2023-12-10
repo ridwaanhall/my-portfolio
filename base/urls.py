@@ -12,6 +12,7 @@ urlpatterns = [
     path('certificate/', views.certificate, name='certificate'),
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
+    path('playground/', views.playground, name='playground'),
 ]
 
 # Serve media files during development
