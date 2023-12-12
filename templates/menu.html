@@ -4,13 +4,13 @@
     <div class="d-flex align-items-center flex-column">
       <img
         class="img-fluid rounded mb-2 pt-1 mt-3"
-        src="{% static 'img/avatars/9cac6b31c61b7e1441d9ae3a9f32f281.jpg' %}"
+        src="{{ sidebar_data.profile_image.url }}"
         height="100"
         width="100"
-        alt="ridwaanhall" />
+        alt="{{ sidebar_data.username }}" />
       <div class="user-info text-center">
-        <h4 class="mb-1">Ridwan Halim</h4>
-        <span class="badge bg-label-secondary mt-1">@ridwaanhall</span>
+        <h4 class="mb-1">{{ sidebar_data.name }}</h4>
+        <span class="badge bg-label-secondary mt-1">@{{ sidebar_data.username }}</span>
       </div>
     </div>
 
