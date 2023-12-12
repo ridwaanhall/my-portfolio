@@ -68,19 +68,19 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         {% include 'base/profile-header.html' %}
                 <section>
-                    <h2 class="text-left mb-2 mt-0 mt-md-2">Hi, I'm Ridwan 👋</h2>
+                    <h2 class="text-left mb-2 mt-0 mt-md-2">Hi, I'm {{ home_data.firstname }} 👋</h2>
                     <ul
                         class="list-inline mb-4 d-flex align-items-left flex-wrap justify-content-sm-start justify-content-left gap-2">
                         <li class="list-inline-item d-flex gap-1">
-                          <i class="ti ti-color-swatch"></i> Student
+                          <i class="ti ti-color-swatch"></i> {{ home_data.role }}
                         </li>
-                        <li class="list-inline-item d-flex gap-1"><i class="ti ti-map-pin"></i> Based in Yogyakarta, Indonesia <span>🇮🇩</span></li>
+                        <li class="list-inline-item d-flex gap-1"><i class="ti ti-map-pin"></i> Based in {{ home_data.based }}</li>
                         <!-- <li class="list-inline-item d-flex gap-1">
                             <i class="ti ti-calendar"></i> Joined April 2021
                         </li> -->
                     </ul>
                     <p class="text-left lead">
-                        Passionate <strong>Python Developer</strong> with focus on <mark>AI and Data</mark>, and developed as Web Development with Python frameworks such as <mark>Flask and Django</mark>.  Interest in leveraging data to build intelligent systems and machine learning models.
+                        {{ home_data.shorttext }}
                     </p>
                 </section>
                 <div class="divider text-center">
