@@ -8,8 +8,8 @@ class Project(models.Model):
     # url = models.URLField()
     github_url = models.URLField()
     demo_url = models.URLField()
-    date_start = models.CharField(max_length=255)
-    date_finish = models.CharField(max_length=255)
+    date_start = models.CharField(max_length=255, blank=True)
+    date_finish = models.CharField(max_length=255, default='now')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -20,6 +20,7 @@ class Project(models.Model):
 class Sidebar(models.Model):
     name = models.CharField(max_length=255)
     username = models.CharField(max_length=255)
+    profile_image = models.ImageField(upload_to='static/img/avatars/', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
