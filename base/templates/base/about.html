@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="{% static 'vendor/css/pages/app-academy.css' %}" />
 <link rel="stylesheet" href="{% static 'vendor/libs/spinkit/spinkit.css' %}" />
 
+
 {% endblock css_head %} {% block content %}
 <div class="container-xxl flex-grow-1 container-p-y">
     {% include 'base/profile-header.html' %}
@@ -83,82 +84,84 @@
         </div>
         <p class="text-muted mb-2 mt-0 mt-md-2">My coding skills, progressing from foundational to intermediate proficiency.</p>
         <div class="demo-inline-spacing">
-            <button type="button" class="btn rounded-pill btn-label-secondary">
-                <span class="ti-xs ti ti-brand-mongodb me-1"></span>MongoDB
-            </button>
-            <button type="button" class="btn rounded-pill btn-label-success">
-                <span class="ti-xs ti ti-brain me-1"></span>Artificial Intelligence
-            </button>
-            <button type="button" class="btn rounded-pill btn-label-danger">
-                <span class="ti-xs ti ti-brand-bootstrap me-1"></span>Bootstrap
-            </button>
-            <button type="button" class="btn rounded-pill btn-label-warning">
-                <span class="ti-xs ti ti-brand-django me-1"></span>Django
-            </button>
-            <button type="button" class="btn rounded-pill btn-label-info">
-                <span class="ti-xs ti ti-brand-python me-1"></span>Flask Framework
-            </button>
-            <button type="button" class="btn rounded-pill btn-label-dark">
-                <span class="ti-xs ti ti-brand-python me-1"></span>Python
-            </button>
-            <button type="button" class="btn rounded-pill btn-label-primary">
-                <span class="ti-xs ti ti-html me-1"></span>HTML
-            </button>
-            <button type="button" class="btn rounded-pill btn-label-dark">
-                Generative AI
-            </button>
-            <button type="button" class="btn rounded-pill btn-label-primary">
-                <span class="ti-xs ti ti-brand-openai me-1"></span>ChatGPT
-            </button>
-            <button type="button" class="btn rounded-pill btn-label-secondary">
-                <span class="ti-xs ti ti-api me-1"></span>API Documentation
-            </button>
-            <button type="button" class="btn rounded-pill btn-label-success">
-                <span class="ti-xs ti ti-shield-lock me-1"></span>Ethical Hacking
-            </button>
-            <button type="button" class="btn rounded-pill btn-label-danger">
-                Personal Branding
-            </button>
-            <button type="button" class="btn rounded-pill btn-label-warning">
-                REST APIs
-            </button>
-            <button type="button" class="btn rounded-pill btn-label-primary">
-                <span class="ti-xs ti ti-server-bolt me-1"></span>SQLite3
-            </button>
-            <button type="button" class="btn rounded-pill btn-label-info">
-                <span class="ti-xs ti ti-git-fork me-1"></span>Git
-            </button>
-            <button type="button" class="btn rounded-pill btn-label-dark">
-                <span class="ti-xs ti ti-database-cog me-1"></span>SQL
-            </button>
-            <button type="button" class="btn rounded-pill btn-label-primary">
-                Microsoft Office
-            </button>
-            <button type="button" class="btn rounded-pill btn-label-secondary">
-                Critical Thinking
-            </button>
-            <button type="button" class="btn rounded-pill btn-label-success">
-                <span class="ti-xs ti ti-file-spreadsheet me-1"></span>Excel
-            </button>
-            <button type="button" class="btn rounded-pill btn-label-danger">
-                Data Science
-            </button>
-            <button type="button" class="btn rounded-pill btn-label-warning">
-                Data Analysis
-            </button>
-            <button type="button" class="btn rounded-pill btn-label-info">
-                <span class="ti-xs ti ti-message me-1"></span>Chatbots
-            </button>
-            <button type="button" class="btn rounded-pill btn-label-dark">
-                Microsoft Search
-            </button>
-
-            <button type="button" class="btn rounded-pill btn-label-dark">
-                <span class="ti-xs ti ti-affiliate me-1"></span>Neural Networks
-            </button>
-            <button type="button" class="btn rounded-pill btn-label-primary">
-                Public Speaking
-            </button>
+            <marquee behavior="scroll" direction="left" class="marquee-container">
+                <button type="button" class="btn rounded-pill btn-label-secondary">
+                    <span class="ti-xs ti ti-brand-mongodb me-1"></span>MongoDB
+                </button>
+                <button type="button" class="btn rounded-pill btn-label-success">
+                    <span class="ti-xs ti ti-brain me-1"></span>Artificial Intelligence
+                </button>
+                <button type="button" class="btn rounded-pill btn-label-danger">
+                    <span class="ti-xs ti ti-brand-bootstrap me-1"></span>Bootstrap
+                </button>
+                <button type="button" class="btn rounded-pill btn-label-warning">
+                    <span class="ti-xs ti ti-brand-django me-1"></span>Django
+                </button>
+                <button type="button" class="btn rounded-pill btn-label-info">
+                    <span class="ti-xs ti ti-brand-python me-1"></span>Flask Framework
+                </button>
+                <button type="button" class="btn rounded-pill btn-label-dark">
+                    <span class="ti-xs ti ti-brand-python me-1"></span>Python
+                </button>
+                <button type="button" class="btn rounded-pill btn-label-primary">
+                    <span class="ti-xs ti ti-html me-1"></span>HTML
+                </button>
+                <button type="button" class="btn rounded-pill btn-label-dark">
+                    Generative AI
+                </button>
+                <button type="button" class="btn rounded-pill btn-label-primary">
+                    <span class="ti-xs ti ti-brand-openai me-1"></span>ChatGPT
+                </button>
+                <button type="button" class="btn rounded-pill btn-label-secondary">
+                    <span class="ti-xs ti ti-api me-1"></span>API Documentation
+                </button>
+                <button type="button" class="btn rounded-pill btn-label-success">
+                    <span class="ti-xs ti ti-shield-lock me-1"></span>Ethical Hacking
+                </button>
+                <button type="button" class="btn rounded-pill btn-label-danger">
+                    Personal Branding
+                </button>
+                <button type="button" class="btn rounded-pill btn-label-warning">
+                    REST APIs
+                </button>
+                <button type="button" class="btn rounded-pill btn-label-primary">
+                    <span class="ti-xs ti ti-server-bolt me-1"></span>SQLite3
+                </button>
+                <button type="button" class="btn rounded-pill btn-label-info">
+                    <span class="ti-xs ti ti-git-fork me-1"></span>Git
+                </button>
+                <button type="button" class="btn rounded-pill btn-label-dark">
+                    <span class="ti-xs ti ti-database-cog me-1"></span>SQL
+                </button>
+                <button type="button" class="btn rounded-pill btn-label-primary">
+                    Microsoft Office
+                </button>
+                <button type="button" class="btn rounded-pill btn-label-secondary">
+                    Critical Thinking
+                </button>
+                <button type="button" class="btn rounded-pill btn-label-success">
+                    <span class="ti-xs ti ti-file-spreadsheet me-1"></span>Excel
+                </button>
+                <button type="button" class="btn rounded-pill btn-label-danger">
+                    Data Science
+                </button>
+                <button type="button" class="btn rounded-pill btn-label-warning">
+                    Data Analysis
+                </button>
+                <button type="button" class="btn rounded-pill btn-label-info">
+                    <span class="ti-xs ti ti-message me-1"></span>Chatbots
+                </button>
+                <button type="button" class="btn rounded-pill btn-label-dark">
+                    Microsoft Search
+                </button>
+    
+                <button type="button" class="btn rounded-pill btn-label-dark">
+                    <span class="ti-xs ti ti-affiliate me-1"></span>Neural Networks
+                </button>
+                <button type="button" class="btn rounded-pill btn-label-primary">
+                    Public Speaking
+                </button>
+            </marquee>
         </div>
     </section>
     <!-- <section>
