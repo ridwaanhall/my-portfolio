@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 import requests, os, json
-from .models import Sidebar
+from .models import Sidebar, Home
 
 
 # Create your views here.
@@ -135,9 +135,11 @@ def fetch_github_activity(username):
 
 def home(request):
     sidebar_data = Sidebar.objects.first()
-
+    home_data = Home.objects.first()
+    
     context = {
         'sidebar_data': sidebar_data,
+        'home_data': home_data,
     }
     
     return render(request, 'base/home.html', context)
