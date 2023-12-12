@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 import requests, os, json
+from .models import Sidebar
+
 
 # Create your views here.
 abouts = [
@@ -132,7 +134,13 @@ def fetch_github_activity(username):
     
 
 def home(request):
-    return render(request, 'base/home.html')
+    sidebar_data = Sidebar.objects.first()
+
+    context = {
+        'sidebar_data': sidebar_data,
+    }
+    
+    return render(request, 'base/home.html', context)
 
 def dashboard(request):
     # about = None
@@ -140,20 +148,58 @@ def dashboard(request):
     #     if i['id'] == int(pk):
     #         about = i
     # context = {'about': about}
-    github_data = fetch_github_activity(username="ridwaanhall")
-    return render(request, 'base/dashboard.html', {'github_data': github_data})
+    sidebar_data = Sidebar.objects.first()
+
+    context = {
+        'sidebar_data': sidebar_data,
+    }
+    return render(request, 'base/dashboard.html', context)
 
 def project(request):
-    return render(request, 'base/project.html')
+
+    sidebar_data = Sidebar.objects.first()
+
+    context = {
+        'sidebar_data': sidebar_data,
+    }
+    
+    return render(request, 'base/project.html', context)
 
 def certificate(request):
-    return render(request, 'base/certificate.html')
+    
+    sidebar_data = Sidebar.objects.first()
+
+    context = {
+        'sidebar_data': sidebar_data,
+    }
+    
+    return render(request, 'base/certificate.html', context)
 
 def about(request):
-    return render(request, 'base/about.html')
+
+    sidebar_data = Sidebar.objects.first()
+
+    context = {
+        'sidebar_data': sidebar_data,
+    }
+    
+    return render(request, 'base/about.html', context)
 
 def contact(request):
-    return render(request, 'base/contact.html')
+
+    sidebar_data = Sidebar.objects.first()
+
+    context = {
+        'sidebar_data': sidebar_data,
+    }
+    
+    return render(request, 'base/contact.html', context)
 
 def playground(request):
-    return render(request, 'base/playground.html')
+    sidebar_data = Sidebar.objects.first()
+
+    context = {
+        'sidebar_data': sidebar_data,
+    }
+    
+    return render(request, 'base/playground.html', context)
