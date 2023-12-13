@@ -103,14 +103,13 @@
                 <div class="row mb-4">
                     {% for project in projects %}
                         <div class="col-md-6 col-sm-12">
-                            <a href="{{ project.github_url }}" class="card-link">
-                                <div class="card mb-3 card-hover">
-                                    <div class="position-relative">
+                                <div class="card mb-3">
+                                    <div class="position-relative card-hover">
                                         <div class="image-wrapper">
                                             <img class="card-img-top" src="{{ project.image.url }}" alt="{{ project.title }}" />
                                         </div>
                                         <div class="overlay"></div>
-                                        <div class="hover-text">View Project <i class="ti ti-arrow-right"></i></div>
+                                        <!-- <div class="hover-text">View Project <i class="ti ti-arrow-right"></i></div> -->
                                     </div>
                                     <div class="card-body">
                                         <h5 class="card-title">{{ project.title }}</h5>
@@ -125,9 +124,20 @@
                                                 <span class="me-2">Demo</span><i class="ti ti-chevron-right scaleX-n1-rtl ti-sm"></i>
                                             </a>
                                         </div> -->
+                                        <div class="row mt-3">
+                                            <div class="d-grid gap-2 col-md-4 mx-auto">
+                                                <button class="btn btn-secondary" type="button">Button</button>
+                                            </div>
+                                            <div class="d-grid gap-2 col-lg-4 mx-auto">
+                                                <button class="btn btn-primary" type="button">Button</button>
+                                            </div>
+                                            <div class="d-grid gap-2 col-lg-4 mx-auto">
+                                                <button class="btn btn-secondary" type="button">Button</button>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
-                            </a>
                         </div>
                     {% endfor %}
                 </div>
