@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 import requests, os, json
-from .models import Sidebar, Home
+from .models import Sidebar, Home, Project
 from datetime import datetime, timedelta
 from statistics import mean
 
@@ -283,9 +283,11 @@ def dashboard(request):
 def project(request):
 
     sidebar_data = Sidebar.objects.first()
-
+    projects = Project.objects.order_by('-created_at')
+    
     context = {
         'sidebar_data': sidebar_data,
+        'projects': projects,
     }
     
     return render(request, 'base/project.html', context)
