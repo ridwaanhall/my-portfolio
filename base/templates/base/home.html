@@ -60,6 +60,21 @@
         .card-title {
             margin-bottom: 0; /* Remove the default margin for the title */
         }
+
+        .image-wrapper {
+            position: relative;
+            overflow: hidden;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        }
+
+        .card-img-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     </style>
 
 {% endblock css_head %}
@@ -100,40 +115,48 @@
                     <p class="text-muted mb-4 mt-0 mt-md-2">Latest projects that I have worked on, both private and open source.</p>
                     
                     <div class="row mb-4">
-                        <div class="col-md-6 col-sm-12">
-                            <a href="#" class="card-link">
-                                <div class="card mb-3 card-hover">
-                                    <div class="position-relative">
-                                        <img class="card-img-top" src="{% static 'img/projects/pddikti-api-django.png' %}" alt="pddikti api route in django" />
-                                        <div class="overlay"></div>
-                                        <div class="hover-text">View Project <i class="ti ti-arrow-right"></i></div>
+                        {% for latest_project in latest_projects %}
+                            <div class="col-md-6 col-sm-12">
+                                    <div class="card mb-4">
+                                        <div class="position-relative card-hover">
+                                            <div class="image-wrapper">
+                                                <img class="card-img-top" src="{{ latest_project.image.url }}" alt="{{ latest_project.title }}" />
+                                            </div>
+                                            <div class="overlay"></div>
+                                            <!-- <div class="hover-text">View Project <i class="ti ti-arrow-right"></i></div> -->
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ latest_project.title }}</h5>
+                                            <p class="card-text mb-2">
+                                                {{ latest_project.description|slice:":100" }}{% if latest_project.description|length > 100 %}...{% endif %}
+                                            </p>
+                                            <!-- <div class="d-flex flex-column flex-md-row text-nowrap justify-content-center">
+                                                <a class="app-academy-md-50 btn btn-label-secondary me-md-2 d-flex align-items-center" href="#">
+                                                    <i class="ti ti-rotate-clockwise-2 align-middle scaleX-n1-rtl me-2 mt-n1 ti-sm"></i><span>Repository</span>
+                                                </a>
+                                                <a class="app-academy-md-50 btn btn-label-primary d-flex align-items-center" href="#">
+                                                    <span class="me-2">Demo</span><i class="ti ti-chevron-right scaleX-n1-rtl ti-sm"></i>
+                                                </a>
+                                            </div> -->
+                                            <div class="text-end">
+                                                <p class="text-right">{{ latest_project.date_start }} - {{ latest_project.date_finish }}</p>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="d-grid gap-2 col-md-6 mx-auto">
+                                                    <a href="{{ latest_project.github_url }}" class="btn btn-label-info" role="button">
+                                                        <span class="ti-xs ti ti-git-fork me-1"></span>Repository
+                                                    </a>
+                                                </div>
+                                                <div class="d-grid gap-2 col-lg-6 mx-auto">
+                                                    <a href="{{ latest_project.demo_url }}" class="btn btn-label-success" role="button">
+                                                        <span class="ti-xs ti ti-unlink me-1"></span>Demo
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">PDDIKTI API</h5>
-                                        <p class="card-text">
-                                            This project is a REST API for <strong>PDDIKTI</strong> using Django with Rest Framework. The data based on website of PDDIKTI. The Project only show the data, not create, update, or delete.
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                            <a href="#" class="card-link">
-                                <div class="card mb-3 card-hover">
-                                    <div class="position-relative">
-                                        <img class="card-img-top" src="{% static 'img/projects/instagram-audience-analysis.png' %}" alt="Card image cap" />
-                                        <div class="overlay"></div>
-                                        <div class="hover-text">View Project <i class="ti ti-arrow-right"></i></div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">Instagram Audience Analysis and Insight Tool</h5>
-                                        <p class="card-text">
-                                            This project processed data from Instagram based on following and followers. Analyzes and shows who followers, following, following but not following back, followers but don't follow back.
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                            </div>
+                        {% endfor %}
                     </div>
                 </section>
                 <div class="divider text-end">
@@ -150,10 +173,10 @@
                         <h4 class="card-title mb-0"><i class="menu-icon tf-icons ti ti-school"></i>Highest Education</h4>
                     </div>
                     <p class="text-muted mb-3 mt-0 mt-md-2">My highest level of education.</p>
-                    <div class="row" id="sortable-4">
+                    <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div class="card bg-label-primary mb-3">
-                                <div class="card-body cursor-move d-flex align-items-center">
+                                <div class="card-body d-flex align-items-center">
                                     <img src="{% static 'img/branding/UTY.png' %}" alt="User" class="rounded-circle me-3" width="55" />
                                     <div>
                                         <span class="card-title text-primary mb-2 h4">Universitas Teknologi Yogyakarta</span>
