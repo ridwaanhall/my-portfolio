@@ -50,18 +50,8 @@ class About(models.Model):
     def __str__(self):
         return self.longtext
 
-class Logo(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    image = models.ImageField(upload_to='static/img/education/', blank=True)
-    name_logo = models.CharField(max_length=255, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.name_logo
-
 class Education(models.Model):
-    logo = models.ForeignKey(Logo, on_delete=models.SET_NULL, null=True, blank=True)
+    logo = models.ImageField(upload_to='static/img/education/', blank=True)
     css_code_label = models.CharField(max_length=255, blank=True)
     css_code_text = models.CharField(max_length=255, blank=True)
     name_education = models.CharField(max_length=255)
