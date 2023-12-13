@@ -37,7 +37,6 @@
             <section>
                 <h5 class="card-title mb-0"><i class="menu-icon tf-icons ti ti-bulb"></i>Blank</h5>
                 <p class="text-muted mb-3 mt-0 mt-md-2">if you have any idea for fill this blank, please contact me. hehe</p>
-                {{ monthly_counts }}
             </section>
 </div>
 {% endblock content %} {% block js_bottom %}
@@ -647,20 +646,21 @@
 
         // Line Chart
         // --------------------------------------------------------------------
-        const monthlyContributions = {{ monthly_contributions|safe }};
-        const totalContributions = {{ total_contributions|safe }};
+        const monthlyContributions = {{ dates|safe }};
+        const totalContributions = {{ daily_counts|safe }};
         const lineChartEl = document.querySelector('#lineChart'),
             lineChartConfig = {
                 chart: {
-                    height: 400,
+                    height: 250,
                     type: 'line',
                     parentHeightOffset: 0,
                     zoom: {
-                        enabled: false
+                        enabled: true,
+                        autoScaleYaxis: true
                     },
                     toolbar: {
-                        show: false
-                    }
+                        autoSelected: 'zoom'
+                    },
                 },
                 series: [{
                     data: totalContributions
@@ -696,10 +696,11 @@
                         dataPointIndex,
                         w
                     }) {
-                        return '<div class="px-3 py-2">' + '<span>' + series[seriesIndex][dataPointIndex] + ' Contributions</span>' + '</div>';
+                        return '<div class="px-3 py-2 font-muted">' + '<span>' + series[seriesIndex][dataPointIndex] + ' Contributions</span>' + '</div>';
                     }
                 },
                 xaxis: {
+                    type: 'datetime',
                     categories: monthlyContributions,
                     axisBorder: {
                         show: false

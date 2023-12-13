@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 import requests, os, json
 from .models import Sidebar, Home
+from datetime import datetime, timedelta
 
 
 # Create your views here.
@@ -147,7 +148,7 @@ def home(request):
     
     return render(request, 'base/home.html', context)
 
-def dashboard(request):
+def dashboard_ahehe(request):
     # about = None
     # for i in abouts:
     #     if i['id'] == int(pk):
@@ -178,6 +179,39 @@ def dashboard(request):
         'monthly_contributions': list(monthly_counts.keys())[::-1],
         'total_contributions': list(monthly_counts.values())[::-1],
     }
+    return render(request, 'base/dashboard.html', context)
+
+def dashboard(request):
+    response = requests.get("https://my-portfolio.ridwaanhall.repl.co/github-activity/")
+    data = json.loads(response.text)
+
+    daily_contributions = []
+
+    for week in data['data']['user']['contributionsCollection']['contributionCalendar']['weeks']:
+        for day in week['contributionDays']:
+            date_str = day['date']
+            date_obj = datetime.strptime(date_str, '%Y-%m-%d')
+
+            daily_contributions.append({
+                "date": date_str,
+                "contributionCount": day['contributionCount']
+            })
+
+    # Sorting the daily_contributions by date
+    sorted_daily_contributions = sorted(daily_contributions, key=lambda x: x["date"])
+
+    # Extracting dates and contribution counts into separate lists
+    dates = [day["date"] for day in sorted_daily_contributions]
+    daily_counts = [day["contributionCount"] for day in sorted_daily_contributions]
+
+    sidebar_data = Sidebar.objects.first()
+
+    context = {
+        'sidebar_data': sidebar_data,
+        'dates': dates,
+        'daily_counts': daily_counts,
+    }
+
     return render(request, 'base/dashboard.html', context)
 
 def project(request):
