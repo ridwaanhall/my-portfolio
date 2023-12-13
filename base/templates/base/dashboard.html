@@ -772,7 +772,7 @@
                     custom: function ({ series, seriesIndex, dataPointIndex, w }) {
                         const date = monthlyContributions[dataPointIndex];
                         const count = series[seriesIndex][dataPointIndex];
-                        const contributionText = count === 0 ? 'contribution' : 'contributions';
+                        const contributionText = count === 1 ? 'contribution' : 'contributions';
 
                         return `<div class="px-3 py-2"><span>${count} ${contributionText} on ${date}</span></div>`;
                     }
