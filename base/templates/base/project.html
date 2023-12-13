@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{% static 'vendor/css/pages/app-academy.css' %}" />
     <link rel="stylesheet" href="{% static 'vendor/libs/spinkit/spinkit.css' %}" />
     <link rel="stylesheet" href="{% static 'vendor/libs/apex-charts/apex-charts.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/libs/select2/select2.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/libs/plyr/plyr.css' %}" />
     <style>
         .position-relative {
             position: relative;
@@ -60,6 +62,22 @@
         .card-title {
             margin-bottom: 0; /* Remove the default margin for the title */
         }
+
+        .image-wrapper {
+            position: relative;
+            overflow: hidden;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        }
+
+        .card-img-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
     </style>
 
 {% endblock css_head %}
@@ -83,125 +101,35 @@
 
             <section>
                 <div class="row mb-4">
-                    <div class="col-md-6 col-sm-12">
-                        <a href="#" class="card-link">
-                            <div class="card mb-3 card-hover">
-                                <div class="position-relative">
-                                    <img class="card-img-top" src="{% static 'img/projects/pddikti-api-django.png' %}" alt="pddikti api route in django" />
-                                    <div class="overlay"></div>
-                                    <div class="hover-text">View Project <i class="ti ti-arrow-right"></i></div>
+                    {% for project in projects %}
+                        <div class="col-md-6 col-sm-12">
+                            <a href="{{ project.github_url }}" class="card-link">
+                                <div class="card mb-3 card-hover">
+                                    <div class="position-relative">
+                                        <div class="image-wrapper">
+                                            <img class="card-img-top" src="{{ project.image.url }}" alt="{{ project.title }}" />
+                                        </div>
+                                        <div class="overlay"></div>
+                                        <div class="hover-text">View Project <i class="ti ti-arrow-right"></i></div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ project.title }}</h5>
+                                        <p class="card-text mb-2">
+                                            {{ project.description|slice:":100" }}{% if project.description|length > 100 %}...{% endif %}
+                                        </p>
+                                        <!-- <div class="d-flex flex-column flex-md-row text-nowrap justify-content-center">
+                                            <a class="app-academy-md-50 btn btn-label-secondary me-md-2 d-flex align-items-center" href="#">
+                                                <i class="ti ti-rotate-clockwise-2 align-middle scaleX-n1-rtl me-2 mt-n1 ti-sm"></i><span>Repository</span>
+                                            </a>
+                                            <a class="app-academy-md-50 btn btn-label-primary d-flex align-items-center" href="#">
+                                                <span class="me-2">Demo</span><i class="ti ti-chevron-right scaleX-n1-rtl ti-sm"></i>
+                                            </a>
+                                        </div> -->
+                                    </div>
                                 </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">PDDIKTI API</h5>
-                                    <p class="card-text">
-                                        This project is a REST API for <strong>PDDIKTI</strong> using Django with Rest Framework. The data based on website of PDDIKTI. The Project only show the data, not create, update, or delete.
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <a href="#" class="card-link">
-                            <div class="card mb-3 card-hover">
-                                <div class="position-relative">
-                                    <img class="card-img-top" src="{% static 'img/projects/pddikti-api-django.png' %}" alt="pddikti api route in django" />
-                                    <div class="overlay"></div>
-                                    <div class="hover-text">View Project <i class="ti ti-arrow-right"></i></div>
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">PDDIKTI API</h5>
-                                    <p class="card-text">
-                                        This project is a REST API for <strong>PDDIKTI</strong> using Django with Rest Framework. The data based on website of PDDIKTI. The Project only show the data, not create, update, or delete.
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <a href="#" class="card-link">
-                            <div class="card mb-3 card-hover">
-                                <div class="position-relative">
-                                    <img class="card-img-top" src="{% static 'img/projects/pddikti-api-django.png' %}" alt="pddikti api route in django" />
-                                    <div class="overlay"></div>
-                                    <div class="hover-text">View Project <i class="ti ti-arrow-right"></i></div>
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">PDDIKTI API</h5>
-                                    <p class="card-text">
-                                        This project is a REST API for <strong>PDDIKTI</strong> using Django with Rest Framework. The data based on website of PDDIKTI. The Project only show the data, not create, update, or delete.
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <a href="#" class="card-link">
-                            <div class="card mb-3 card-hover">
-                                <div class="position-relative">
-                                    <img class="card-img-top" src="{% static 'img/projects/pddikti-api-django.png' %}" alt="pddikti api route in django" />
-                                    <div class="overlay"></div>
-                                    <div class="hover-text">View Project <i class="ti ti-arrow-right"></i></div>
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">PDDIKTI API</h5>
-                                    <p class="card-text">
-                                        This project is a REST API for <strong>PDDIKTI</strong> using Django with Rest Framework. The data based on website of PDDIKTI. The Project only show the data, not create, update, or delete.
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <a href="#" class="card-link">
-                            <div class="card mb-3 card-hover">
-                                <div class="position-relative">
-                                    <img class="card-img-top" src="{% static 'img/projects/pddikti-api-django.png' %}" alt="pddikti api route in django" />
-                                    <div class="overlay"></div>
-                                    <div class="hover-text">View Project <i class="ti ti-arrow-right"></i></div>
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">PDDIKTI API</h5>
-                                    <p class="card-text">
-                                        This project is a REST API for <strong>PDDIKTI</strong> using Django with Rest Framework. The data based on website of PDDIKTI. The Project only show the data, not create, update, or delete.
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <a href="#" class="card-link">
-                            <div class="card mb-3 card-hover">
-                                <div class="position-relative">
-                                    <img class="card-img-top" src="{% static 'img/projects/pddikti-api-django.png' %}" alt="pddikti api route in django" />
-                                    <div class="overlay"></div>
-                                    <div class="hover-text">View Project <i class="ti ti-arrow-right"></i></div>
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">PDDIKTI API</h5>
-                                    <p class="card-text">
-                                        This project is a REST API for <strong>PDDIKTI</strong> using Django with Rest Framework. The data based on website of PDDIKTI. The Project only show the data, not create, update, or delete.
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <a href="#" class="card-link">
-                            <div class="card mb-3 card-hover">
-                                <div class="position-relative">
-                                    <img class="card-img-top" src="{% static 'img/projects/instagram-audience-analysis.png' %}" alt="Card image cap" />
-                                    <div class="overlay"></div>
-                                    <div class="hover-text">View Project <i class="ti ti-arrow-right"></i></div>
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Instagram Audience Analysis and Insight Tool</h5>
-                                    <p class="card-text">
-                                        This project processed data from Instagram based on following and followers. Analyzes and shows who followers, following, following but not following back, followers but don't follow back.
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                    {% endfor %}
                 </div>
             </section>
 </div>
@@ -214,6 +142,8 @@
     <script src="{% static 'vendor/libs/sortablejs/sortable.js' %}"></script>
     <script src="{% static 'js/cards-actions.js' %}"></script>
     <script src="{% static 'js/app-academy-course.js' %}"></script>
+    <script src="{% static 'vendor/libs/select2/select2.js' %}"></script>
+    <script src="{% static 'vendor/libs/plyr/plyr.js' %}"></script>
     <script>
         /**
          * Charts Apex
