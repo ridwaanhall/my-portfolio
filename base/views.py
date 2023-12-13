@@ -182,7 +182,13 @@ def dashboard_ahehe(request):
     }
     return render(request, 'base/dashboard.html', context)
 
+
+def format_date(date_str):
+    date_obj = datetime.strptime(date_str, '%Y-%m-%d')
+    return date_obj.strftime('%b, %d %Y')
+
 def dashboard(request):
+    sidebar_data = Sidebar.objects.first()
     response = requests.get("https://my-portfolio.ridwaanhall.repl.co/github-activity/")
     data = json.loads(response.text)
 
@@ -206,33 +212,70 @@ def dashboard(request):
     daily_counts = [day["contributionCount"] for day in sorted_daily_contributions]
 
     total_contributions = data['data']['user']['contributionsCollection']['contributionCalendar']['totalContributions']
+
+    # Calculate contributions for this week
     this_week_start = datetime.now() - timedelta(days=datetime.now().weekday())
     this_week_contributions = sum(day['contributionCount'] for week in data['data']['user']['contributionsCollection']['contributionCalendar']['weeks']
                                   for day in week['contributionDays'] if datetime.strptime(day['date'], '%Y-%m-%d') >= this_week_start)
-    best_day = max(daily_counts)
-    average_contributions = mean(daily_counts)
 
+    # Calculate best day
+    best_day = max(daily_counts)
+
+    # Calculate average contributions per day
+    average_contributions = mean(daily_counts)
+    rounded_average = round(average_contributions)
+
+    # Calculate current streak
     current_streak = 0
     current_date = datetime.now().strftime('%Y-%m-%d')
+    current_streak_start = None
+    current_streak_end = None
+
     for day in sorted_daily_contributions[::-1]:
         if day['date'] == current_date and day['contributionCount'] > 0:
+            if current_streak == 0:
+                current_streak_end = current_date
             current_streak += 1
             current_date = (datetime.strptime(current_date, '%Y-%m-%d') - timedelta(days=1)).strftime('%Y-%m-%d')
         else:
             break
 
-    sidebar_data = Sidebar.objects.first()
+    if current_streak > 0:
+        current_streak_start = (datetime.strptime(current_streak_end, '%Y-%m-%d') - timedelta(days=current_streak - 1)).strftime('%Y-%m-%d')
+
+    # Calculate longest streak
+    longest_streak = 0
+    current_streak = 0
+    longest_streak_start = None
+    longest_streak_end = None
+
+    for day in sorted_daily_contributions:
+        if day['contributionCount'] > 0:
+            current_streak += 1
+            if current_streak == 1:
+                longest_streak_start = day['date']
+            longest_streak_end = day['date']
+        else:
+            current_streak = 0
+
+        if current_streak > longest_streak:
+            longest_streak = current_streak
 
     context = {
         'sidebar_data': sidebar_data,
         'dates': dates,
         'daily_counts': daily_counts,
-        
+
         'total_contributions': total_contributions,
         'this_week_contributions': this_week_contributions,
         'best_day': best_day,
-        'average_contributions': average_contributions,
+        'average_contributions': rounded_average,
         'current_streak': current_streak,
+        'current_streak_start': format_date(current_streak_start),
+        'current_streak_end': format_date(current_streak_end),
+        'longest_streak': longest_streak,
+        'longest_streak_start': format_date(longest_streak_start),
+        'longest_streak_end': format_date(longest_streak_end),
     }
 
     return render(request, 'base/dashboard.html', context)
