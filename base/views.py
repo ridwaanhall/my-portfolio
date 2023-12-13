@@ -3,6 +3,7 @@ from django.http import JsonResponse
 import requests, os, json
 from .models import Sidebar, Home
 from datetime import datetime, timedelta
+from statistics import mean
 
 
 # Create your views here.
@@ -190,7 +191,7 @@ def dashboard(request):
     for week in data['data']['user']['contributionsCollection']['contributionCalendar']['weeks']:
         for day in week['contributionDays']:
             date_str = day['date']
-            date_obj = datetime.strptime(date_str, '%Y-%m-%d')
+            #date_obj = datetime.strptime(date_str, '%Y-%m-%d')
 
             daily_contributions.append({
                 "date": date_str,
@@ -204,12 +205,34 @@ def dashboard(request):
     dates = [day["date"] for day in sorted_daily_contributions]
     daily_counts = [day["contributionCount"] for day in sorted_daily_contributions]
 
+    total_contributions = data['data']['user']['contributionsCollection']['contributionCalendar']['totalContributions']
+    this_week_start = datetime.now() - timedelta(days=datetime.now().weekday())
+    this_week_contributions = sum(day['contributionCount'] for week in data['data']['user']['contributionsCollection']['contributionCalendar']['weeks']
+                                  for day in week['contributionDays'] if datetime.strptime(day['date'], '%Y-%m-%d') >= this_week_start)
+    best_day = max(daily_counts)
+    average_contributions = mean(daily_counts)
+
+    current_streak = 0
+    current_date = datetime.now().strftime('%Y-%m-%d')
+    for day in sorted_daily_contributions[::-1]:
+        if day['date'] == current_date and day['contributionCount'] > 0:
+            current_streak += 1
+            current_date = (datetime.strptime(current_date, '%Y-%m-%d') - timedelta(days=1)).strftime('%Y-%m-%d')
+        else:
+            break
+
     sidebar_data = Sidebar.objects.first()
 
     context = {
         'sidebar_data': sidebar_data,
         'dates': dates,
         'daily_counts': daily_counts,
+        
+        'total_contributions': total_contributions,
+        'this_week_contributions': this_week_contributions,
+        'best_day': best_day,
+        'average_contributions': average_contributions,
+        'current_streak': current_streak,
     }
 
     return render(request, 'base/dashboard.html', context)
