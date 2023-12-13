@@ -36,6 +36,7 @@ abouts = [
 #         # If the request was not successful, return an error response
 #         return JsonResponse({'error': 'Failed to fetch GitHub data'}, status=response.status_code)
 
+
 def github_activity(request):
     username = "ridwaanhall"
     access_token = os.getenv("GITHUB_SECRET")
@@ -152,10 +153,30 @@ def dashboard(request):
     #     if i['id'] == int(pk):
     #         about = i
     # context = {'about': about}
+
+    response = requests.get("https://my-portfolio.ridwaanhall.repl.co/github-activity/")
+
+    # Get JSON data
+    data = json.loads(response.text)
+    monthly_counts = {}
+    for month in data['data']['user']['contributionsCollection']['contributionCalendar']['months']:
+        year_month = f"{month['firstDay'][:7]}"
+        total_for_month = 0
+
+        for week in data['data']['user']['contributionsCollection']['contributionCalendar']['weeks']:
+            if week['firstDay'].startswith(year_month):
+                for day in week['contributionDays']:
+                    total_for_month += day['contributionCount']
+
+        monthly_counts[year_month] = total_for_month
+    
     sidebar_data = Sidebar.objects.first()
 
     context = {
         'sidebar_data': sidebar_data,
+        'monthly_counts': monthly_counts,
+        'monthly_contributions': list(monthly_counts.keys())[::-1],
+        'total_contributions': list(monthly_counts.values())[::-1],
     }
     return render(request, 'base/dashboard.html', context)
 
