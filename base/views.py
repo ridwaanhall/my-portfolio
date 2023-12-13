@@ -38,7 +38,7 @@ abouts = [
 
 def github_activity(request):
     username = "ridwaanhall"
-    access_token = os.getenv("GITHUB_ACCESS_TOKEN")
+    access_token = os.getenv("GITHUB_SECRET")
     api_url = "https://api.github.com/graphql"
 
     query = """
@@ -71,8 +71,10 @@ def github_activity(request):
         "Authorization": "Bearer %s" % access_token,
         "Content-Type": "application/json",
     }
-
+    # mMBj-1pt0BagssdPKWNJvT_-jFeb5DuSD8a7iSM2Rdw
     data = json.dumps({"query": query})
+
+    print(os.getenv("GITHUB_SECRET"))
 
     response = requests.post(api_url, headers=headers, data=data)
 
@@ -130,7 +132,7 @@ def fetch_github_activity(username):
         response_data = response.json()
         return response_data
     else:
-        return {'error': 'Failed to fetch GitHub data'}
+        return {'error': 'Failed to fetch GitHub data!'}
     
 
 def home(request):
