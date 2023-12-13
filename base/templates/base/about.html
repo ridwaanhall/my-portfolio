@@ -19,7 +19,7 @@
         </div>
     </div>
     <section>
-        <p class="text-left lead">
+        <!-- <p class="text-left lead">
             Hi there, I'm Ridwan, also known as <strong>ridwaanhall</strong>. an aspiring Informatics currently pursuing my undergraduate degree at the University of Technology Yogyakarta. Although I don't have professional work experience
             yet, I'm an eager learner looking to launch my career.
         </p>
@@ -30,7 +30,8 @@
         <p class="text-left lead">
             With my academic coursework and personal projects under my belt, I'm excited to tackle new challenges that will allow me to grow as a developer. I'm a team player ready to build innovative solutions that drive value and user
             experiences forward.
-        </p>
+        </p> -->
+        {{ abouts.longtext|safe }}
     </section>
     <div class="divider text-start-center">
         <div class="divider-text">
@@ -47,30 +48,20 @@
         </div>
         <p class="text-muted mb-3 mt-0 mt-md-2">My educational journey.</p>
         <div class="row">
+            {% for latest_education in latest_educations %}
             <div class="col-md-6 col-sm-6">
-                <div class="card bg-label-primary mb-3">
+                <div class="card {{ latest_education.css_code_label }} mb-3">
                     <div class="card-body d-flex align-items-center">
-                        <img src="{% static 'img/branding/UTY.png' %}" alt="User" class="rounded-circle me-3" width="55" />
+                        <img src="{{ latest_education.logo }}" alt="{{ latest_education.name_education }}" class="rounded-circle me-3" width="55" />
                         <div>
-                            <span class="card-title text-primary mb-2 h4">Universitas Teknologi Yogyakarta</span>
-                            <div class="card-text">Bachelor of Science in Informatics.(S.Kom)</div>
-                            <span class="text-neutral-300 dark:text-neutral-700">2021 - Now</span>
+                            <span class="card-title {{ latest_education.css_code_text }} mb-2 h4">{{ latest_education.name_education }}</span>
+                            <div class="card-text">{{ latest_education.study_programs }}</div>
+                            <span class="text-neutral-300 dark:text-neutral-700">{{ latest_education.date_start }} - {{ latest_education.date_end }}</span>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-sm-6">
-                <div class="card bg-label-warning mb-3">
-                    <div class="card-body d-flex align-items-center">
-                        <img src="{% static 'img/branding/al-mukmin.png' %}" alt="User" class="rounded-circle me-3" width="55" />
-                        <div>
-                            <span class="card-title text-warning mb-2 h4">MAs Al Mukmin Ngruki</span>
-                            <div class="card-text">Natural Sciences</div>
-                            <span class="text-neutral-300 dark:text-neutral-700">2019 - 2021</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </section>
     <div class="divider text-end">
