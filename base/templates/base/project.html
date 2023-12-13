@@ -103,7 +103,7 @@
                 <div class="row mb-4">
                     {% for project in projects %}
                         <div class="col-md-6 col-sm-12">
-                                <div class="card mb-3">
+                                <div class="card mb-4">
                                     <div class="position-relative card-hover">
                                         <div class="image-wrapper">
                                             <img class="card-img-top" src="{{ project.image.url }}" alt="{{ project.title }}" />
@@ -129,14 +129,16 @@
                                         </div>
                                         <div class="row mt-3">
                                             <div class="d-grid gap-2 col-md-6 mx-auto">
-                                                <a href="{{ project.github_url }}" class="btn btn-label-secondary" role="button">Repository</a>
+                                                <a href="{{ project.github_url }}" class="btn btn-label-info" role="button">
+                                                    <span class="ti-xs ti ti-git-fork me-1"></span>Repository
+                                                </a>
                                             </div>
                                             <div class="d-grid gap-2 col-lg-6 mx-auto">
-                                                <a href="{{ project.demo_url }}" class="btn btn-label-primary" role="button">Demo</a>
+                                                <a href="{{ project.demo_url }}" class="btn btn-label-success" role="button">
+                                                    <span class="ti-xs ti ti-unlink me-1"></span>Demo
+                                                </a>
                                             </div>
                                         </div>
-
-
                                     </div>
                                 </div>
                         </div>
