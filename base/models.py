@@ -1,4 +1,6 @@
 from django.db import models
+import os
+from uuid import uuid4
 
 # Create your models here.
 class Project(models.Model):
@@ -47,13 +49,15 @@ class About(models.Model):
 
     def __str__(self):
         return self.longtext
-    
+
 class Education(models.Model):
-    logo = models.ImageField(upload_to='static/img/education/')
+    logo = models.ImageField(upload_to='static/img/avatars/', blank=True)
+    css_code_label = models.CharField(max_length=255, blank=True)
+    css_code_text = models.CharField(max_length=255, blank=True)
     name_education = models.CharField(max_length=255)
-    level = models.CharField(max_length=255)
-    study_programs = models.CharField(max_length=255)
-    title_study = models.CharField(max_length=255)
+    level = models.CharField(max_length=255, blank=True, null=True)
+    study_programs = models.CharField(max_length=255, blank=True, null=True)
+    title_study = models.CharField(max_length=255, blank=True, null=True)
     date_start = models.CharField(max_length=255)
     date_end = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
