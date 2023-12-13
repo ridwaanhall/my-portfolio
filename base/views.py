@@ -141,10 +141,12 @@ def fetch_github_activity(username):
 def home(request):
     sidebar_data = Sidebar.objects.first()
     home_data = Home.objects.first()
+    latest_projects = Project.objects.order_by('-created_at')[:2]
     
     context = {
         'sidebar_data': sidebar_data,
         'home_data': home_data,
+        'latest_projects': latest_projects,
     }
     
     return render(request, 'base/home.html', context)
