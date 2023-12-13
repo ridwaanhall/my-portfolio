@@ -47,11 +47,18 @@
             <!-- User -->
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                    <div class="avatar avatar-online">
-                        <img src="{% static 'img/avatars/ridwaanhall.png' %}" alt class="h-auto rounded-circle" />
-                    </div>
+                    {% if user.is_authenticated and user.is_superuser %}
+                        <div class="avatar avatar-online">
+                            <img src="{% static 'img/avatars/ridwaanhall.png' %}" alt class="h-auto rounded-circle" />
+                        </div>
+                    {% else %}
+                        <div class="avatar">
+                            <img src="{% static 'img/avatars/9cac6b31c61b7e1441d9ae3a9f32f281.jpg' %}" alt class="h-auto rounded-circle" />
+                        </div>
+                    {% endif %}
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
+                    {% if user.is_authenticated and user.is_superuser %}
                     <li>
                         <a class="dropdown-item" href="pages-account-settings-account.html">
                             <div class="d-flex">
@@ -67,6 +74,47 @@
                             </div>
                         </a>
                     </li>
+                    <li>
+                        <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="/admin">
+                            <i class="ti ti-settings me-2 ti-sm"></i>
+                            <span class="align-middle">Controller</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'admin:logout' %}">
+                            <i class="ti ti-logout me-2 ti-sm"></i>
+                            <span class="align-middle">Log Out</span>
+                        </a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a class="dropdown-item" href="pages-account-settings-account.html">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0 me-3">
+                                    <div class="avatar">
+                                        <img src="{% static 'img/avatars/9cac6b31c61b7e1441d9ae3a9f32f281.jpg' %}" alt class="h-auto rounded-circle" />
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <span class="fw-medium d-block">Anonymous</span>
+                                    <small class="text-muted">Guest</small>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="/admin">
+                            <i class="ti ti-login me-2 ti-sm"></i>
+                            <span class="align-middle">Log In</span>
+                        </a>
+                    </li>
+                    {% endif %}
                     <!-- <li>
                         <div class="dropdown-divider"></div>
                     </li>
@@ -106,15 +154,6 @@
                             <span class="align-middle">Pricing</span>
                         </a>
                     </li> -->
-                    <li>
-                        <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="auth-login-cover.html" target="_blank">
-                            <i class="ti ti-logout me-2 ti-sm"></i>
-                            <span class="align-middle">Log Out</span>
-                        </a>
-                    </li>
                 </ul>
             </li>
             <!--/ User -->
