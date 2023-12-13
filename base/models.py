@@ -51,7 +51,7 @@ class About(models.Model):
         return self.longtext
 
 class Education(models.Model):
-    logo = models.ImageField(upload_to='static/img/avatars/', blank=True)
+    logo = models.ImageField(upload_to='static/img/education/', blank=True)
     css_code_label = models.CharField(max_length=255, blank=True)
     css_code_text = models.CharField(max_length=255, blank=True)
     name_education = models.CharField(max_length=255)
