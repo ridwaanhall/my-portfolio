@@ -124,17 +124,18 @@
                                                 <span class="me-2">Demo</span><i class="ti ti-chevron-right scaleX-n1-rtl ti-sm"></i>
                                             </a>
                                         </div> -->
+                                        <div class="text-end">
+                                            <p class="text-right">{{ project.date_start }} - {{ project.date_finish }}</p>
+                                        </div>
                                         <div class="row mt-3">
-                                            <div class="d-grid gap-2 col-md-4 mx-auto">
-                                                <button class="btn btn-secondary" type="button">Button</button>
+                                            <div class="d-grid gap-2 col-md-6 mx-auto">
+                                                <a href="{{ project.github_url }}" class="btn btn-label-secondary" role="button">Repository</a>
                                             </div>
-                                            <div class="d-grid gap-2 col-lg-4 mx-auto">
-                                                <button class="btn btn-primary" type="button">Button</button>
-                                            </div>
-                                            <div class="d-grid gap-2 col-lg-4 mx-auto">
-                                                <button class="btn btn-secondary" type="button">Button</button>
+                                            <div class="d-grid gap-2 col-lg-6 mx-auto">
+                                                <a href="{{ project.demo_url }}" class="btn btn-label-primary" role="button">Demo</a>
                                             </div>
                                         </div>
+
 
                                     </div>
                                 </div>
