@@ -46,7 +46,10 @@ class About(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.longtext
+        if len(self.longtext) > 50:
+            return self.longtext[:50] + "..."
+        else:
+            return self.longtext
 
 class Logo(models.Model):
     logo = models.ImageField(upload_to='static/img/logos/')
