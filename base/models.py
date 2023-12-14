@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class Project(models.Model):
@@ -41,7 +42,7 @@ class Home(models.Model):
 
     def __str__(self):
         return self.firstname
-    
+
 # create about database. such as long text.
 class About(models.Model):
     longtext = models.TextField()
@@ -104,3 +105,12 @@ class Certificate(models.Model):
     
     def __str__(self):
         return self.title
+
+class Message(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    message = models.TextField()
+    timestamp = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f'{self.name} - {self.email} - {self.timestamp.strftime("%Y-%m-%d %H:%M:%S %Z")}'
