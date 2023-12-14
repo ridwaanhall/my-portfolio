@@ -95,7 +95,7 @@ class Certificate(models.Model):
     title = models.CharField(max_length=255)
     issuing_org = models.CharField(max_length=255, blank=True)
     issuing_date = models.CharField(max_length=255)
-    skills = models.CharField(max_length=255)
+    skills = models.CharField(max_length=255, blank=True)
     type = models.CharField(max_length=255)
     credentail_link = models.URLField()
     created_at = models.DateTimeField(auto_now_add=True)
