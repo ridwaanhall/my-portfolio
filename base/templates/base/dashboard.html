@@ -20,7 +20,7 @@
                     <i class="ti ti-activity-heartbeat"></i>
                 </div>
             </div>
-
+    
             <section>
                 <h5 class="card-title mb-0"><i class="menu-icon tf-icons ti ti-brand-github"></i>Contributions</h5>
                     <p class="text-muted mb-3 mt-0 mt-md-2">My contributions from last year on github.</p>
@@ -34,9 +34,28 @@
                                         <!-- <small class=" text-muted">Oct 3, 2021 - Present</small> -->
                                     </div>
                                     <div class="card-icon">
-                                        <span class="badge bg-label-success rounded-pill p-2">
+                                        <!-- <span class="badge bg-label-success rounded-pill p-2">
                                             <i class="ti ti-sum ti-sm"></i>
-                                        </span>
+                                        </span> -->
+                                        <!-- <button 
+                                            type="button" 
+                                            class="btn btn-icon btn-label-success rounded-pill p-2"
+                                            data-bs-toggle="popover"
+                                            data-bs-placement="top"
+                                            data-bs-custom-class="popover-success"
+                                            data-bs-content="{{ first_day }} - {{ last_day }}"
+                                            title="Date">
+                                            <span class="ti ti-sum"></span>
+                                        </button> -->
+                                        <button 
+                                            type="button" 
+                                            class="btn btn-icon btn-label-success rounded-pill p-2"
+                                            data-bs-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            data-bs-custom-class="tooltip-success"
+                                            title="{{ first_day }} to {{ last_day }}">
+                                            <span class="ti ti-sum"></span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -124,6 +143,7 @@
 <script src="{% static 'vendor/libs/sortablejs/sortable.js' %}"></script>
 <script src="{% static 'js/cards-actions.js' %}"></script>
 <script src="{% static 'js/app-academy-course.js' %}"></script>
+<script src="{% static 'js/ui-popover.js' %}"></script>
 <!-- <script>
     /**
      * Charts Apex
