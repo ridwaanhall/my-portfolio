@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 import requests, os, json
-from .models import Sidebar, Home, Project, Education, About
+from .models import Sidebar, Home, Project, Education, About, Skill
 from datetime import datetime, timedelta
 from statistics import mean
 
@@ -311,11 +311,13 @@ def about(request):
     sidebar_data = Sidebar.objects.first()
     abouts = About.objects.first()
     latest_educations = Education.objects.order_by('-created_at')[:2]
+    skills = Skill.objects.order_by('-created_at')
 
     context = {
         'sidebar_data': sidebar_data,
         'latest_educations': latest_educations,
         'abouts': abouts,
+        'skills': skills,
         
     }
     
