@@ -77,7 +77,21 @@
         <div class="demo-inline-spacing">
             <marquee behavior="scroll" direction="left" class="marquee-container">
                 {% for skill in skills %}
-                <button type="button" class="btn rounded-pill {{ skill.text_label }}">
+                <button type="button" class="btn rounded-pill {{ skill.text_label }} me-2">
+                    {{ skill.text_icons|safe }}{{ skill.name_skill }}
+                </button>
+                {% endfor %}
+            </marquee>
+            <marquee behavior="scroll" direction="right" class="marquee-container">
+                {% for skill in skills_2 %}
+                <button type="button" class="btn rounded-pill {{ skill.text_label }} me-2">
+                    {{ skill.text_icons|safe }}{{ skill.name_skill }}
+                </button>
+                {% endfor %}
+            </marquee>
+            <marquee behavior="scroll" direction="left" class="marquee-container">
+                {% for skill in skills_3 %}
+                <button type="button" class="btn rounded-pill {{ skill.text_label }} me-2">
                     {{ skill.text_icons|safe }}{{ skill.name_skill }}
                 </button>
                 {% endfor %}
