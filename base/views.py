@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 import requests, os, json
-from .models import Sidebar, Home, Project, Education, About, Skill
+from .models import Sidebar, Home, Project, Education, About, Skill, Message
 from datetime import datetime, timedelta
 from statistics import mean
 
@@ -329,15 +329,40 @@ def about(request):
     
     return render(request, 'base/about.html', context)
 
+# def contact(request):
+
+#     sidebar_data = Sidebar.objects.first()
+
+#     context = {
+#         'sidebar_data': sidebar_data,
+#     }
+    
+#     return render(request, 'base/contact.html', context)
 def contact(request):
+    success_message = None
+
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message_text = request.POST.get('message')
+
+        message = Message(name=name, email=email, message=message_text)
+        message.save()
+
+        success_message = f'Message sent successfully! with name {name} and email {email}'
+        
+        return redirect('contact')
+
 
     sidebar_data = Sidebar.objects.first()
 
     context = {
         'sidebar_data': sidebar_data,
+        'success_message': success_message,
     }
-    
+
     return render(request, 'base/contact.html', context)
+
 
 def playground(request):
     sidebar_data = Sidebar.objects.first()
