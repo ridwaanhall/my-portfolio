@@ -188,20 +188,36 @@ def dashboard_ahehe(request):
 
 
 def format_date(date_str):
-    date_obj = datetime.strptime(date_str, '%Y-%m-%d')
-    return date_obj.strftime('%b, %d %Y')
+    if date_str is not None:
+        date_obj = datetime.strptime(date_str, '%Y-%m-%d')
+        return date_obj.strftime('%b, %d %Y')
+    else:
+        # Handle the case where date_str is None
+        return 'Invalid Date'  # or any other appropriate default value
 
 def dashboard(request):
     sidebar_data = Sidebar.objects.first()
     response = requests.get("https://my-portfolio.ridwaanhall.repl.co/github-activity/")
     data = json.loads(response.text)
 
-    daily_contributions = []
+    first_day_of_first_week = None
+    for week in data['data']['user']['contributionsCollection']['contributionCalendar']['weeks']:
+        if week['firstDay']:
+            first_day_of_first_week = week['firstDay']
+            break
 
+    last_day_of_last_week = None
+    for week in reversed(data['data']['user']['contributionsCollection']['contributionCalendar']['weeks']):
+        if week['contributionDays']:
+            last_day_of_last_week = week['contributionDays'][-1]['date']
+            break
+
+    daily_contributions = []
+    
     for week in data['data']['user']['contributionsCollection']['contributionCalendar']['weeks']:
         for day in week['contributionDays']:
             date_str = day['date']
-            #date_obj = datetime.strptime(date_str, '%Y-%m-%d')
+            # date_obj = datetime.strptime(date_str, '%Y-%m-%d')
 
             daily_contributions.append({
                 "date": date_str,
@@ -280,6 +296,9 @@ def dashboard(request):
         'longest_streak': longest_streak,
         'longest_streak_start': format_date(longest_streak_start),
         'longest_streak_end': format_date(longest_streak_end),
+
+        'first_day': first_day_of_first_week,
+        'last_day': last_day_of_last_week,
     }
 
     return render(request, 'base/dashboard.html', context)
