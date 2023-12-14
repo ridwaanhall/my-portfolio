@@ -141,7 +141,7 @@ def fetch_github_activity(username):
 def home(request):
     sidebar_data = Sidebar.objects.first()
     home_data = Home.objects.first()
-    latest_projects = Project.objects.order_by('-created_at')[:2]
+    latest_projects = Project.objects.order_by('-created_at')[:3]
     latest_educations = Education.objects.order_by('-created_at')[:1]
     
     context = {
@@ -288,10 +288,12 @@ def project(request):
 
     sidebar_data = Sidebar.objects.first()
     projects = Project.objects.order_by('-created_at')
+    total_projects = Project.objects.count()
     
     context = {
         'sidebar_data': sidebar_data,
         'projects': projects,
+        'total_projects': total_projects,
     }
     
     return render(request, 'base/project.html', context)
@@ -307,17 +309,21 @@ def certificate(request):
     return render(request, 'base/certificate.html', context)
 
 def about(request):
-
     sidebar_data = Sidebar.objects.first()
     abouts = About.objects.first()
     latest_educations = Education.objects.order_by('-created_at')[:2]
-    skills = Skill.objects.order_by('-created_at')
+    # skills = Skill.objects.order_by('-created_at')
+    skills_1 = Skill.objects.all().order_by('?')
+    skills_2 = Skill.objects.all().order_by('?')
+    skills_3 = Skill.objects.all().order_by('?')
 
     context = {
         'sidebar_data': sidebar_data,
         'latest_educations': latest_educations,
         'abouts': abouts,
-        'skills': skills,
+        'skills': skills_1,
+        'skills_2': skills_2,
+        'skills_3': skills_3,
         
     }
     
