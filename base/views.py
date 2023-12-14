@@ -77,7 +77,7 @@ def github_activity(request):
     # mMBj-1pt0BagssdPKWNJvT_-jFeb5DuSD8a7iSM2Rdw
     data = json.dumps({"query": query})
 
-    print(os.getenv("GITHUB_SECRET"))
+    # print(os.getenv("GITHUB_SECRET"))
 
     response = requests.post(api_url, headers=headers, data=data)
 
