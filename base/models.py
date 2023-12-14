@@ -9,7 +9,7 @@ class Project(models.Model):
     github_url = models.URLField()
     demo_url = models.URLField()
     date_start = models.CharField(max_length=255, blank=True)
-    date_finish = models.CharField(max_length=255, default='now')
+    date_finish = models.CharField(max_length=255, default='Present')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -78,7 +78,8 @@ class Education(models.Model):
     
 class Skill(models.Model):
     # text and skill name
-    text = models.CharField(max_length=255)
+    text_label = models.CharField(max_length=255)
+    text_icons = models.CharField(max_length=255, blank=True)
     name_skill = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
