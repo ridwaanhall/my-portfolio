@@ -89,3 +89,18 @@ class Skill(models.Model):
     
     def __str__(self):
         return self.name_skill
+
+class Certificate(models.Model):
+    img_org = models.URLField()
+    title = models.CharField(max_length=255)
+    issuing_org = models.CharField(max_length=255, blank=True)
+    issuing_date = models.CharField(max_length=255)
+    skills = models.CharField(max_length=255)
+    type = models.CharField(max_length=255)
+    credentail_link = models.URLField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    
+    def __str__(self):
+        return self.title
