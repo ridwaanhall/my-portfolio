@@ -299,6 +299,7 @@ def dashboard(request):
 
         'first_day': first_day_of_first_week,
         'last_day': last_day_of_last_week,
+        'last_day_format': format_date(last_day_of_last_week),
     }
 
     return render(request, 'base/dashboard.html', context)
