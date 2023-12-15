@@ -290,15 +290,18 @@ def dashboard(request):
         'this_week_contributions': this_week_contributions,
         'best_day': best_day,
         'average_contributions': rounded_average,
+        
         'current_streak': current_streak,
         'current_streak_start': format_date(current_streak_start),
         'current_streak_end': format_date(current_streak_end),
+        
         'longest_streak': longest_streak,
-        'longest_streak_start': format_date(longest_streak_start),
-        'longest_streak_end': format_date(longest_streak_end),
+        'longest_streak_start': longest_streak_start,
+        'longest_streak_end': longest_streak_end,
 
         'first_day': first_day_of_first_week,
         'last_day': last_day_of_last_week,
+        'first_day_format': format_date(first_day_of_first_week),
         'last_day_format': format_date(last_day_of_last_week),
     }
 
