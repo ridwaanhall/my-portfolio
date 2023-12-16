@@ -27,7 +27,7 @@
         <p class="text-left lead">
             Embarking on a certification adventure, I've gathered a colorful array of credentials – from premium courses to no-cost gems, all accompanied by challenging assessments.
         </p>
-        {{ credentials }}
+        <!-- {{ credentials }} -->
     </section>
 
     <div class="divider divider-primary mb-4">
@@ -84,6 +84,8 @@
          */
 
         "use strict";
+        // Get the JSON data from the Django view
+        var credentialsData = {{ credentials|safe }};
 
         // datatable (jquery)
         $(function () {
@@ -98,29 +100,16 @@
 
             if (dt_basic_table.length) {
                 dt_basic = dt_basic_table.DataTable({
-                    "data": [
-                        {
-                          "id": 1,
-                          "company_logo": "linkedin.png",
-                          "company_name": "LinkedIn",
-                          "issued_date": "Oct 2023",
-                          "name": "Artificial Intelligence Foundations: Machine Learning",
-                          "skills": "Machine Learning",
-                          "url_credential": "https://www.linkedin.com/learning/certificates/842dff5605d1e239c20818a0d931cb92aa6473bba7d4dba347cd019e18bf46a0",
-                          "type": 2
-                        },
-                        {
-                          "id": 2,
-                          "company_logo": "microsoft.png",
-                          "company_name": "Microsoft",
-                          "issued_date": "Oct 2023",
-                          "name": "Career Essentials in Generative AI by Microsoft and LinkedIn",
-                          "skills": "Generative AI · Artificial Intelligence (AI) · Computer Ethics",
-                          "url_credential": "https://www.linkedin.com/learning/certificates/842dff5605d1e239c20818a0d931cb92aa6473bba7d4dba347cd019e18bf46a0",
-                          "type": 1
-                        }
-                      ],
-                    columns: [{ data: "" }, { data: "id" }, { data: "id" }, { data: "company_name" }, { data: "name" }, { data: "skills" }, { data: "type" }, { data: "" }],
+                    "data": credentialsData,
+                    columns: [
+                        { data: "" }, 
+                        { data: "id" }, 
+                        { data: "id" }, 
+                        { data: "company_name" }, 
+                        { data: "name" }, 
+                        { data: "skills" }, 
+                        { data: "type" }, 
+                        { data: "" }],
                     columnDefs: [
                         {
                             // For Responsive
@@ -162,7 +151,7 @@
                                     $post = full["issued_date"];
                                 if ($company_img) {
                                     // For Avatar image
-                                    var $output = '<img src="' + assetsPath + "img/branding/" + $company_img + '" alt="$company_img" class="rounded-circle">';
+                                    var $output = '<img src="' + $company_img + '" alt="$company_img" class="rounded-circle">';
                                 } else {
                                     // For Avatar badge
                                     var stateNum = Math.floor(Math.random() * 6);
