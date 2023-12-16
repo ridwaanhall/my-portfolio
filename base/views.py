@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 import requests, os, json
-from .models import Sidebar, Home, Project, Education, About, Skill, Message
+from .models import Sidebar, Home, Project, Education, About, Skill, Message, Credential
 from datetime import datetime, timedelta
 from statistics import mean
 
@@ -322,11 +322,12 @@ def project(request):
     return render(request, 'base/project.html', context)
 
 def certificate(request):
-    
+    credentials = Credential.objects.order_by('-created_at')
     sidebar_data = Sidebar.objects.first()
 
     context = {
         'sidebar_data': sidebar_data,
+        'credentials': credentials,
     }
     
     return render(request, 'base/certificate.html', context)
