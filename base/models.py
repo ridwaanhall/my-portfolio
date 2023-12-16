@@ -106,6 +106,21 @@ class Certificate(models.Model):
     def __str__(self):
         return self.title
 
+class Credential(models.Model):
+    id = models.IntegerField(primary_key=True)
+    company_logo = models.URLField()
+    company_name = models.CharField(max_length=255)
+    issued_date = models.CharField(max_length=20)
+    name = models.CharField(max_length=255)
+    skills = models.CharField(max_length=255)
+    url_credential = models.URLField()
+    type = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
 class Message(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField()
