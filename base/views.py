@@ -412,3 +412,6 @@ def playground(request):
     }
     
     return render(request, 'base/playground.html', context)
+
+def login(request):
+    return render(request, 'base/login.html')
