@@ -322,12 +322,28 @@ def project(request):
     return render(request, 'base/project.html', context)
 
 def certificate(request):
-    credentials = Credential.objects.order_by('-created_at')
+    # credentials = Credential.objects.order_by('-created_at')
+    credentials = Credential.objects.all().values()
+    credentials_list = list(credentials)
     sidebar_data = Sidebar.objects.first()
 
+    data = [
+        {
+            "id": credential["id"],
+            "company_logo": credential["company_logo"],
+            "company_name": credential["company_name"],
+            "issued_date": credential["issued_date"],
+            "name": credential["name"],
+            "skills": credential["skills"],
+            "url_credential": credential["url_credential"],
+            "type": credential["type"],
+        }
+        for credential in credentials_list
+    ]
+    
     context = {
         'sidebar_data': sidebar_data,
-        'credentials': credentials,
+        'credentials': data,
     }
     
     return render(request, 'base/certificate.html', context)
