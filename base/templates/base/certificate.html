@@ -1,8 +1,8 @@
-{% extends 'main.html' %}
+{% extends 'main.html' %} 
 
-{% load static %}
+{% load static %} 
 
-{% block title %}Lic. &amp; Certs.{% endblock title %}
+{% block title %}Lic. &amp; Certs.{% endblock title %} 
 
 {% block css_head %}
     <link rel="stylesheet" href="{% static 'vendor/css/pages/page-profile.css' %}" />
@@ -11,49 +11,42 @@
     <link rel="stylesheet" href="{% static 'vendor/libs/apex-charts/apex-charts.css' %}" />
     <link rel="stylesheet" href="{% static 'vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css' %}" />
     <link rel="stylesheet" href="{% static 'vendor/libs/flatpickr/flatpickr.css' %}" />
-    <!-- Row Group CSS -->
     <link rel="stylesheet" href="{% static 'vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css' %}" />
-    <!-- Form Validation -->
-    <link rel="stylesheet" href="{% static 'vendor/libs/@form-validation/umd/styles/index.min.css' %}" />
-
-{% endblock css_head %}
+{% endblock css_head %} 
 
 {% block content %}
-<div class="container-xxl flex-grow-1 container-p-y">
-    <section>
-        <h3 class="text-left mb-2 mt-0 mt-md-2">Licenses &amp; certifications</h3>
-        <p class="text-left lead">
-            Embarking on a certification adventure, I've gathered a colorful array of credentials – from premium courses to no-cost gems, all accompanied by challenging assessments.
-        </p>
-    </section>
-
-    <div class="divider divider-primary mb-4">
-        <div class="divider-text">
-            <i class="ti ti-activity-heartbeat"></i>
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <section>
+            <h3 class="text-left mb-2 mt-0 mt-md-2">Licenses &amp; certifications</h3>
+            <p class="text-left lead">
+                Embarking on a certification adventure, I've gathered a colorful array of credentials – from premium courses to no-cost gems, all accompanied by challenging assessments.
+            </p>
+        </section>
+        <div class="divider divider-primary mb-4">
+            <div class="divider-text">
+                <i class="ti ti-activity-heartbeat"></i>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-datatable table-responsive pt-0">
+                <table class="datatables-basic table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>id</th>
+                            <th>Issuing Org</th>
+                            <th>Name</th>
+                            <th>Skills</th>
+                            <th>Type</th>
+                            <th>Credential</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
     </div>
-    
-    <div class="card">
-        <div class="card-datatable table-responsive pt-0">
-            <table class="datatables-basic table">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th>id</th>
-                        <th>Issuing Org</th>
-                        <th>Name</th>
-                        <th>Skills</th>
-                        <th>Type</th>
-                        <th>Credential</th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
-    </div>
-</div>
-
-{% endblock content %}
+{% endblock content %} 
 
 {% block js_bottom %}
     <script src="{% static 'js/pages-profile.js' %}"></script>
@@ -65,24 +58,20 @@
     <!-- Flat Picker -->
     <script src="{% static 'vendor/libs/moment/moment.js' %}"></script>
     <script src="{% static 'vendor/libs/flatpickr/flatpickr.js' %}"></script>
-    <!-- Form Validation -->
-    <script src="{% static 'vendor/libs/@form-validation/umd/bundle/popular.min.js' %}"></script>
-    <script src="{% static 'vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js' %}"></script>
-    <script src="{% static 'vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js' %}"></script>
-
+    
     <!-- Main JS -->
     <script src="{% static 'js/main.js' %}"></script>
-
+    
     <!-- Page JS -->
     <script>
         /**
          * DataTables Basic
          */
-
+    
         "use strict";
         // Get the JSON data from the Django view
         var credentialsData = {{ credentials|safe }};
-
+    
         // datatable (jquery)
         $(function () {
             var dt_basic_table = $(".datatables-basic"),
@@ -90,21 +79,21 @@
                 dt_row_grouping_table = $(".dt-row-grouping"),
                 dt_multilingual_table = $(".dt-multilingual"),
                 dt_basic;
-
+    
             // DataTable with buttons
             // --------------------------------------------------------------------
-
+    
             if (dt_basic_table.length) {
                 dt_basic = dt_basic_table.DataTable({
                     "data": credentialsData,
                     columns: [
-                        { data: "" }, 
-                        { data: "id" }, 
-                        { data: "id" }, 
-                        { data: "company_name" }, 
-                        { data: "name" }, 
-                        { data: "skills" }, 
-                        { data: "type" }, 
+                        { data: "" },
+                        { data: "id" },
+                        { data: "id" },
+                        { data: "company_name" },
+                        { data: "name" },
+                        { data: "skills" },
+                        { data: "type" },
                         { data: "" }],
                     columnDefs: [
                         {
@@ -365,7 +354,7 @@
                                         ? '<tr data-dt-row="' + col.rowIndex + '" data-dt-column="' + col.columnIndex + '">' + "<td>" + col.title + ":" + "</td> " + "<td>" + col.data + "</td>" + "</tr>"
                                         : "";
                                 }).join("");
-
+    
                                 return data ? $('<table class="table"/><tbody />').append(data) : false;
                             },
                         },
@@ -374,6 +363,5 @@
                 $("div.head-label").html('<h5 class="card-title mb-0">List of My Licenses and Certificates</h5>');
             }
         });
-
     </script>
 {% endblock js_bottom %}

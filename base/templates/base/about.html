@@ -1,94 +1,98 @@
-{% extends 'main.html' %}
-{% load static %} 
-{% block title %}About{% endblock title %} 
-{% block css_head %}
-<link rel="stylesheet" href="{% static 'vendor/css/pages/page-profile.css' %}" />
-<link rel="stylesheet" href="{% static 'vendor/css/pages/app-academy.css' %}" />
-<link rel="stylesheet" href="{% static 'vendor/libs/spinkit/spinkit.css' %}" />
+{% extends 'main.html' %} 
 
+{% load static %} 
+
+{% block title %}About{% endblock title %} 
+
+{% block css_head %}
+    <link rel="stylesheet" href="{% static 'vendor/css/pages/page-profile.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/css/pages/app-academy.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/libs/spinkit/spinkit.css' %}" />
 {% endblock css_head %} 
 
 {% block content %}
-<div class="container-xxl flex-grow-1 container-p-y">
-    <section>
-        <h3 class="text-left mb-2 mt-0 mt-md-2">About</h3>
-        <p class="text-left lead text-muted">
-            A short story of me, not important but seem better than nothing.
-        </p>
-    </section>
-    <div class="divider text-center">
-        <div class="divider-text">
-            <i class="ti ti-history"></i>
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <section>
+            <h3 class="text-left mb-2 mt-0 mt-md-2">About</h3>
+            <p class="text-left lead text-muted">
+                A short story of me, not important but seem better than nothing.
+            </p>
+        </section>
+        <div class="divider text-center">
+            <div class="divider-text">
+                <i class="ti ti-history"></i>
+            </div>
         </div>
-    </div>
-    <section>
-        {{ abouts.longtext|safe }}
-    </section>
-    <div class="divider text-start-center">
-        <div class="divider-text">
-            <i class="ti ti-award"></i>
+        <section>
+            {{ abouts.longtext|safe }}
+        </section>
+        <div class="divider text-start-center">
+            <div class="divider-text">
+                <i class="ti ti-award"></i>
+            </div>
         </div>
-    </div>
-    <section>
-        <div class="d-flex justify-content-between mb-2">
-            <h5 class="card-title mb-0"><i class="menu-icon tf-icons ti ti-school"></i>Education</h5>
-        </div>
-        <p class="text-muted mb-3 mt-0 mt-md-2">My educational journey.</p>
-        <div class="row">
-            {% for latest_education in latest_educations %}
-            <div class="col-md-6 col-sm-6">
-                <div class="card {{ latest_education.css_code_label }} mb-3">
-                    <div class="card-body d-flex align-items-center">
-                        <img src="{{ latest_education.logo }}" alt="{{ latest_education.name_education }}" class="rounded-circle me-3" width="55" />
-                        <div>
-                            <span class="card-title {{ latest_education.css_code_text }} mb-2 h4">{{ latest_education.name_education }}</span>
-                            <div class="card-text">{{ latest_education.study_programs }}</div>
-                            <span class="text-neutral-300 dark:text-neutral-700">{{ latest_education.date_start }} - {{ latest_education.date_end }}</span>
+        <section>
+            <div class="d-flex justify-content-between mb-2">
+                <h5 class="card-title mb-0"><i class="menu-icon tf-icons ti ti-school"></i>Education</h5>
+            </div>
+            <p class="text-muted mb-3 mt-0 mt-md-2">My educational journey.</p>
+            <div class="row">
+                {% for latest_education in latest_educations %}
+                    <div class="col-md-6 col-sm-6">
+                        <div class="card {{ latest_education.css_code_label }} mb-3">
+                            <div class="card-body d-flex align-items-center">
+                                <img src="{{ latest_education.logo }}" alt="{{ latest_education.name_education }}" class="rounded-circle me-3" width="55" />
+                                <div>
+                                    <span class="card-title {{ latest_education.css_code_text }} mb-2 h4">{{ latest_education.name_education }}</span>
+                                    <div class="card-text">{{ latest_education.study_programs }}</div>
+                                    <span class="text-neutral-300 dark:text-neutral-700">{{ latest_education.date_start }} - {{ latest_education.date_end }}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
+        </section>
+        <div class="divider text-end">
+            <div class="divider-text">
+                <i class="ti ti-cut rotate-n90"></i>
+            </div>
         </div>
-    </section>
-    <div class="divider text-end">
-        <div class="divider-text">
-            <i class="ti ti-cut rotate-n90"></i>
-        </div>
+        <section>
+            <div class="d-flex justify-content-between mb-2">
+                <h5 class="card-title mb-0"><i class="menu-icon tf-icons ti ti-report-search"></i>Skills</h5>
+            </div>
+            <p class="text-muted mb-2 mt-0 mt-md-2">My coding skills, progressing from foundational to intermediate proficiency.</p>
+            <div class="demo-inline-spacing">
+                <marquee behavior="scroll" direction="left" class="marquee-container">
+                    {% for skill in skills %}
+                        <button type="button" class="btn rounded-pill {{ skill.text_label }} me-2">
+                            {{ skill.text_icons|safe }}{{ skill.name_skill }}
+                        </button>
+                    {% endfor %}
+                </marquee>
+                <marquee behavior="scroll" direction="right" class="marquee-container">
+                    {% for skill in skills_2 %}
+                        <button type="button" class="btn rounded-pill {{ skill.text_label }} me-2">
+                            {{ skill.text_icons|safe }}{{ skill.name_skill }}
+                        </button>
+                    {% endfor %}
+                </marquee>
+                <marquee behavior="scroll" direction="left" class="marquee-container">
+                    {% for skill in skills_3 %}
+                        <button type="button" class="btn rounded-pill {{ skill.text_label }} me-2">
+                            {{ skill.text_icons|safe }}{{ skill.name_skill }}
+                        </button>
+                    {% endfor %}
+                </marquee>
+            </div>
+        </section>
     </div>
-    <section>
-        <div class="d-flex justify-content-between mb-2">
-            <h5 class="card-title mb-0"><i class="menu-icon tf-icons ti ti-report-search"></i>Skills</h5>
-        </div>
-        <p class="text-muted mb-2 mt-0 mt-md-2">My coding skills, progressing from foundational to intermediate proficiency.</p>
-        <div class="demo-inline-spacing">
-            <marquee behavior="scroll" direction="left" class="marquee-container">
-                {% for skill in skills %}
-                <button type="button" class="btn rounded-pill {{ skill.text_label }} me-2">
-                    {{ skill.text_icons|safe }}{{ skill.name_skill }}
-                </button>
-                {% endfor %}
-            </marquee>
-            <marquee behavior="scroll" direction="right" class="marquee-container">
-                {% for skill in skills_2 %}
-                <button type="button" class="btn rounded-pill {{ skill.text_label }} me-2">
-                    {{ skill.text_icons|safe }}{{ skill.name_skill }}
-                </button>
-                {% endfor %}
-            </marquee>
-            <marquee behavior="scroll" direction="left" class="marquee-container">
-                {% for skill in skills_3 %}
-                <button type="button" class="btn rounded-pill {{ skill.text_label }} me-2">
-                    {{ skill.text_icons|safe }}{{ skill.name_skill }}
-                </button>
-                {% endfor %}
-            </marquee>
-        </div>
-    </section>
-</div>
-{% endblock content %} {% block js_bottom %}
-<script src="{% static 'js/pages-profile.js' %}"></script>
-<script src="{% static 'vendor/libs/block-ui/block-ui.js' %}"></script>
-<script src="{% static 'vendor/libs/sortablejs/sortable.js' %}"></script>
-<script src="{% static 'js/cards-actions.js' %}"></script>
+{% endblock content %} 
+
+{% block js_bottom %}
+    <script src="{% static 'js/pages-profile.js' %}"></script>
+    <script src="{% static 'vendor/libs/block-ui/block-ui.js' %}"></script>
+    <script src="{% static 'vendor/libs/sortablejs/sortable.js' %}"></script>
+    <script src="{% static 'js/cards-actions.js' %}"></script>
 {% endblock js_bottom %}

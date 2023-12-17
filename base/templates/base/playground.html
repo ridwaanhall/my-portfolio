@@ -1,21 +1,29 @@
-{% extends 'main.html' %} {% load static %} {% block title %}Python Playground{% endblock title %} {% block css_head %}
-<link rel="stylesheet" href="{% static 'vendor/css/pages/page-profile.css' %}" />
-<link rel="stylesheet" href="{% static 'vendor/css/pages/app-academy.css' %}" />
-<link rel="stylesheet" href="{% static 'vendor/libs/spinkit/spinkit.css' %}" />
+{% extends 'main.html' %} 
 
-{% endblock css_head %} {% block content %}
-<div class="container-xxl flex-grow-1 container-p-y">
-    <section>
-        <h3 class="text-left mb-2 mt-0 mt-md-2">Python Playground</h3>
-        <p class="text-left text-muted">
-            A no-fuss pure Python playground with a live feedback loop.
-        </p>
-    </section>
-    <iframe src="https://trinket.io/embed/python/1351020c4d" width="100%" height="500" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+{% load static %} 
 
-</div>
-{% endblock content %} {% block js_bottom %}
-<script src="{% static 'js/pages-profile.js' %}"></script>
-<script src="{% static 'vendor/libs/block-ui/block-ui.js' %}"></script>
-<script src="{% static 'vendor/libs/sortablejs/sortable.js' %}"></script>
+{% block title %}Python Playground{% endblock title %} 
+
+{% block css_head %}
+    <link rel="stylesheet" href="{% static 'vendor/css/pages/page-profile.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/css/pages/app-academy.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/libs/spinkit/spinkit.css' %}" />
+{% endblock css_head %} 
+
+{% block content %}
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <section>
+            <h3 class="text-left mb-2 mt-0 mt-md-2">Python Playground</h3>
+            <p class="text-left text-muted">
+                A no-fuss pure Python playground with a live feedback loop.
+            </p>
+        </section>
+        <iframe src="https://trinket.io/embed/python/1351020c4d" width="100%" height="500" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+    </div>
+{% endblock content %} 
+
+{% block js_bottom %}
+    <script src="{% static 'js/pages-profile.js' %}"></script>
+    <script src="{% static 'vendor/libs/block-ui/block-ui.js' %}"></script>
+    <script src="{% static 'vendor/libs/sortablejs/sortable.js' %}"></script>
 {% endblock js_bottom %}

@@ -1,53 +1,53 @@
 {% extends 'main-auth.html' %}
+
 {% load static %} 
+
 {% block title %}Login{% endblock title %} 
 
 {% block content %}
-<!-- Login -->
-<div class="card">
-    <div class="card-body">
-        <!-- Logo -->
-        <div class="app-brand justify-content-center mb-4 mt-2">
-            <a href="{% url 'home' %}" class="app-brand-link gap-2">
-                <span class="app-brand-text demo text-body fw-bold ms-1">RidwaanHall</span>
-            </a>
-        </div>
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-danger alert-dismissible" role="alert">
-                        {{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div class="card">
+        <div class="card-body">
+            <!-- Logo -->
+            <div class="app-brand justify-content-center mb-4 mt-2">
+                <a href="{% url 'home' %}" class="app-brand-link gap-2">
+                    <span class="app-brand-text demo text-body fw-bold ms-1">RidwaanHall</span>
+                </a>
+            </div>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            <form 
+                id="formAuthentication" class="mb-3" action="" method="POST">
+                
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email or Username</label>
+                    <input type="text" class="form-control" id="email" name="username" placeholder="Enter your username" autofocus />
+                </div>
+                <div class="mb-3 form-password-toggle">
+                    <div class="d-flex justify-content-between">
+                        <label class="form-label" for="password">Password</label>
                     </div>
-                {% endfor %}
-            {% endif %}
-        <form 
-            id="formAuthentication" class="mb-3" action="" method="POST">
-            
-            {% csrf_token %}
-            <div class="mb-3">
-                <label for="email" class="form-label">Email or Username</label>
-                <input type="text" class="form-control" id="email" name="username" placeholder="Enter your username" autofocus />
-            </div>
-            <div class="mb-3 form-password-toggle">
-                <div class="d-flex justify-content-between">
-                    <label class="form-label" for="password">Password</label>
+                    <div class="input-group input-group-merge">
+                        <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+                        <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
+                    </div>
                 </div>
-                <div class="input-group input-group-merge">
-                    <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
-                    <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
+                <div class="mb-3">
+                    <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
                 </div>
-            </div>
-            <div class="mb-3">
-                <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
-            </div>
-        </form>
-        <p class="text-center">
-            <span>New on my portfolio?</span>
-            <a href="auth-register-basic.html">
-                <span>Create an account</span>
-            </a>
-        </p>
+            </form>
+            <p class="text-center">
+                <span>New on my portfolio?</span>
+                <a href="auth-register-basic.html">
+                    <span>Create an account</span>
+                </a>
+            </p>
+        </div>
     </div>
-</div>
-<!-- /Login -->
 {% endblock content %}

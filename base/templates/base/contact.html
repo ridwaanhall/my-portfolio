@@ -1,136 +1,130 @@
-{% extends 'main.html' %} {% load static %} {% block title %}Contact{% endblock title %} {% block css_head %}
-<link rel="stylesheet" href="{% static 'vendor/css/pages/page-profile.css' %}" />
-<link rel="stylesheet" href="{% static 'vendor/css/pages/app-academy.css' %}" />
-<link rel="stylesheet" href="{% static 'vendor/libs/spinkit/spinkit.css' %}" />
+{% extends 'main.html' %} 
 
-<link rel="stylesheet" href="{% static 'vendor/libs/bootstrap-select/bootstrap-select.css' %}" />
-<link rel="stylesheet" href="{% static 'vendor/libs/select2/select2.css' %}" />
-<link rel="stylesheet" href="{% static 'vendor/libs/flatpickr/flatpickr.css' %}" />
-<link rel="stylesheet" href="{% static 'vendor/libs/typeahead-js/typeahead.css' %}" />
-<link rel="stylesheet" href="{% static 'vendor/libs/tagify/tagify.css' %}" />
-<link rel="stylesheet" href="{% static 'vendor/libs/@form-validation/umd/styles/index.min.css' %}" />
+{% load static %} 
 
-{% endblock css_head %} {% block content %}
-<div class="container-xxl flex-grow-1 container-p-y">
-    <section>
-        <h3 class="text-left mb-2 mt-0 mt-md-2">Contact</h3>
-        <p class="text-left lead text-muted">
-            Feel free to get in touch and let's have a discussion about how we can work together, talk about your project, or anythings about Python, Web Development, Artificial Intelligence, Django, Flask, or The Holy Quran tech.
-        </p>
-    </section>
-    <div class="divider text-center">
-        <div class="divider-text">
-            <i class="ti ti-phone-call"></i>
-        </div>
-    </div>
-    <section>
-        <h5 class="text-left mb-2 mt-0 mt-md-2">Find me on social media</h5>
-        <div class="row mb-4">
-            <div class="col-lg-12 p-12">
-                <div class="demo-inline-spacing">
-                    <a href="https://www.linkedin.com/in/ridwaanhall" target="_blank" class="btn btn-linkedin col-md-2">
-                        <i class="tf-icons ti ti-brand-linkedin ti-xs me-1"></i> LinkedIn
-                    </a>
-                    <a href="https://twitter.com/ridwaanhall" target="_blank" class="btn btn-twitter col-md-2">
-                        <i class="tf-icons ti ti-brand-twitter ti-xs me-1"></i> Twitter
-                    </a>
-                    <a href="https://www.instagram.com/ridwaanhall" target="_blank" class="btn btn-instagram col-md-2">
-                        <i class="tf-icons ti ti-brand-instagram ti-xs me-1"></i> Instagram
-                    </a>
-                    <a href="mailto:ridwaanhall.dev@gmail.com" target="_blank" class="btn btn-google-plus col-md-2">
-                        <i class="tf-icons ti ti-mail-bolt ti-xs me-1"></i> Email
-                    </a>
-                    <a href="https://github.com/ridwaanhall" target="_blank" class="btn btn-github col-md-2">
-                        <i class="tf-icons ti ti-brand-github ti-xs me-1"></i> Github
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <div class="divider text-start-center">
-        <div class="divider-text">
-            <i class="ti ti-message"></i>
-        </div>
-    </div>
-    <section>
-        <div class="d-flex justify-content-between mb-2">
-            <h5 class="card-title mb-2">Or send me a message</h5>
-        </div>
-        {% if success_message %}
-            <div class="alert alert-success alert-dismissible" role="alert">
-                {{ success_message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        {% endif %}
-        <form class="needs-validation" novalidate method="post" action="{% url 'contact' %}">
-            {% csrf_token %}
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Name*" required />
-                        <div class="valid-feedback">Looks good!</div>
-                        <div class="invalid-feedback">Please enter your name.</div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <input type="email" id="email" name="email" class="form-control" placeholder="Email*" required />
-                        <div class="valid-feedback">Looks good!</div>
-                        <div class="invalid-feedback">Please enter a valid email</div>
-                    </div>
-                </div>
+{% block title %}Contact{% endblock title %} 
 
-                <div class="mb-3">
-                    <textarea class="form-control" id="message" name="message" rows="5" placeholder="Message*" required></textarea>
-                </div>
-                <div class="d-grid gap-2 col-lg-12 mx-auto mb-2">
-                    <button class="btn btn-dark" type="submit">Send</button>
-                </div>
-            </div>
-        </form>
-        <h6 class="text-muted"><i class="ti ti-24-hours"></i> Avg. response: 1-2 Hours (Working Hours, GMT+7)</h6>
+{% block css_head %}
+    <link rel="stylesheet" href="{% static 'vendor/css/pages/page-profile.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/css/pages/app-academy.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/libs/spinkit/spinkit.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/libs/bootstrap-select/bootstrap-select.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/libs/select2/select2.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/libs/flatpickr/flatpickr.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/libs/typeahead-js/typeahead.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/libs/tagify/tagify.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/libs/@form-validation/umd/styles/index.min.css' %}" />
+{% endblock css_head %} 
 
-    </section>
-    <section>
+{% block content %}
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <section>
+            <h3 class="text-left mb-2 mt-0 mt-md-2">Contact</h3>
+            <p class="text-left lead text-muted">
+                Feel free to get in touch and let's have a discussion about how we can work together, talk about your project, or anythings about Python, Web Development, Artificial Intelligence, Django, Flask, or The Holy Quran tech.
+            </p>
+        </section>
         <div class="divider text-center">
             <div class="divider-text">
-                <i class="ti ti-plug-connected"></i>
+                <i class="ti ti-phone-call"></i>
             </div>
         </div>
-        <div class="d-flex justify-content-between mb-2">
-            <h5 class="card-title mb-0"><i class="menu-icon tf-icons ti ti-brand-tiktok"></i>Tiktok</h5>
+        <section>
+            <h5 class="text-left mb-2 mt-0 mt-md-2">Find me on social media</h5>
+            <div class="row mb-4">
+                <div class="col-lg-12 p-12">
+                    <div class="demo-inline-spacing">
+                        <a href="https://www.linkedin.com/in/ridwaanhall" target="_blank" class="btn btn-linkedin col-md-2"> <i class="tf-icons ti ti-brand-linkedin ti-xs me-1"></i> LinkedIn </a>
+                        <a href="https://twitter.com/ridwaanhall" target="_blank" class="btn btn-twitter col-md-2"> <i class="tf-icons ti ti-brand-twitter ti-xs me-1"></i> Twitter </a>
+                        <a href="https://www.instagram.com/ridwaanhall" target="_blank" class="btn btn-instagram col-md-2"> <i class="tf-icons ti ti-brand-instagram ti-xs me-1"></i> Instagram </a>
+                        <a href="mailto:ridwaanhall.dev@gmail.com" target="_blank" class="btn btn-google-plus col-md-2"> <i class="tf-icons ti ti-mail-bolt ti-xs me-1"></i> Email </a>
+                        <a href="https://github.com/ridwaanhall" target="_blank" class="btn btn-github col-md-2"> <i class="tf-icons ti ti-brand-github ti-xs me-1"></i> Github </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="divider text-start-center">
+            <div class="divider-text">
+                <i class="ti ti-message"></i>
+            </div>
         </div>
-        <p class="text-muted mb-4 mt-0 mt-md-2">Find me on Tiktok</p>
-        <blockquote 
-            class="tiktok-embed" 
-            cite="https://www.tiktok.com/@ridwaanhall" 
-            data-unique-id="ridwaanhall" 
-            data-embed-type="creator" 
-            style="max-width: 780px; min-width: 288px;">
-            <section>
-                <a target="_blank" href="https://www.tiktok.com/@ridwaanhall?refer=creator_embed">
-                    @ridwaanhall
-                </a>
-            </section>
-        </blockquote>
-        <script async src="https://www.tiktok.com/embed.js"></script>
-    </section>
-</div>
-{% endblock content %} {% block js_bottom %}
-<script src="{% static 'js/pages-profile.js' %}"></script>
-<script src="{% static 'vendor/libs/block-ui/block-ui.js' %}"></script>
-<script src="{% static 'vendor/libs/sortablejs/sortable.js' %}"></script>
-<script src="{% static 'js/cards-actions.js' %}"></script>
+        <section>
+            <div class="d-flex justify-content-between mb-2">
+                <h5 class="card-title mb-2">Or send me a message</h5>
+            </div>
+            
+            {% if success_message %}
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    {{ success_message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
+            
+            <form class="needs-validation" novalidate method="post" action="{% url 'contact' %}">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Name*" required />
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please enter your name.</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Email*" required />
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please enter a valid email</div>
+                        </div>
+                    </div>
+    
+                    <div class="mb-3">
+                        <textarea class="form-control" id="message" name="message" rows="5" placeholder="Message*" required></textarea>
+                    </div>
+                    <div class="d-grid gap-2 col-lg-12 mx-auto mb-2">
+                        <button class="btn btn-dark" type="submit">Send</button>
+                    </div>
+                </div>
+            </form>
+            <h6 class="text-muted"><i class="ti ti-24-hours"></i> Avg. response: 1-2 Hours (Working Hours, GMT+7)</h6>
+        </section>
+        <section>
+            <div class="divider text-center">
+                <div class="divider-text">
+                    <i class="ti ti-plug-connected"></i>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+                <h5 class="card-title mb-0"><i class="menu-icon tf-icons ti ti-brand-tiktok"></i>Tiktok</h5>
+            </div>
+            <p class="text-muted mb-4 mt-0 mt-md-2">Find me on Tiktok</p>
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@ridwaanhall" data-unique-id="ridwaanhall" data-embed-type="creator" style="max-width: 780px; min-width: 288px;">
+                <section>
+                    <a target="_blank" href="https://www.tiktok.com/@ridwaanhall?refer=creator_embed">
+                        @ridwaanhall
+                    </a>
+                </section>
+            </blockquote>
+            <script async src="https://www.tiktok.com/embed.js"></script>
+        </section>
+    </div>
+{% endblock content %} 
 
-<script src="{% static 'vendor/libs/select2/select2.js' %}"></script>
-<script src="{% static 'vendor/libs/bootstrap-select/bootstrap-select.js' %}"></script>
-<script src="{% static 'vendor/libs/moment/moment.js' %}"></script>
-<script src="{% static 'vendor/libs/flatpickr/flatpickr.js' %}"></script>
-<script src="{% static 'vendor/libs/typeahead-js/typeahead.js' %}"></script>
-<script src="{% static 'vendor/libs/tagify/tagify.js' %}"></script>
-<script src="{% static 'vendor/libs/@form-validation/umd/bundle/popular.min.js' %}"></script>
-<script src="{% static 'vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js' %}"></script>
-<script src="{% static 'vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js' %}"></script>
-
-<script src="{% static 'js/form-validation.js' %}"></script>
+{% block js_bottom %}
+    <script src="{% static 'js/pages-profile.js' %}"></script>
+    <script src="{% static 'vendor/libs/block-ui/block-ui.js' %}"></script>
+    <script src="{% static 'vendor/libs/sortablejs/sortable.js' %}"></script>
+    <script src="{% static 'js/cards-actions.js' %}"></script>
+    
+    <script src="{% static 'vendor/libs/select2/select2.js' %}"></script>
+    <script src="{% static 'vendor/libs/bootstrap-select/bootstrap-select.js' %}"></script>
+    <script src="{% static 'vendor/libs/moment/moment.js' %}"></script>
+    <script src="{% static 'vendor/libs/flatpickr/flatpickr.js' %}"></script>
+    <script src="{% static 'vendor/libs/typeahead-js/typeahead.js' %}"></script>
+    <script src="{% static 'vendor/libs/tagify/tagify.js' %}"></script>
+    <script src="{% static 'vendor/libs/@form-validation/umd/bundle/popular.min.js' %}"></script>
+    <script src="{% static 'vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js' %}"></script>
+    <script src="{% static 'vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js' %}"></script>
+    
+    <script src="{% static 'js/form-validation.js' %}"></script>
 {% endblock js_bottom %}

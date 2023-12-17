@@ -1,276 +1,298 @@
-{% extends 'main.html' %} {% load static %} {% block title %}Dashboard{% endblock title %} {% block css_head %}
-<link rel="stylesheet" href="{% static 'vendor/css/pages/page-profile.css' %}" />
-<link rel="stylesheet" href="{% static 'vendor/css/pages/app-academy.css' %}" />
-<link rel="stylesheet" href="{% static 'vendor/libs/spinkit/spinkit.css' %}" />
-<link rel="stylesheet" href="{% static 'vendor/libs/apex-charts/apex-charts.css' %}" />
-{% endblock css_head %} {% block content %}
-<div class="container-xxl flex-grow-1 container-p-y">
+{% extends 'main.html' %} 
 
-            <section>
-                <h3 class="text-left mb-2 mt-0 mt-md-2">Dashboard</h3>
-                <p class="text-left lead">
-                    This is my personal dashboard, built with Django deployed as serverless functions.
-                </p>
-            </section>
+{% load static %} 
 
-            <div class="divider divider-primary">
-                <div class="divider-text">
-                    <i class="ti ti-activity-heartbeat"></i>
+{% block title %}Dashboard{% endblock title %} 
+
+{% block css_head %}
+    <link rel="stylesheet" href="{% static 'vendor/css/pages/page-profile.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/css/pages/app-academy.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/libs/spinkit/spinkit.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/libs/apex-charts/apex-charts.css' %}" />
+{% endblock css_head %} 
+
+{% block content %}
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <section>
+            <h3 class="text-left mb-2 mt-0 mt-md-2">Dashboard</h3>
+            <p class="text-left lead">
+                This is my personal dashboard, built with Django deployed as serverless functions.
+            </p>
+        </section>
+    
+        <div class="divider divider-primary">
+            <div class="divider-text">
+                <i class="ti ti-activity-heartbeat"></i>
+            </div>
+        </div>
+    
+        <section>
+            <h5 class="card-title mb-0"><i class="menu-icon tf-icons ti ti-brand-github"></i>Contributions</h5>
+            <p class="text-muted mb-3 mt-0 mt-md-2">My contributions from last year on github.</p>
+            <div class="row">
+                <!-- Statistics -->
+                <div class="col-lg-8 mb-4 col-md-12">
+                    <div class="card h-100">
+                        <div class="card-header d-flex justify-content-between">
+                            <h5 class="card-title mb-0">Contribution Statistics on Github</h5>
+                            <small class="text-muted">Last update at {{ last_day_format }}</small>
+                        </div>
+                        <div class="card-body pt-2">
+                            <div class="row gy-3">
+                                <div class="col-md-3 col-6">
+                                    <div class="d-flex align-items-center">
+                                        <!-- <div class="badge rounded-pill bg-label-success me-3 p-2">
+                                                        <i class="ti ti-chart-pie-2 ti-sm"></i>
+                                                    </div> -->
+                                        <button
+                                            type="button"
+                                            class="btn btn-icon btn-label-success rounded-pill me-3 p-2"
+                                            data-bs-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            data-bs-custom-class="tooltip-success"
+                                            title="{{ first_day_format }} to {{ last_day_format }}"
+                                        >
+                                            <span class="ti ti-sum"></span>
+                                        </button>
+                                        <div class="card-info">
+                                            <h5 class="mb-0 text-success">{{ total_contributions }}</h5>
+                                            <small>Total</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="badge rounded-pill bg-label-warning me-3 p-2">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-calendar-week"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                stroke-width="2"
+                                                stroke="currentColor"
+                                                fill="none"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            >
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" />
+                                                <path d="M16 3v4" />
+                                                <path d="M8 3v4" />
+                                                <path d="M4 11h16" />
+                                                <path d="M8 14v4" />
+                                                <path d="M12 14v4" />
+                                                <path d="M16 14v4" />
+                                            </svg>
+                                        </div>
+                                        <div class="card-info">
+                                            <h5 class="mb-0 text-warning">{{ this_week_contributions }}</h5>
+                                            <small>This Week</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6">
+                                    <div class="d-flex align-items-center">
+                                        <span class="badge bg-label-info rounded-pill me-3 p-2">
+                                            <i class="ti ti-calendar-event ti-sm"></i>
+                                        </span>
+                                        <div class="card-info">
+                                            <h5 class="mb-0 text-info">{{ best_day }}</h5>
+                                            <small>Best Day</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6">
+                                    <div class="d-flex align-items-center">
+                                        <span class="badge bg-label-danger rounded-pill me-3 p-2">
+                                            <i class="ti ti-math-x-divide-y-2 ti-sm"></i>
+                                        </span>
+                                        <div class="card-info">
+                                            <h5 class="mb-0 text-danger">{{ average_contributions }} <small>/ day</small></h5>
+                                            <small>Average</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-lg-2 col-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="badge rounded-pill p-2 bg-label-success mb-2">
+                                <i class="ti ti-trophy ti-sm"></i>
+                            </div>
+                            <h5 class="card-title text-success mb-2">{{ longest_streak }}</h5>
+                            <small>Longest Streak</small>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-lg-2 col-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <button
+                                type="button"
+                                class="btn btn-icon btn-label-warning rounded-pill mb-2 p-2"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="top"
+                                data-bs-custom-class="tooltip-warning"
+                                title="{{ current_streak_start }} to {{ current_streak_end }}"
+                            >
+                                <span class="ti ti-flame ti-sm"></span>
+                            </button>
+                            <h5 class="card-title text-warning mb-2">{{ current_streak }}</h5>
+                            <small>Current Streak</small>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="card-body">
+                <div id="lineChart"></div>
+            </div>
+        </section>
+    </div>
+{% endblock content %} 
+
+{% block js_bottom %}
+    <script src="{% static 'js/pages-profile.js' %}"></script>
+    <script src="{% static 'vendor/libs/apex-charts/apexcharts.js' %}"></script>
+    <script src="{% static 'vendor/libs/block-ui/block-ui.js' %}"></script>
+    <script src="{% static 'vendor/libs/sortablejs/sortable.js' %}"></script>
+    <script src="{% static 'js/cards-actions.js' %}"></script>
+    <script src="{% static 'js/app-academy-course.js' %}"></script>
+    <script src="{% static 'js/ui-popover.js' %}"></script>
+    <script>
+        /**
+         * Charts Apex
+         */
     
-            <section>
-                <h5 class="card-title mb-0"><i class="menu-icon tf-icons ti ti-brand-github"></i>Contributions</h5>
-                    <p class="text-muted mb-3 mt-0 mt-md-2">My contributions from last year on github.</p>
-                    <div class="row">
-                        <!-- Statistics -->
-                        <div class="col-lg-8 mb-4 col-md-12">
-                            <div class="card h-100">
-                                <div class="card-header d-flex justify-content-between">
-                                    <h5 class="card-title mb-0">Contribution Statistics on Github</h5>
-                                    <small class="text-muted">Last update at {{ last_day_format }}</small>
-                                </div>
-                                <div class="card-body pt-2">
-                                    <div class="row gy-3">
-                                        <div class="col-md-3 col-6">
-                                            <div class="d-flex align-items-center">
-                                                <!-- <div class="badge rounded-pill bg-label-success me-3 p-2">
-                                                    <i class="ti ti-chart-pie-2 ti-sm"></i>
-                                                </div> -->
-                                                <button 
-                                                    type="button" 
-                                                    class="btn btn-icon btn-label-success rounded-pill me-3 p-2"
-                                                    data-bs-toggle="tooltip"
-                                                    data-bs-placement="top"
-                                                    data-bs-custom-class="tooltip-success"
-                                                    title="{{ first_day_format }} to {{ last_day_format }}">
-                                                    <span class="ti ti-sum"></span>
-                                                </button>
-                                                <div class="card-info">
-                                                    <h5 class="mb-0 text-success">{{ total_contributions }}</h5>
-                                                    <small>Total</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 col-6">
-                                            <div class="d-flex align-items-center">
-                                                <div class="badge rounded-pill bg-label-warning me-3 p-2">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-week" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                          <path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" />
-                                                          <path d="M16 3v4" />
-                                                          <path d="M8 3v4" />
-                                                          <path d="M4 11h16" />
-                                                          <path d="M8 14v4" />
-                                                          <path d="M12 14v4" />
-                                                          <path d="M16 14v4" />
-                                                        </svg>
-                                                </div>
-                                                <div class="card-info">
-                                                    <h5 class="mb-0 text-warning">{{ this_week_contributions }}</h5>
-                                                    <small>This Week</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 col-6">
-                                            <div class="d-flex align-items-center">
-                                                <span class="badge bg-label-info rounded-pill me-3 p-2">
-                                                    <i class="ti ti-calendar-event ti-sm"></i>
-                                                </span>
-                                                <div class="card-info">
-                                                    <h5 class="mb-0 text-info">{{ best_day }}</h5>
-                                                    <small>Best Day</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 col-6">
-                                            <div class="d-flex align-items-center">
-                                                <span class="badge bg-label-danger rounded-pill me-3 p-2">
-                                                    <i class="ti ti-math-x-divide-y-2 ti-sm"></i>
-                                                </span>
-                                                <div class="card-info">
-                                                    <h5 class="mb-0 text-danger">{{ average_contributions }} <small>/ day</small></h5>
-                                                    <small>Average</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-2 col-6 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body text-center">
-                                    <div class="badge rounded-pill p-2 bg-label-success mb-2">
-                                        <i class="ti ti-trophy ti-sm"></i>
-                                    </div>
-                                    <h5 class="card-title text-success mb-2">{{ longest_streak }}</h5>
-                                    <small>Longest Streak</small>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-2 col-6 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body text-center">
-                                    <button 
-                                        type="button" 
-                                        class="btn btn-icon btn-label-warning rounded-pill mb-2 p-2"
-                                        data-bs-toggle="tooltip"
-                                        data-bs-placement="top"
-                                        data-bs-custom-class="tooltip-warning"
-                                        title="{{ current_streak_start }} to {{ current_streak_end }}">
-                                        <span class="ti ti-flame ti-sm"></span>
-                                    </button>
-                                    <h5 class="card-title text-warning mb-2">{{ current_streak }}</h5>
-                                    <small>Current Streak</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div id="lineChart"></div>
-                    </div>
-            </section>
-</div>
-{% endblock content %} {% block js_bottom %}
-<script src="{% static 'js/pages-profile.js' %}"></script>
-<script src="{% static 'vendor/libs/apex-charts/apexcharts.js' %}"></script>
-<script src="{% static 'vendor/libs/block-ui/block-ui.js' %}"></script>
-<script src="{% static 'vendor/libs/sortablejs/sortable.js' %}"></script>
-<script src="{% static 'js/cards-actions.js' %}"></script>
-<script src="{% static 'js/app-academy-course.js' %}"></script>
-<script src="{% static 'js/ui-popover.js' %}"></script>
-<script>
-    /**
-     * Charts Apex
-     */
-
-    'use strict';
-
-    (function() {
-        let cardColor, headingColor, labelColor, borderColor, legendColor;
-
-        if (isDarkStyle) {
-            cardColor = config.colors_dark.cardColor;
-            headingColor = config.colors_dark.headingColor;
-            labelColor = config.colors_dark.textMuted;
-            legendColor = config.colors_dark.bodyColor;
-            borderColor = config.colors_dark.borderColor;
-        } else {
-            cardColor = config.colors.cardColor;
-            headingColor = config.colors.headingColor;
-            labelColor = config.colors.textMuted;
-            legendColor = config.colors.bodyColor;
-            borderColor = config.colors.borderColor;
-        }
-
-        // Color constant
-        const chartColors = {
-            column: {
-                series1: '#826af9',
-                series2: '#d2b0ff',
-                bg: '#f8d3ff'
-            },
-            donut: {
-                series1: '#fee802',
-                series2: '#3fd0bd',
-                series3: '#826bf8',
-                series4: '#2b9bf4'
-            },
-            area: {
-                series1: '#29dac7',
-                series2: '#60f2ca',
-                series3: '#a5f8cd'
+        'use strict';
+    
+        (function() {
+            let cardColor, headingColor, labelColor, borderColor, legendColor;
+    
+            if (isDarkStyle) {
+                cardColor = config.colors_dark.cardColor;
+                headingColor = config.colors_dark.headingColor;
+                labelColor = config.colors_dark.textMuted;
+                legendColor = config.colors_dark.bodyColor;
+                borderColor = config.colors_dark.borderColor;
+            } else {
+                cardColor = config.colors.cardColor;
+                headingColor = config.colors.headingColor;
+                labelColor = config.colors.textMuted;
+                legendColor = config.colors.bodyColor;
+                borderColor = config.colors.borderColor;
             }
-        };
-
-        // Line Chart
-        // --------------------------------------------------------------------
-        const monthlyContributions = {{ dates|safe }};
-        const totalContributions = {{ daily_counts|safe }};
-        const lineChartEl = document.querySelector('#lineChart'),
-            lineChartConfig = {
-                chart: {
-                    height: 250,
-                    type: 'line',
-                    parentHeightOffset: 0,
-                    zoom: {
-                        enabled: true,
-                        autoScaleYaxis: true
-                    },
-                    toolbar: {
-                        autoSelected: 'zoom'
-                    },
+    
+            // Color constant
+            const chartColors = {
+                column: {
+                    series1: '#826af9',
+                    series2: '#d2b0ff',
+                    bg: '#f8d3ff'
                 },
-                series: [{
-                    data: totalContributions
-                }],
-                markers: {
-                    strokeWidth: 7,
-                    strokeOpacity: 1,
-                    strokeColors: [cardColor],
-                    colors: [config.colors.warning]
+                donut: {
+                    series1: '#fee802',
+                    series2: '#3fd0bd',
+                    series3: '#826bf8',
+                    series4: '#2b9bf4'
                 },
-                dataLabels: {
-                    enabled: false
-                },
-                stroke: {
-                    curve: 'straight',
-                    colors: ['red', 'green', 'blue', /* ... other colors ... */]
-                },
-                colors: [config.colors.warning],
-                grid: {
-                    borderColor: borderColor,
-                    xaxis: {
-                        lines: {
-                            show: true
-                        }
-                    },
-                    padding: {
-                        top: 10
-                    }
-                },
-                tooltip: {
-                    custom: function ({ series, seriesIndex, dataPointIndex, w }) {
-                        const date = monthlyContributions[dataPointIndex];
-                        const count = series[seriesIndex][dataPointIndex];
-                        const contributionText = count === 1 ? 'contribution' : 'contributions';
-
-                        return `<div class="px-3 py-2"><span>${count} ${contributionText} on ${date}</span></div>`;
-                    }
-                },
-                xaxis: {
-                    type: 'datetime',
-                    categories: monthlyContributions,
-                    axisBorder: {
-                        show: false
-                    },
-                    axisTicks: {
-                        show: false
-                    },
-                    labels: {
-                        style: {
-                            colors: labelColor,
-                            fontSize: '13px'
-                        }
-                    }
-                },
-                yaxis: {
-                    labels: {
-                        style: {
-                            colors: labelColor,
-                            fontSize: '13px'
-                        }
-                    }
+                area: {
+                    series1: '#29dac7',
+                    series2: '#60f2ca',
+                    series3: '#a5f8cd'
                 }
             };
-        if (typeof lineChartEl !== undefined && lineChartEl !== null) {
-            const lineChart = new ApexCharts(lineChartEl, lineChartConfig);
-            lineChart.render();
-        }
-
-    })();
-</script>
+    
+            // Line Chart
+            // --------------------------------------------------------------------
+            const monthlyContributions = {{ dates|safe }};
+            const totalContributions = {{ daily_counts|safe }};
+            const lineChartEl = document.querySelector('#lineChart'),
+                lineChartConfig = {
+                    chart: {
+                        height: 250,
+                        type: 'line',
+                        parentHeightOffset: 0,
+                        zoom: {
+                            enabled: true,
+                            autoScaleYaxis: true
+                        },
+                        toolbar: {
+                            autoSelected: 'zoom'
+                        },
+                    },
+                    series: [{
+                        data: totalContributions
+                    }],
+                    markers: {
+                        strokeWidth: 7,
+                        strokeOpacity: 1,
+                        strokeColors: [cardColor],
+                        colors: [config.colors.warning]
+                    },
+                    dataLabels: {
+                        enabled: false
+                    },
+                    stroke: {
+                        curve: 'straight',
+                        colors: ['red', 'green', 'blue', /* ... other colors ... */]
+                    },
+                    colors: [config.colors.warning],
+                    grid: {
+                        borderColor: borderColor,
+                        xaxis: {
+                            lines: {
+                                show: true
+                            }
+                        },
+                        padding: {
+                            top: 10
+                        }
+                    },
+                    tooltip: {
+                        custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+                            const date = monthlyContributions[dataPointIndex];
+                            const count = series[seriesIndex][dataPointIndex];
+                            const contributionText = count === 1 ? 'contribution' : 'contributions';
+    
+                            return `<div class="px-3 py-2"><span>${count} ${contributionText} on ${date}</span></div>`;
+                        }
+                    },
+                    xaxis: {
+                        type: 'datetime',
+                        categories: monthlyContributions,
+                        axisBorder: {
+                            show: false
+                        },
+                        axisTicks: {
+                            show: false
+                        },
+                        labels: {
+                            style: {
+                                colors: labelColor,
+                                fontSize: '13px'
+                            }
+                        }
+                    },
+                    yaxis: {
+                        labels: {
+                            style: {
+                                colors: labelColor,
+                                fontSize: '13px'
+                            }
+                        }
+                    }
+                };
+            if (typeof lineChartEl !== undefined && lineChartEl !== null) {
+                const lineChart = new ApexCharts(lineChartEl, lineChartConfig);
+                lineChart.render();
+            }
+    
+        })();
+    </script>
 {% endblock js_bottom %}
