@@ -105,9 +105,6 @@
                           <i class="ti ti-color-swatch"></i> {{ home_data.role }}
                         </li>
                         <li class="list-inline-item d-flex gap-1"><i class="ti ti-map-pin"></i> Based in {{ home_data.based }}</li>
-                        <!-- <li class="list-inline-item d-flex gap-1">
-                            <i class="ti ti-calendar"></i> Joined April 2021
-                        </li> -->
                     </ul>
                     <p class="text-left lead">
                         {{ home_data.shorttext }}
@@ -143,18 +140,12 @@
                                         <span class="badge bg-label-success text-start me-2">{{ latest_project.skill_1 }}</span>
                                         <span class="badge bg-label-primary text-start me-2">{{ latest_project.skill_2 }}</span>
                                         <span class="badge bg-label-danger text-start me-2">{{ latest_project.skill_3 }}</span>
-                                        <!-- <h6 class="d-flex align-items-center justify-content-center gap-1 mb-0">
-                                            4.4 <span class="text-warning"><i class="ti ti-star-filled me-1 mt-n1"></i></span><span class="text-muted">(1.23k)</span>
-                                        </h6> -->
                                     </div>
                                     <a href="#" class="h5">{{ latest_project.title }}</a>
                                     <p class="mt-2">{{ latest_project.description|slice:":75" }}{% if latest_project.description|length > 75 %}...{% endif %}</p>
                                     <div class="text-end mb-2">
                                         <small class="text-right text-muted">{{ latest_project.date_start }} - {{ latest_project.date_finish }}</small>
                                     </div>
-                                    <!-- <div class="progress mb-4" style="height: 8px;">
-                                        <div class="progress-bar w-75" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div> -->
                                     <div class="d-flex flex-column flex-md-row gap-2 text-nowrap">
                                         <a class="app-academy-md-50 btn btn-label-secondary me-md-2 d-flex align-items-center" href="{{ latest_project.github_url }}">
                                             <i class="ti ti-git-fork align-middle scaleX-n1-rtl me-2 mt-n1 ti-sm"></i><span>Repository</span>
@@ -166,41 +157,7 @@
                         </div>
                         {% endfor %}
                     </div>
-                    <!-- <div class="row mb-4">
-                        {% for latest_project in latest_projects %}
-                            <div class="col-md-6 col-sm-12">
-                                    <div class="card mb-4">
-                                        <div class="position-relative card-hover">
-                                            <div class="image-wrapper">
-                                                <img class="card-img-top" src="{{ latest_project.image.url }}" alt="{{ latest_project.title }}" />
-                                            </div>
-                                            <div class="overlay"></div>
-                                        </div>
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{ latest_project.title }}</h5>
-                                            <p class="card-text mb-2">
-                                                {{ latest_project.description|slice:":100" }}{% if latest_project.description|length > 100 %}...{% endif %}
-                                            </p>
-                                            <div class="text-end">
-                                                <p class="text-right">{{ latest_project.date_start }} - {{ latest_project.date_finish }}</p>
-                                            </div>
-                                            <div class="row mt-3">
-                                                <div class="d-grid gap-2 col-md-6 mx-auto">
-                                                    <a href="{{ latest_project.github_url }}" target="_blank" class="btn btn-label-info" role="button">
-                                                        <span class="ti-xs ti ti-git-fork me-1"></span>Repository
-                                                    </a>
-                                                </div>
-                                                <div class="d-grid gap-2 col-lg-6 mx-auto">
-                                                    <a href="{{ latest_project.demo_url }}" target="_blank" class="btn btn-label-success" role="button">
-                                                        <span class="ti-xs ti ti-unlink me-1"></span>Demo
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                            </div>
-                        {% endfor %}
-                    </div> -->
+
                 </section>
                 <div class="divider text-end">
                     <div class="divider-text">
@@ -208,10 +165,6 @@
                     </div>
                 </div>
                 <section>
-                    <!-- <div class="text-left mb-2 mt-0 mt-md-2 h4">
-                        <i class="menu-icon tf-icons ti ti-school"></i>Education
-                    </div>
-                    <p class="text-muted mb-4"></p> -->
                     <div class="d-flex justify-content-between mb-2">
                         <h4 class="card-title mb-0"><i class="menu-icon tf-icons ti ti-school"></i>Highest Education</h4>
                     </div>
@@ -231,22 +184,9 @@
                             </div>
                         </div>
                         {% endfor %}
-                        <!-- <div class="col-md-12 col-sm-12">
-                            <div class="card bg-label-primary mb-3">
-                                <div class="card-body cursor-move d-flex align-items-center">
-                                    <img src="{% static 'img/branding/al-mukmin.png' %}" alt="User" class="rounded-circle me-3" width="55" />
-                                    <div>
-                                        <span class="card-title text-primary mb-2 h4">MAS AL MUKMIN NGRUKI</span>
-                                        <div class="card-text">Natural Sciences</div>
-                                        <span class="text-neutral-300 dark:text-neutral-700">2019 - 2021</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
 
                 </section>
-        <!--/ User Profile Content -->
     </div>
 {% endblock content %}
 
@@ -256,5 +196,4 @@
     <script src="{% static 'vendor/libs/block-ui/block-ui.js' %}"></script>
     <script src="{% static 'vendor/libs/sortablejs/sortable.js' %}"></script>
     <script src="{% static 'js/cards-actions.js' %}"></script>
-    <!-- <script src="{% static 'js/app-academy-course.js' %}"></script> -->
 {% endblock js_bottom %}

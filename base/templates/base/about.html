@@ -23,18 +23,6 @@
         </div>
     </div>
     <section>
-        <!-- <p class="text-left lead">
-            Hi there, I'm Ridwan, also known as <strong>ridwaanhall</strong>. an aspiring Informatics currently pursuing my undergraduate degree at the University of Technology Yogyakarta. Although I don't have professional work experience
-            yet, I'm an eager learner looking to launch my career.
-        </p>
-        <p class="text-left lead">
-            Throughout my studies, I've developed skills in Python, Flask, Django, MongoDB, Git, and more. I'm particularly passionate about leveraging my Python expertise to work on generative AI, NLP applications, neural networks, data
-            analysis, and other emerging technologies.
-        </p>
-        <p class="text-left lead">
-            With my academic coursework and personal projects under my belt, I'm excited to tackle new challenges that will allow me to grow as a developer. I'm a team player ready to build innovative solutions that drive value and user
-            experiences forward.
-        </p> -->
         {{ abouts.longtext|safe }}
     </section>
     <div class="divider text-start-center">
@@ -43,10 +31,6 @@
         </div>
     </div>
     <section>
-        <!-- <div class="text-left mb-2 mt-0 mt-md-2 h4">
-                        <i class="menu-icon tf-icons ti ti-school"></i>Education
-                    </div>
-                    <p class="text-muted mb-4"></p> -->
         <div class="d-flex justify-content-between mb-2">
             <h5 class="card-title mb-0"><i class="menu-icon tf-icons ti ti-school"></i>Education</h5>
         </div>
@@ -102,31 +86,10 @@
             </marquee>
         </div>
     </section>
-    <!-- <section>
-        <div class="divider text-center">
-            <div class="divider-text">
-                <i class="ti ti-plug-connected"></i>
-            </div>
-        </div>
-        <div class="d-flex justify-content-between mb-2">
-            <h5 class="card-title mb-0"><i class="menu-icon tf-icons ti ti-brand-tiktok"></i>Tiktok</h5>
-        </div>
-        <p class="text-muted mb-4 mt-0 mt-md-2">Find me on Tiktok</p>
-        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@ridwaanhall" data-unique-id="ridwaanhall" data-embed-type="creator" style="max-width: 780px; min-width: 288px;">
-            <section>
-                <a target="_blank" href="https://www.tiktok.com/@ridwaanhall?refer=creator_embed">
-                    @ridwaanhall
-                </a>
-            </section>
-        </blockquote>
-        <script async src="https://www.tiktok.com/embed.js"></script>
-    </section> -->
-    <!--/ User Profile Content -->
 </div>
 {% endblock content %} {% block js_bottom %}
 <script src="{% static 'js/pages-profile.js' %}"></script>
 <script src="{% static 'vendor/libs/block-ui/block-ui.js' %}"></script>
 <script src="{% static 'vendor/libs/sortablejs/sortable.js' %}"></script>
 <script src="{% static 'js/cards-actions.js' %}"></script>
-<!-- <script src="{% static 'js/app-academy-course.js' %}"></script> -->
 {% endblock js_bottom %}

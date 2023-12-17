@@ -54,23 +54,15 @@
         </div>
     </div>
     <section>
-        <!-- <div class="text-left mb-2 mt-0 mt-md-2 h4">
-                        <i class="menu-icon tf-icons ti ti-school"></i>Education
-                    </div>
-                    <p class="text-muted mb-4"></p> -->
         <div class="d-flex justify-content-between mb-2">
             <h5 class="card-title mb-2">Or send me a message</h5>
         </div>
         {% if success_message %}
-            <!-- <div class="alert alert-success mt-3" role="alert">
-                {{ success_message }}
-            </div> -->
             <div class="alert alert-success alert-dismissible" role="alert">
                 {{ success_message }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         {% endif %}
-        <!-- <p class="text-muted mb-3 mt-0 mt-md-2">My educational journey.</p> -->
         <form class="needs-validation" novalidate method="post" action="{% url 'contact' %}">
             {% csrf_token %}
             <div class="row">
@@ -124,7 +116,6 @@
         </blockquote>
         <script async src="https://www.tiktok.com/embed.js"></script>
     </section>
-    <!--/ User Profile Content -->
 </div>
 {% endblock content %} {% block js_bottom %}
 <script src="{% static 'js/pages-profile.js' %}"></script>
@@ -143,6 +134,4 @@
 <script src="{% static 'vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js' %}"></script>
 
 <script src="{% static 'js/form-validation.js' %}"></script>
-
-<!-- <script src="{% static 'js/app-academy-course.js' %}"></script> -->
 {% endblock js_bottom %}
