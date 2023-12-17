@@ -315,5 +315,6 @@ def logoutPage(request):
 def comingSoon(request):
     return render(request, 'base/comingsoon.html')
 
+
 def errorPage(request):
     return render(request, 'base/error.html', status=500)
