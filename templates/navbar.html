@@ -84,7 +84,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="{% url 'admin:logout' %}">
+                        <a class="dropdown-item" href="{% url 'logout' %}">
                             <i class="ti ti-logout me-2 ti-sm"></i>
                             <span class="align-middle">Log Out</span>
                         </a>
@@ -107,7 +107,7 @@
                         <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="/admin">
+                        <a class="dropdown-item" href="{% url 'login' %}">
                             <i class="ti ti-login me-2 ti-sm"></i>
                             <span class="align-middle">Log In</span>
                         </a>
