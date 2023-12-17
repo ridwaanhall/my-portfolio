@@ -13,7 +13,9 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
     path('playground/', views.playground, name='playground'),
-    path('login/', views.login, name='login'),
+    
+    path('login/', views.loginPage, name='login'),
+    path('logout/', views.logoutPage, name='logout'),
 ]
 
 # Serve media files during development
