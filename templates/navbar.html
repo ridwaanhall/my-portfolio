@@ -59,7 +59,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     {% if user.is_authenticated and user.is_superuser %}
-                    <li>
+                        <li>
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar avatar-online">
@@ -71,24 +71,24 @@
                                     <small class="text-muted">Admin</small>
                                 </div>
                             </div>
-                    </li>
-                    <li>
-                        <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="/admin" target="_blank">
-                            <i class="ti ti-settings me-2 ti-sm"></i>
-                            <span class="align-middle">Controller</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="{% url 'logout' %}">
-                            <i class="ti ti-logout me-2 ti-sm"></i>
-                            <span class="align-middle">Log Out</span>
-                        </a>
-                    </li>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/admin" target="_blank">
+                                <i class="ti ti-settings me-2 ti-sm"></i>
+                                <span class="align-middle">Controller</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'logout' %}">
+                                <i class="ti ti-logout me-2 ti-sm"></i>
+                                <span class="align-middle">Log Out</span>
+                            </a>
+                        </li>
                     {% else %}
-                    <li>
+                        <li>
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar">
@@ -100,16 +100,16 @@
                                     <small class="text-muted">Guest</small>
                                 </div>
                             </div>
-                    </li>
-                    <li>
-                        <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="{% url 'login' %}">
-                            <i class="ti ti-login me-2 ti-sm"></i>
-                            <span class="align-middle">Log In</span>
-                        </a>
-                    </li>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'login' %}">
+                                <i class="ti ti-login me-2 ti-sm"></i>
+                                <span class="align-middle">Log In</span>
+                            </a>
+                        </li>
                     {% endif %}
                 </ul>
             </li>
