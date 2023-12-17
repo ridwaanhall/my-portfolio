@@ -39,7 +39,7 @@
                             <th>Name</th>
                             <th>Skills</th>
                             <th>Type</th>
-                            <th>Credential</th>
+                            <th>URL</th>
                         </tr>
                     </thead>
                 </table>
@@ -180,7 +180,7 @@
                                     1: { title: "Certs.", class: "bg-label-primary" },
                                     2: { title: "Pro Certs.", class: "bg-label-warning" },
                                     3: { title: "Basic Certs.", class: " bg-label-success" },
-                                    4: { title: "Honor & Award", class: " bg-label-danger" },
+                                    4: { title: "HnA", class: " bg-label-danger" },
                                     5: { title: "License", class: " bg-label-info" },
                                 };
                                 if (typeof $status[$status_number] === "undefined") {
@@ -192,7 +192,7 @@
                         {
                             // Actions
                             targets: -1,
-                            title: "Credential",
+                            title: "URL",
                             orderable: false,
                             searchable: false,
                             render: function (data, type, full, meta) {
