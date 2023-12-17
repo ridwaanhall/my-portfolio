@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.http import JsonResponse
 import requests, os, json
 from .models import Sidebar, Home, Project, Education, About, Skill, Message, Credential
 from datetime import datetime, timedelta
 from statistics import mean
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 
 
 # Create your views here.
@@ -413,5 +416,27 @@ def playground(request):
     
     return render(request, 'base/playground.html', context)
 
-def login(request):
+def loginPage(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        # try:
+        #     user = User.objects.get(username=username)
+        # except:
+        #     messages.error(request, 'User does not exist')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, 'Username or password is incorrect')
+            return redirect('login')
+            
     return render(request, 'base/login.html')
+
+def logoutPage(request):
+    logout(request)
+    return redirect('home')
