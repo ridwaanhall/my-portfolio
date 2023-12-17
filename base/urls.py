@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from . import views
 
 
@@ -16,4 +16,5 @@ urlpatterns = [
     path('logout/', views.logoutPage, name='logout'),
 
     path('comingsoon/', views.comingSoon, name='comingsoon'),
+    re_path(r'^.*/$', views.errorPage, name='error'),
 ]
