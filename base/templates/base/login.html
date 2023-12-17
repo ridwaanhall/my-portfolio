@@ -26,7 +26,7 @@
                 
                 {% csrf_token %}
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email or Username</label>
+                    <label for="email" class="form-label">Username</label>
                     <input type="text" class="form-control" id="email" name="username" placeholder="Enter your username" autofocus />
                 </div>
                 <div class="mb-3 form-password-toggle">
@@ -42,12 +42,6 @@
                     <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
                 </div>
             </form>
-            <p class="text-center">
-                <span>New on my portfolio?</span>
-                <a href="auth-register-basic.html">
-                    <span>Create an account</span>
-                </a>
-            </p>
         </div>
     </div>
 {% endblock content %}
