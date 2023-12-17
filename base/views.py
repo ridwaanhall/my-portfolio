@@ -5,7 +5,7 @@ import requests, os, json
 from .models import Sidebar, Home, Project, Education, About, Skill, Message, Credential
 from datetime import datetime, timedelta
 from statistics import mean
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
 
