@@ -310,3 +310,7 @@ def loginPage(request):
 def logoutPage(request):
     logout(request)
     return redirect('home')
+
+
+def comingSoon(request):
+    return render(request, 'base/comingsoon.html')
