@@ -111,7 +111,7 @@
             </div>
         </div>
         <section>
-            <div class="d-flex justify-content-between mb-2">
+            <div class="d-flex justify-content-between mb-3">
                 <h4 class="card-title mb-0">
                     <svg 
                         xmlns="http://www.w3.org/2000/svg" 
@@ -130,6 +130,12 @@
                     </svg>
                     Top Skills
                 </h4>
+                <small class="float-end">
+                    <a href="{% url 'about' %}">
+                        View All Skills
+                        <i class="ti ti-arrow-right"></i>
+                    </a>
+                </small>
             </div>
             <p class="mb-3 mt-0 mt-md-2">In the dynamic landscape of my professional expertise, I take pride in showcasing my top skills, each finely honed to contribute to the success of diverse projects.</p>
             <div class="row">
@@ -141,12 +147,12 @@
                     </div>
                 </div>
                 <div class="col-sm-12 col-lg-12 mb-4">
-                    <div class="card text-white text-center p-1 border border-primary">
+                    <div class="card text-white text-center p-3 border border-primary">
                         <figure class="mb-0">
                             <blockquote class="blockquote">
                                 <p>Python (Programming Language) · Flask · Django</p>
                             </blockquote>
-                            <!-- <figcaption class="blockquote-footer mb-0 text-white">Last update at <cite title="Source Title">2023</cite></figcaption> -->
+                            <figcaption class="blockquote-footer mb-0 text-white">Last update at <cite title="Source Title">2023</cite></figcaption>
                         </figure>
                     </div>
                 </div>
@@ -174,7 +180,9 @@
         </div>
         <section>
             <div class="d-flex justify-content-between mb-2">
-                <h4 class="card-title mb-0"><i class="menu-icon tf-icons ti ti-24-hours"></i>Latest Projects</h4>
+                <h4 class="card-title mb-0">
+                    <i class="menu-icon tf-icons ti ti-24-hours"></i>Latest Projects
+                </h4>
                 <h6 class="float-end">
                     <a href="{% url 'project' %}">
                         View All Projects
