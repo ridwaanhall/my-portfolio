@@ -49,7 +49,7 @@
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     {% if user.is_authenticated and user.is_superuser %}
                         <div class="avatar avatar-online">
-                            <img src="{% static 'img/avatars/ridwaanhall.png' %}" alt="" class="h-auto rounded-circle" />
+                            <img src="{% static 'img/avatars/ridwaanhall_me.png' %}" alt="" class="h-auto rounded-circle" />
                         </div>
                     {% else %}
                         <div class="avatar">
@@ -63,11 +63,11 @@
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar avatar-online">
-                                        <img src="{% static 'img/avatars/ridwaanhall.png' %}" alt="" class="h-auto rounded-circle" />
+                                        <img src="{% static 'img/avatars/ridwaanhall_me.png' %}" alt="ridwaanhall" class="h-auto rounded-circle" />
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
-                                    <span class="fw-medium d-block">Ridwan Halim</span>
+                                    <span class="fw-medium d-block">{{ user.get_full_name }}</span>
                                     <small class="text-muted">Admin</small>
                                 </div>
                             </div>
