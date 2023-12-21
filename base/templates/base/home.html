@@ -96,11 +96,25 @@
 {% block content %}
     <div class="container-xxl flex-grow-1 container-p-y">
         <section>
-            <h2 class="text-left mb-2 mt-0 mt-md-2">Hi, I'm {{ home_data.firstname }} 👋</h2>
-            <ul class="list-inline mb-4 d-flex align-items-left flex-wrap justify-content-sm-start justify-content-left gap-2">
-                <li class="list-inline-item d-flex gap-1"><i class="ti ti-color-swatch"></i> {{ home_data.role }}</li>
-                <li class="list-inline-item d-flex gap-1"><i class="ti ti-map-pin"></i> Based in {{ home_data.based }}</li>
-            </ul>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 mb-md-0">
+                    <h2 class="text-left mb-2 mt-0 mt-md-2">Hi, I'm {{ home_data.firstname }} 👋</h2>
+                    <ul class="list-inline mb-4 d-flex align-items-left flex-wrap justify-content-sm-start justify-content-left gap-2">
+                        <li class="list-inline-item d-flex gap-1"><i class="ti ti-color-swatch"></i> {{ home_data.role }}</li>
+                        <li class="list-inline-item d-flex gap-1"><i class="ti ti-map-pin"></i> Based in {{ home_data.based }}</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
+                    <div class="card p-3 text-end">
+                        <figure class="mb-0">
+                            <blockquote class="blockquote">
+                                <p>A well-known quote, contained in a blockquote element.</p>
+                            </blockquote>
+                            <figcaption class="blockquote-footer mb-0 text-muted">Someone famous in <cite title="Source Title">Source Title</cite></figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
             <p class="text-left lead">
                 {{ home_data.shorttext }}
             </p>
