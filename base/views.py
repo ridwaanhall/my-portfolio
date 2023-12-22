@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.http import JsonResponse
 import requests, os, json
-from .models import Sidebar, Home, Project, Education, About, Skill, Message, Credential
+from .models import Sidebar, Home, Project, Education, About, Skill, Message, Credential, Quote
 from datetime import datetime, timedelta
 from statistics import mean
 from django.contrib.auth import authenticate, login, logout
@@ -60,12 +60,16 @@ def home(request):
     home_data = Home.objects.first()
     latest_projects = Project.objects.order_by('-created_at')[:3]
     latest_educations = Education.objects.order_by('-created_at')[:1]
+    quote_of_the_day = Quote.objects.order_by('?')[:1]
+    all_quotes = Quote.objects.all()
     
     context = {
         'sidebar_data': sidebar_data,
         'home_data': home_data,
         'latest_projects': latest_projects,
         'latest_educations': latest_educations,
+        'quote_of_the_day': quote_of_the_day,
+        'all_quotes': all_quotes,
     }
     
     return render(request, 'base/home.html', context)
