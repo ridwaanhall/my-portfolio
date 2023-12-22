@@ -136,3 +136,12 @@ class Message(models.Model):
 
     def __str__(self):
         return f'{self.name} - {self.email} - {self.timestamp.strftime("%Y-%m-%d %H:%M:%S %Z")}'
+
+
+class Quote(models.Model):
+    text = models.TextField()
+    author = models.CharField(max_length=255)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'"{self.text}" - {self.author}'
