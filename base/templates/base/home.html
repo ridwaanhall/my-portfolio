@@ -104,16 +104,18 @@
                         <li class="list-inline-item d-flex gap-1"><i class="ti ti-map-pin"></i> Based in {{ home_data.based }}</li>
                     </ul>
                 </div>
+                {% for quote in quote_of_the_day %}
                 <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
-                    <div class="card p-3 text-end">
+                    <div class="p-3 text-end">
                         <figure class="mb-0">
                             <blockquote class="blockquote">
-                                <p>A well-known quote, contained in a blockquote element.</p>
+                                <p>{{ quote.text }}</p>
                             </blockquote>
-                            <figcaption class="blockquote-footer mb-0 text-muted">Someone famous in <cite title="Source Title">Source Title</cite></figcaption>
+                            <figcaption class="blockquote-footer mb-0 text-muted">{{ quote.author }}<cite title="Source Title"></cite></figcaption>
                         </figure>
                     </div>
                 </div>
+                {% endfor %}
             </div>
             <p class="text-left lead">
                 {{ home_data.shorttext }}
