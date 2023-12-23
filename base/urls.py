@@ -17,4 +17,6 @@ urlpatterns = [
 
     path('comingsoon/', views.comingSoon, name='comingsoon'),
     re_path(r'^.*/$', views.errorPage, name='error'),
+
+    path('download-resume/', views.download_resume, name='download_resume'),
 ]

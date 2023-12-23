@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.http import JsonResponse
+from django.http import JsonResponse, FileResponse
 import requests, os, json
 from .models import Sidebar, Home, Project, Education, About, Skill, Message, Credential, Quote
 from datetime import datetime, timedelta
@@ -53,6 +53,14 @@ def github_activity(request):
     else:
         # If the request was not successful, return an error response
         return JsonResponse({'error': 'Failed to fetch GitHub data'}, status=response.status_code)
+
+
+def download_resume(request):
+    file_path = 'static/folder/Resume Ridwan Halim 2023-12-21.pdf'
+    with open(file_path, 'rb') as file:
+        response = FileResponse(file)
+        response['Content-Disposition'] = 'attachment; filename="Resume Ridwan Halim 2023-12-21.pdf"'
+        return response
 
 
 def home(request):
