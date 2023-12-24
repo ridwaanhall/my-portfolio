@@ -89,6 +89,7 @@ def format_date(date_str):
         return 'Invalid Date'  # or any other appropriate default value
 
 
+
 def dashboard(request):
     sidebar_data = Sidebar.objects.first()
     response = requests.get("https://my-portfolio.ridwaanhall.repl.co/github-activity/")
@@ -107,7 +108,7 @@ def dashboard(request):
             break
 
     daily_contributions = []
-    
+
     for week in data['data']['user']['contributionsCollection']['contributionCalendar']['weeks']:
         for day in week['contributionDays']:
             date_str = day['date']
@@ -183,11 +184,11 @@ def dashboard(request):
         'this_week_contributions': this_week_contributions,
         'best_day': best_day,
         'average_contributions': rounded_average,
-        
+
         'current_streak': current_streak,
         'current_streak_start': format_date(current_streak_start),
         'current_streak_end': format_date(current_streak_end),
-        
+
         'longest_streak': longest_streak,
         'longest_streak_start': longest_streak_start,
         'longest_streak_end': longest_streak_end,
