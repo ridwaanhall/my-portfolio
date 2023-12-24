@@ -56,11 +56,8 @@ def github_activity(request):
 
 
 def download_resume(request):
-    file_path = 'static/folder/Resume Ridwan Halim 2023-12-21.pdf'
-    with open(file_path, 'rb') as file:
-        response = FileResponse(file)
-        response['Content-Disposition'] = 'attachment; filename="Resume Ridwan Halim 2023-12-21.pdf"'
-        return response
+    resume_cv = "https://docs.google.com/document/d/1Sv2VQ95fDn-0a_8lOZxBuFAZ--gJrw7u5EQ-_SLUfpo/edit"
+    return redirect(resume_cv)
 
 
 def home(request):
