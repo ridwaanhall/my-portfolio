@@ -101,7 +101,7 @@
                     <h2 class="text-left mb-2 mt-0 mt-md-2">Hi, I'm {{ home_data.firstname }} 👋</h2>
                     <ul class="list-inline mb-4 d-flex align-items-left flex-wrap justify-content-sm-start justify-content-left gap-2">
                         <li class="list-inline-item d-flex gap-1"><i class="ti ti-color-swatch"></i> {{ home_data.role }}</li>
-                        <li class="list-inline-item d-flex gap-1"><i class="ti ti-map-pin"></i> Based in {{ home_data.based }}</li>
+                        <li class="list-inline-item d-flex gap-1"><i class="ti ti-map-pin"></i>{{ home_data.based }}</li>
                     </ul>
                     <!-- this for resume downloader -->
                 </div>
@@ -147,7 +147,9 @@
                     </div>
                 </div>
                 <div class="col-lg-4 mb-2">
-                    <a href="{% url 'download_resume' %}" class="btn btn-label-info gap-2">
+                    <!-- <a href="{% url 'download_resume' %}" class="btn btn-label-info gap-2"> -->
+                    <a href="https://docs.google.com/document/d/1Sv2VQ95fDn-0a_8lOZxBuFAZ--gJrw7u5EQ-_SLUfpo/edit" class="btn btn-label-info gap-2">
+                        
                         <svg 
                             xmlns="http://www.w3.org/2000/svg" 
                             class="icon icon-tabler icon-tabler-download" 
