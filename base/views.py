@@ -56,8 +56,8 @@ def github_activity(request):
 
 
 def download_resume(request):
-    resume_cv = "https://docs.google.com/document/d/1Sv2VQ95fDn-0a_8lOZxBuFAZ--gJrw7u5EQ-_SLUfpo/edit"
-    return redirect(resume_cv)
+    download_resume = "https://docs.google.com/document/d/1Sv2VQ95fDn-0a_8lOZxBuFAZ--gJrw7u5EQ-_SLUfpo/edit"
+    return redirect(download_resume)
 
 
 def home(request):
