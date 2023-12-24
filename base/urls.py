@@ -15,8 +15,8 @@ urlpatterns = [
     path('login/', views.loginPage, name='login'),
     path('logout/', views.logoutPage, name='logout'),
 
-    path('comingsoon/', views.comingSoon, name='comingsoon'),
-    re_path(r'^.*/$', views.errorPage, name='error'),
-
     path('download-resume/', views.download_resume, name='download_resume'),
+    
+    re_path(r'^.*/$', views.errorPage, name='error'),
+    path('comingsoon/', views.comingSoon, name='comingsoon'),
 ]
