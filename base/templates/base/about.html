@@ -86,6 +86,21 @@
                     {% endfor %}
                 </marquee>
             </div>
+            <!-- <div class="marquee-container">
+                <div class="marquee">
+                    <div class="initial-child-container">
+                        <div class="child">
+                            <div class="flex flex-wrap justify-start">
+                                {% for skill in skills %}
+                                    <button type="button" class="btn rounded-pill {{ skill.text_label }} me-2">
+                                        {{ skill.text_icons|safe }}{{ skill.name_skill }}
+                                    </button>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
         </section>
     </div>
 {% endblock content %} 
