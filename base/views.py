@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.http import JsonResponse, FileResponse
+from django.http import JsonResponse
 import requests, os, json
 from .models import Sidebar, Home, Project, Education, About, Skill, Message, Credential, Quote
 from datetime import datetime, timedelta
@@ -87,6 +87,14 @@ def format_date(date_str):
     else:
         # Handle the case where date_str is None
         return 'Invalid Date'  # or any other appropriate default value
+
+
+def format_date_current(date_str):
+    if date_str is not None:
+        date_obj = datetime.strptime(date_str, '%Y-%m-%d')
+        return date_obj.strftime('%b, %d %Y')
+    else:
+        return datetime.now().strftime('%b, %d %Y')
 
 
 
@@ -186,8 +194,8 @@ def dashboard(request):
         'average_contributions': rounded_average,
 
         'current_streak': current_streak,
-        'current_streak_start': format_date(current_streak_start),
-        'current_streak_end': format_date(current_streak_end),
+        'current_streak_start': format_date_current(current_streak_start),
+        'current_streak_end': format_date_current(current_streak_end),
 
         'longest_streak': longest_streak,
         'longest_streak_start': longest_streak_start,
