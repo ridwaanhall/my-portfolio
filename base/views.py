@@ -100,7 +100,7 @@ def format_date_current(date_str):
 
 def dashboard(request):
     sidebar_data = Sidebar.objects.first()
-    response = requests.get("https://my-portfolio.ridwaanhall.repl.co/github-activity/")
+    response = requests.get("https://aaff0b3f-edba-4302-84e4-4c21fe434e72-00-2jg27tl1pjs72.global.replit.dev/github-activity/")
     data = json.loads(response.text)
 
     first_day_of_first_week = None
