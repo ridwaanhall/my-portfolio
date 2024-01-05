@@ -85,8 +85,7 @@ def format_date(date_str):
         date_obj = datetime.strptime(date_str, '%Y-%m-%d')
         return date_obj.strftime('%b, %d %Y')
     else:
-        # Handle the case where date_str is None
-        return 'Invalid Date'  # or any other appropriate default value
+        return 'Invalid Date'
 
 
 def format_date_current(date_str):
