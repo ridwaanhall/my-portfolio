@@ -51,7 +51,6 @@ def github_activity(request):
         response_data = response.json()
         return JsonResponse(response_data, safe=False)
     else:
-        # If the request was not successful, return an error response
         return JsonResponse({'error': 'Failed to fetch GitHub data'}, status=response.status_code)
 
 
