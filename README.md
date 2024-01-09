@@ -1,5 +1,5 @@
 # My POrtfolio in Django
-![Project Screenshot](https://aaff0b3f-edba-4302-84e4-4c21fe434e72-00-2jg27tl1pjs72.global.replit.dev/static/img/projects/Screenshot_121.png)
+![Project Screenshot](https://aaff0b3f-edba-4302-84e4-4c21fe434e72-00-2jg27tl1pjs72.global.replit.dev/static/img/projects/Screenshot_134.png)
 
 ## About
 this is my first fortfolio integrated with database using django.
@@ -34,3 +34,5 @@ python manage.py createsuperuser
 ```bash
 python manage.py runserver
 ```
+
+## 
