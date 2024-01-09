@@ -219,7 +219,7 @@ def project(request):
         'projects': projects,
         'total_projects': total_projects,
     }
-    
+
     return render(request, 'base/project.html', context)
 
 
@@ -319,7 +319,7 @@ def loginPage(request):
         else:
             messages.error(request, 'Username or password is incorrect')
             return redirect('login')
-            
+
     return render(request, 'base/login.html')
 
 
