@@ -35,4 +35,5 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-## 
+## requests full code
+for purpose please message me in [Linkedin](https://www.linkedin.com/in/ridwaanhall/)
