@@ -12,6 +12,7 @@ from django.contrib.auth import authenticate, login, logout
 def github_activity(request):
     username = "ridwaanhall"
     access_token = os.getenv("GITHUB_SECRET")
+    #print(access_token)
     api_url = "https://api.github.com/graphql"
 
     query = """
