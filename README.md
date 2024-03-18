@@ -1,5 +1,5 @@
 # My Portfolio in Django integrated with Database
-![Project Screenshot](static/img/projects/Screenshot_134.png)
+![Project Screenshot](images/web-portfolio-ridwaanhall.png)
 
 ## About
 this is my first fortfolio integrated with database using django.
