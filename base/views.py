@@ -11,7 +11,7 @@ from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 def github_activity(request):
     username = "ridwaanhall"
-    access_token = os.getenv("GITHUB_SECRET")
+    access_token = "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"
     #print(access_token)
     api_url = "https://api.github.com/graphql"
 
@@ -52,7 +52,8 @@ def github_activity(request):
         response_data = response.json()
         return JsonResponse(response_data, safe=False)
     else:
-        return JsonResponse({'error': 'Failed to fetch GitHub data'}, status=response.status_code)
+        return JsonResponse({'error': 'Failed to fetch GitHub data'},
+                            status=response.status_code)
 
 
 def download_resume(request):
@@ -67,7 +68,7 @@ def home(request):
     latest_educations = Education.objects.order_by('-created_at')[:1]
     quote_of_the_day = Quote.objects.order_by('?')[:1]
     all_quotes = Quote.objects.all()
-    
+
     context = {
         'sidebar_data': sidebar_data,
         'home_data': home_data,
@@ -76,7 +77,7 @@ def home(request):
         'quote_of_the_day': quote_of_the_day,
         'all_quotes': all_quotes,
     }
-    
+
     return render(request, 'base/home.html', context)
 
 
@@ -96,48 +97,61 @@ def format_date_current(date_str):
         return datetime.now().strftime('%b, %d %Y')
 
 
-
 def dashboard(request):
     sidebar_data = Sidebar.objects.first()
-    response = requests.get("https://aaff0b3f-edba-4302-84e4-4c21fe434e72-00-18ppstrxi56pp.worf.replit.dev/github-activity/")
+    response = requests.get(
+        "https://aaff0b3f-edba-4302-84e4-4c21fe434e72-00-18ppstrxi56pp.worf.replit.dev/github-activity/"
+    )
     data = json.loads(response.text)
 
     first_day_of_first_week = None
-    for week in data['data']['user']['contributionsCollection']['contributionCalendar']['weeks']:
+    for week in data['data']['user']['contributionsCollection'][
+            'contributionCalendar']['weeks']:
         if week['firstDay']:
             first_day_of_first_week = week['firstDay']
             break
 
     last_day_of_last_week = None
-    for week in reversed(data['data']['user']['contributionsCollection']['contributionCalendar']['weeks']):
+    for week in reversed(data['data']['user']['contributionsCollection']
+                         ['contributionCalendar']['weeks']):
         if week['contributionDays']:
             last_day_of_last_week = week['contributionDays'][-1]['date']
             break
 
     daily_contributions = []
 
-    for week in data['data']['user']['contributionsCollection']['contributionCalendar']['weeks']:
+    for week in data['data']['user']['contributionsCollection'][
+            'contributionCalendar']['weeks']:
         for day in week['contributionDays']:
             date_str = day['date']
 
             daily_contributions.append({
-                "date": date_str,
-                "contributionCount": day['contributionCount']
+                "date":
+                date_str,
+                "contributionCount":
+                day['contributionCount']
             })
 
     # Sorting the daily_contributions by date
-    sorted_daily_contributions = sorted(daily_contributions, key=lambda x: x["date"])
+    sorted_daily_contributions = sorted(daily_contributions,
+                                        key=lambda x: x["date"])
 
     # Extracting dates and contribution counts into separate lists
     dates = [day["date"] for day in sorted_daily_contributions]
-    daily_counts = [day["contributionCount"] for day in sorted_daily_contributions]
+    daily_counts = [
+        day["contributionCount"] for day in sorted_daily_contributions
+    ]
 
-    total_contributions = data['data']['user']['contributionsCollection']['contributionCalendar']['totalContributions']
+    total_contributions = data['data']['user']['contributionsCollection'][
+        'contributionCalendar']['totalContributions']
 
     # Calculate contributions for this week
     this_week_start = datetime.now() - timedelta(days=datetime.now().weekday())
-    this_week_contributions = sum(day['contributionCount'] for week in data['data']['user']['contributionsCollection']['contributionCalendar']['weeks']
-                                  for day in week['contributionDays'] if datetime.strptime(day['date'], '%Y-%m-%d') >= this_week_start)
+    this_week_contributions = sum(
+        day['contributionCount'] for week in data['data']['user']
+        ['contributionsCollection']['contributionCalendar']['weeks']
+        for day in week['contributionDays']
+        if datetime.strptime(day['date'], '%Y-%m-%d') >= this_week_start)
 
     # Calculate best day
     best_day = max(daily_counts)
@@ -157,12 +171,15 @@ def dashboard(request):
             if current_streak == 0:
                 current_streak_end = current_date
             current_streak += 1
-            current_date = (datetime.strptime(current_date, '%Y-%m-%d') - timedelta(days=1)).strftime('%Y-%m-%d')
+            current_date = (datetime.strptime(current_date, '%Y-%m-%d') -
+                            timedelta(days=1)).strftime('%Y-%m-%d')
         else:
             break
 
     if current_streak > 0:
-        current_streak_start = (datetime.strptime(current_streak_end, '%Y-%m-%d') - timedelta(days=current_streak - 1)).strftime('%Y-%m-%d')
+        current_streak_start = (
+            datetime.strptime(current_streak_end, '%Y-%m-%d') -
+            timedelta(days=current_streak - 1)).strftime('%Y-%m-%d')
 
     # Calculate longest streak
     longest_streak = 0
@@ -186,20 +203,16 @@ def dashboard(request):
         'sidebar_data': sidebar_data,
         'dates': dates,
         'daily_counts': daily_counts,
-
         'total_contributions': total_contributions,
         'this_week_contributions': this_week_contributions,
         'best_day': best_day,
         'average_contributions': rounded_average,
-
         'current_streak': current_streak,
         'current_streak_start': format_date_current(current_streak_start),
         'current_streak_end': format_date_current(current_streak_end),
-
         'longest_streak': longest_streak,
         'longest_streak_start': longest_streak_start,
         'longest_streak_end': longest_streak_end,
-
         'first_day': first_day_of_first_week,
         'last_day': last_day_of_last_week,
         'first_day_format': format_date(first_day_of_first_week),
@@ -208,13 +221,13 @@ def dashboard(request):
 
     return render(request, 'base/dashboard.html', context)
 
-    
+
 def project(request):
 
     sidebar_data = Sidebar.objects.first()
     projects = Project.objects.order_by('-created_at')
     total_projects = Project.objects.count()
-    
+
     context = {
         'sidebar_data': sidebar_data,
         'projects': projects,
@@ -229,25 +242,22 @@ def certificate(request):
     credentials_list = list(credentials)
     sidebar_data = Sidebar.objects.first()
 
-    data = [
-        {
-            "id": credential["id"],
-            "company_logo": credential["company_logo"],
-            "company_name": credential["company_name"],
-            "issued_date": credential["issued_date"],
-            "name": credential["name"],
-            "skills": credential["skills"],
-            "url_credential": credential["url_credential"],
-            "type": credential["type"],
-        }
-        for credential in credentials_list
-    ]
-    
+    data = [{
+        "id": credential["id"],
+        "company_logo": credential["company_logo"],
+        "company_name": credential["company_name"],
+        "issued_date": credential["issued_date"],
+        "name": credential["name"],
+        "skills": credential["skills"],
+        "url_credential": credential["url_credential"],
+        "type": credential["type"],
+    } for credential in credentials_list]
+
     context = {
         'sidebar_data': sidebar_data,
         'credentials': data,
     }
-    
+
     return render(request, 'base/certificate.html', context)
 
 
@@ -266,9 +276,8 @@ def about(request):
         'skills': skills_1,
         'skills_2': skills_2,
         'skills_3': skills_3,
-        
     }
-    
+
     return render(request, 'base/about.html', context)
 
 
@@ -284,7 +293,7 @@ def contact(request):
         message.save()
 
         success_message = f'Message sent successfully! with name {name} and email {email}'
-        
+
         return redirect('contact')
 
     sidebar_data = Sidebar.objects.first()
@@ -303,7 +312,7 @@ def playground(request):
     context = {
         'sidebar_data': sidebar_data,
     }
-    
+
     return render(request, 'base/playground.html', context)
 
 
