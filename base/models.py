@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils import timezone
+from datetime import date
+from dateutil.relativedelta import relativedelta
 
 
 # Create your models here.
@@ -147,3 +149,77 @@ class Quote(models.Model):
 
     def __str__(self):
         return f'"{self.text}" - {self.author}'
+
+
+class Career(models.Model):
+    company_logo = models.URLField(max_length=500)
+    position = models.CharField(max_length=255)
+    company_url = models.URLField(max_length=500)
+    company_name = models.CharField(max_length=255)
+    location = models.CharField(max_length=255)
+    country_flag = models.CharField(max_length=10)
+    start_date = models.DateField()
+    end_date = models.DateField(null=True, blank=True)
+    current = models.BooleanField(default=False)
+    duration = models.CharField(max_length=255, blank=True)
+
+    EMPLOYMENT_TYPES = [
+        ('Full-time', 'Full-time'),
+        ('Part-time', 'Part-time'),
+        ('Self-employed', 'Self-employed'),
+        ('Freelance', 'Freelance'),
+        ('Contract', 'Contract'),
+        ('Internship', 'Internship'),
+        ('Apprenticeship', 'Apprenticeship'),
+        ('Seasonal', 'Seasonal'),
+    ]
+    employment_type = models.CharField(max_length=20, choices=EMPLOYMENT_TYPES)
+
+    LOCATION_TYPES = [
+        ('On-site', 'On-site'),
+        ('Hybrid', 'Hybrid'),
+        ('Remote', 'Remote'),
+    ]
+    location_type = models.CharField(max_length=10, choices=LOCATION_TYPES)
+
+    def save(self, *args, **kwargs):
+        if self.current:
+            self.end_date = date.today()
+        else:
+            self.end_date = self.end_date or date.today()
+
+        delta = relativedelta(self.end_date, self.start_date)
+        years = delta.years
+        months = delta.months
+
+        if years > 0 and months > 0:
+            duration_str = f"{years} Year{'s' if years != 1 else ''}, {months} Month{'s' if months != 1 else ''}"
+        elif years > 0:
+            duration_str = f"{years} Year{'s' if years != 1 else ''}"
+        else:
+            duration_str = f"{months} Month{'s' if months != 1 else ''}"
+
+        self.duration = duration_str
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.position} at {self.company_name}"
+
+    def display_end_date(self):
+        if self.current:
+            return "Present"
+        return self.end_date.strftime("%b %Y")
+
+class Responsibility(models.Model):
+    career = models.ForeignKey(Career, related_name='responsibilities', on_delete=models.CASCADE)
+    responsibility = models.CharField(max_length=300)
+
+    def __str__(self):
+        return self.responsibility
+
+class CareerSkill(models.Model):
+    career = models.ForeignKey(Career, related_name='careerskill', on_delete=models.CASCADE)
+    career_skill = models.CharField(max_length=300)
+
+    def __str__(self):
+        return self.career_skill
