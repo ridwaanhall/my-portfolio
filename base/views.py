@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.http import JsonResponse
 import requests, os, json
-from .models import Sidebar, Home, Project, Education, About, Skill, Message, Credential, Quote
+from .models import Sidebar, Home, Project, Education, About, Skill, Message, Credential, Quote, Career
 from datetime import datetime, timedelta
 from statistics import mean
 from django.contrib.auth import authenticate, login, logout
@@ -344,3 +344,14 @@ def comingSoon(request):
 
 def errorPage(request):
     return render(request, 'base/error.html', status=500)
+
+def career(request):
+    sidebar_data = Sidebar.objects.first()
+    careers = Career.objects.prefetch_related('responsibilities').order_by('-start_date')
+
+    context = {
+        'sidebar_data': sidebar_data,
+        'careers': careers,
+    }
+
+    return render(request, 'base/career.html', context)
