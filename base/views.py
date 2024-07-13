@@ -6,6 +6,7 @@ from .models import Sidebar, Home, Project, Education, About, Skill, Message, Cr
 from datetime import datetime, timedelta
 from statistics import mean
 from django.contrib.auth import authenticate, login, logout
+from django.db.models import Q
 
 
 # Create your views here.
@@ -347,7 +348,13 @@ def errorPage(request):
 
 def career(request):
     sidebar_data = Sidebar.objects.first()
-    careers = Career.objects.prefetch_related('responsibilities').order_by('-start_date')
+
+    # Get ongoing careers (current=True) and past careers (current=False)
+    ongoing_careers = Career.objects.prefetch_related('responsibilities').filter(current=True).order_by('-start_date')
+    past_careers = Career.objects.prefetch_related('responsibilities').filter(current=False).order_by('-start_date')
+
+    # Combine the two querysets
+    careers = list(ongoing_careers) + list(past_careers)
 
     context = {
         'sidebar_data': sidebar_data,
