@@ -32,6 +32,9 @@ class CareerSkillInline(admin.TabularInline):
 
 class CareerAdmin(admin.ModelAdmin):
     inlines = [ResponsibilityInline, CareerSkillInline]
+    list_display = ('position', 'company_name', 'location', 'start_date', 'end_date', 'current', 'employment_type', 'location_type')
+    search_fields = ('company_name', 'position', 'location')
+    list_filter = ('employment_type', 'location_type', 'start_date', 'end_date', 'current')
 
 admin.site.register(Career, CareerAdmin)
 admin.site.register(Responsibility)
